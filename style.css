@@ -6,6 +6,16 @@
     box-sizing: border-box;
     font-family: "Poppins", sans-serif;
 }
+.sec-space {
+    padding: 4rem 0;
+}
+.extra-space {
+    padding: 8rem;
+}
+.obj-width {
+    max-width: 1200px;
+    margin: auto;
+}
 
 body {
     position: relative;
@@ -255,6 +265,19 @@ header.scrolled {
     width: 100%;
 }
 
+.feature1 .fe-box {
+    display: flex;
+    justify-content: sapce-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.feature1 .fe-box div {
+    width: 300px;
+}
+.feature1 .fe-box img {
+    width: 50px;
+    margin-top: 3rem;
+}
 
 /* Media Queries */
 @media (max-width: 775px) {
@@ -338,5 +361,8 @@ header.scrolled {
 
     .glass p {
         font-size: 1.2rem;
+    }
+    .feature1 .fe-box div {
+        width: 40%;
     }
 }
