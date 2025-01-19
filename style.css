@@ -217,22 +217,22 @@ header.scrolled {
     max-width: 1200px;
     margin: 0 auto;
 }
-.features-card {
+.feature-card {
     background: white;
-    padding: 4rem;
+    padding: 2rem;
     border-radius: 0.5rem;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     transition: all 0.3s;
     opacity: 0;
     transform: translateY(30px);
-}
-.feature-card.animate {
     animation: fadeInUp 0.8s forwards;
 }
+
 .feature-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
     border-radius: 12px; 
+    padding: 2rem; 
 }
 
 .feature-card h3 {
