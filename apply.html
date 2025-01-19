@@ -24,234 +24,236 @@
             <i id="bar" class='bx bx-menu'></i>
         </div>
     </header>
-    <div class="container">
-        <div class="upload-container">
-            <h3>Upload Photo</h3>
-            <div class="photo-preview" id="photoPreview">
-                <div class="placeholder-text">
-                    <i class="fas fa-user upload-icon"></i>
-                    <p>Upload a passport-sized photo</p>
-                </div>
-            </div>
-            <div class="file-upload">
-                <div class="upload-btn">
-                    <i class="fas fa-camera"></i> Choose Photo
-                </div>
-                <input type="file" 
-                       id="photoInput" 
-                       accept="image/*"
-                       onchange="previewPhoto(event)">
-            </div>
-            <div class="file-name" id="photoName"></div>
-        </div>
-
-        <form id="applicationForm">
-            <div class="form-group">
-                <label for="job-reference">Job Reference Number</label>
-                <input 
-                    id="job-reference" 
-                    type="text" 
-                    pattern="^[a-zA-Z0-9]{5}$"
-                    required
-                    placeholder="Enter 5 alphanumeric characters"
-                />
-                <div class="error-message">Must be exactly 5 alphanumeric characters</div>
-            </div>
-
-            <div class="form-group row">
-                <div class="col">
-                    <label for="first-name">First Name</label>
-                    <input 
-                        id="first-name" 
-                        type="text" 
-                        maxlength="20" 
-                        pattern="[A-Za-z]{1,20}"
-                        required
-                        placeholder="Max 20 alpha characters"
-                    />
-                </div>
-                <div class="col">
-                    <label for="last-name">Last Name</label>
-                    <input 
-                        id="last-name" 
-                        type="text" 
-                        maxlength="20"
-                        pattern="[A-Za-z]{1,20}"
-                        required
-                        placeholder="Max 20 alpha characters"
-                    />
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label for="date-of-birth">Date of Birth</label>
-                <input 
-                    id="date-of-birth" 
-                    type="date" 
-                    required
-                />
-            </div>
-
-            <div class="form-group">
-                <fieldset class="fieldset-container">
-                    <legend>Gender</legend>
-                    <div class="radio-group">
-                        <label>
-                            <input type="radio" name="gender" value="male" required />
-                            Male
-                        </label>
-                        <label>
-                            <input type="radio" name="gender" value="female" />
-                            Female
-                        </label>
-                        <label>
-                            <input type="radio" name="gender" value="other" />
-                            Other
-                        </label>
+    <main class="main-content">
+        <div class="container">
+            <div class="upload-container">
+                <h3>Upload Photo</h3>
+                <div class="photo-preview" id="photoPreview">
+                    <div class="placeholder-text">
+                        <i class="fas fa-user upload-icon"></i>
+                        <p>Upload a passport-sized photo</p>
                     </div>
-                </fieldset>
+                </div>
+                <div class="file-upload">
+                    <div class="upload-btn">
+                        <i class="fas fa-camera"></i> Choose Photo
+                    </div>
+                    <input type="file" 
+                           id="photoInput" 
+                           accept="image/*"
+                           onchange="previewPhoto(event)">
+                </div>
+                <div class="file-name" id="photoName"></div>
             </div>
-
-            <div class="form-group">
-                <label for="street-address">Street Address</label>
-                <input 
-                    id="street-address" 
-                    type="text" 
-                    maxlength="40"
-                    required
-                    placeholder="Max 40 characters"
-                />
-            </div>
-
-            <div class="form-group">
-                <label for="suburb">Suburb/Town</label>
-                <input 
-                    id="suburb" 
-                    type="text" 
-                    maxlength="40"
-                    required
-                    placeholder="Max 40 characters"
-                />
-            </div>
-
-            <div class="form-group row">
-                <div class="col">
-                    <label for="state">State</label>
+    
+            <form id="applicationForm">
+                <div class="form-group">
+                    <label for="job-reference">Job Reference Number</label>
                     <input 
-                        id="state" 
+                        id="job-reference" 
+                        type="text" 
+                        pattern="^[a-zA-Z0-9]{5}$"
+                        required
+                        placeholder="Enter 5 alphanumeric characters"
+                    />
+                    <div class="error-message">Must be exactly 5 alphanumeric characters</div>
+                </div>
+    
+                <div class="form-group row">
+                    <div class="col">
+                        <label for="first-name">First Name</label>
+                        <input 
+                            id="first-name" 
+                            type="text" 
+                            maxlength="20" 
+                            pattern="[A-Za-z]{1,20}"
+                            required
+                            placeholder="Max 20 alpha characters"
+                        />
+                    </div>
+                    <div class="col">
+                        <label for="last-name">Last Name</label>
+                        <input 
+                            id="last-name" 
+                            type="text" 
+                            maxlength="20"
+                            pattern="[A-Za-z]{1,20}"
+                            required
+                            placeholder="Max 20 alpha characters"
+                        />
+                    </div>
+                </div>
+    
+                <div class="form-group">
+                    <label for="date-of-birth">Date of Birth</label>
+                    <input 
+                        id="date-of-birth" 
+                        type="date" 
+                        required
+                    />
+                </div>
+    
+                <div class="form-group">
+                    <fieldset class="fieldset-container">
+                        <legend>Gender</legend>
+                        <div class="radio-group">
+                            <label>
+                                <input type="radio" name="gender" value="male" required />
+                                Male
+                            </label>
+                            <label>
+                                <input type="radio" name="gender" value="female" />
+                                Female
+                            </label>
+                            <label>
+                                <input type="radio" name="gender" value="other" />
+                                Other
+                            </label>
+                        </div>
+                    </fieldset>
+                </div>
+    
+                <div class="form-group">
+                    <label for="street-address">Street Address</label>
+                    <input 
+                        id="street-address" 
                         type="text" 
                         maxlength="40"
                         required
                         placeholder="Max 40 characters"
                     />
                 </div>
-                <div class="col">
-                    <label for="postcode">Postcode</label>
+    
+                <div class="form-group">
+                    <label for="suburb">Suburb/Town</label>
                     <input 
-                        id="postcode" 
+                        id="suburb" 
                         type="text" 
-                        pattern="[0-9]{4}"
+                        maxlength="40"
                         required
-                        placeholder="4 digits"
+                        placeholder="Max 40 characters"
                     />
                 </div>
-            </div>
-
-            <div class="form-group">
-                <label for="email">Email Address</label>
-                <input 
-                    id="email" 
-                    type="email" 
-                    required
-                    placeholder="Enter valid email address"
-                />
-            </div>
-
-            <div class="form-group">
-                <label for="phone">Phone Number</label>
-                <input 
-                    id="phone" 
-                    type="tel" 
-                    pattern="[0-9 ]{8,12}"
-                    required
-                    placeholder="8 to 12 digits, spaces allowed"
-                />
-            </div>
-
-            <div class="form-group">
-                <fieldset class="fieldset-container">
-                    <legend>Skills</legend>
-                    <div class="checkbox-group">
-                        <label>
-                            <input type="checkbox" name="skills" value="programming" />
-                            Programming
-                        </label>
-                        <label>
-                            <input type="checkbox" name="skills" value="design" />
-                            Design
-                        </label>
-                        <label>
-                            <input type="checkbox" name="skills" value="marketing" />
-                            Marketing
-                        </label>
-                        <label>
-                            <input type="checkbox" name="skills" value="sales" />
-                            Sales
-                        </label>
-                        <label>
-                            <input type="checkbox" name="skills" value="management" />
-                            Management
-                        </label>
-                        <label>
-                            <input type="checkbox" name="skills" value="programming" />
-                            English
-                        </label>
-                        <label>
-                            <input type="checkbox" name="skills" value="programming" />
-                            Japanese
-                        </label>
-                        <label>
-                            <input type="checkbox" name="skills" value="programming" />
-                            Chinese
-                        </label>
-                        <label>
-                            <input type="checkbox" name="skills" value="other" />
-                            Other skills...
-                        </label>
+    
+                <div class="form-group row">
+                    <div class="col">
+                        <label for="state">State</label>
+                        <input 
+                            id="state" 
+                            type="text" 
+                            maxlength="40"
+                            required
+                            placeholder="Max 40 characters"
+                        />
                     </div>
-                </fieldset>
-            </div>
-
-            <div class="form-group">
-                <label for="other-skills">Other Skills</label>
-                <textarea 
-                    id="other-skills" 
-                    rows="4"
-                    placeholder="Describe your other skills..."
-                ></textarea>
-            </div>
-
-            <div class="form-group">
-                <label>Resume</label>
-                <div class="file-input-container">
-                    <div class="file-input-trigger">
-                        <i class="fas fa-cloud-upload-alt"></i>
-                        <span>Drop your resume here or click to upload</span>
+                    <div class="col">
+                        <label for="postcode">Postcode</label>
+                        <input 
+                            id="postcode" 
+                            type="text" 
+                            pattern="[0-9]{4}"
+                            required
+                            placeholder="4 digits"
+                        />
                     </div>
-                    <input type="file" id="resume" accept=".pdf,.doc,.docx" required />
                 </div>
-            </div>
-
-            <div class="btn-container">
-                <button type="submit" class="btn btn-submit">
-                    Submit Application
-                </button>
-                <button type="reset" class="btn btn-reset">
-                    Reset
-                </button>
-            </div>
-        </form>
-    </div>
+    
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input 
+                        id="email" 
+                        type="email" 
+                        required
+                        placeholder="Enter valid email address"
+                    />
+                </div>
+    
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input 
+                        id="phone" 
+                        type="tel" 
+                        pattern="[0-9 ]{8,12}"
+                        required
+                        placeholder="8 to 12 digits, spaces allowed"
+                    />
+                </div>
+    
+                <div class="form-group">
+                    <fieldset class="fieldset-container">
+                        <legend>Skills</legend>
+                        <div class="checkbox-group">
+                            <label>
+                                <input type="checkbox" name="skills" value="programming" />
+                                Programming
+                            </label>
+                            <label>
+                                <input type="checkbox" name="skills" value="design" />
+                                Design
+                            </label>
+                            <label>
+                                <input type="checkbox" name="skills" value="marketing" />
+                                Marketing
+                            </label>
+                            <label>
+                                <input type="checkbox" name="skills" value="sales" />
+                                Sales
+                            </label>
+                            <label>
+                                <input type="checkbox" name="skills" value="management" />
+                                Management
+                            </label>
+                            <label>
+                                <input type="checkbox" name="skills" value="programming" />
+                                English
+                            </label>
+                            <label>
+                                <input type="checkbox" name="skills" value="programming" />
+                                Japanese
+                            </label>
+                            <label>
+                                <input type="checkbox" name="skills" value="programming" />
+                                Chinese
+                            </label>
+                            <label>
+                                <input type="checkbox" name="skills" value="other" />
+                                Other skills...
+                            </label>
+                        </div>
+                    </fieldset>
+                </div>
+    
+                <div class="form-group">
+                    <label for="other-skills">Other Skills</label>
+                    <textarea 
+                        id="other-skills" 
+                        rows="4"
+                        placeholder="Describe your other skills..."
+                    ></textarea>
+                </div>
+    
+                <div class="form-group">
+                    <label>Resume</label>
+                    <div class="file-input-container">
+                        <div class="file-input-trigger">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                            <span>Drop your resume here or click to upload</span>
+                        </div>
+                        <input type="file" id="resume" accept=".pdf,.doc,.docx" required />
+                    </div>
+                </div>
+    
+                <div class="btn-container">
+                    <button type="submit" class="btn btn-submit">
+                        Submit Application
+                    </button>
+                    <button type="reset" class="btn btn-reset">
+                        Reset
+                    </button>
+                </div>
+            </form>
+        </div>
+    </main>
     <script>
         function previewPhoto(event) {
             const file = event.target.files[0];
