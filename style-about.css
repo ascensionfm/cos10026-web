@@ -308,7 +308,78 @@ header.scrolled {
     line-height: 1.6;
     opacity: 0.9;
 }
-/*Tiimeline*/
+/*Tutor*/
+.tutor-section {
+    padding: 2rem 0;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.tutor-container {
+    position: relative;
+    display: inline-block;
+    padding: 1rem 3rem;
+}
+
+.tutor-container::before,
+.tutor-container::after {
+    content: '★';
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.5rem;
+    color: #1f3e5d;
+    opacity: 0;
+    transition: all 0.4s ease;
+}
+
+.tutor-container::before {
+    left: 0;
+}
+
+.tutor-container::after {
+    right: 0;
+}
+
+.tutor-container:hover::before {
+    opacity: 1;
+    transform: translateY(-50%) rotate(360deg);
+}
+
+.tutor-container:hover::after {
+    opacity: 1;
+    transform: translateY(-50%) rotate(-360deg);
+}
+
+.tutor-title {
+    font-size: 1.8rem;
+    color: #1f3e5d;
+    font-weight: 600;
+    position: relative;
+    margin: 0;
+    transition: all 0.3s ease;
+}
+
+.tutor-role {
+    font-size: 1rem;
+    color: #666;
+    margin-top: 0.3rem;
+    transform: translateY(0);
+    transition: all 0.3s ease;
+}
+
+.tutor-container:hover .tutor-title {
+    transform: scale(1.1);
+    background: linear-gradient(45deg, #2b537b, #6186b4);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.tutor-container:hover .tutor-role {
+    transform: translateY(3px);
+}
+/*Timeline*/
 .timeline-section {
     padding: 4rem 0;
     background-color: #f8f9fa;
