@@ -373,6 +373,7 @@ header.scrolled {
     transform: scale(1.1);
     background: linear-gradient(45deg, #2b537b, #6186b4);
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
