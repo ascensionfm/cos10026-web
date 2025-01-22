@@ -136,6 +136,12 @@ header.scrolled {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
+#w-btn a,
+.apply-button button a {
+    text-decoration: none;
+    color: inherit;
+}
+
 #bar {
     color: #fff;
     display: none;

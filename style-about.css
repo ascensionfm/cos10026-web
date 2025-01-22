@@ -151,6 +151,12 @@ header.scrolled {
     animation: fadeInUp 0.8s forwards 0.5s;
 }
 
+#w-btn a,
+.apply-button button a {
+    text-decoration: none;
+    color: inherit;
+}
+
 #w-btn:hover {
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
