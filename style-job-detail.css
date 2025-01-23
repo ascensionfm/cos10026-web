@@ -350,18 +350,18 @@ h1 {
 }
 
 .section-title {
-    font-size: 20px;
+    font-size: 25px;
     color: #333;
     margin-top: 20px;
-    border-top: 1px solid #ccc;
-    padding-top: 30px;
+    border-top: 1px solid #b4b3b3;
+    padding-top: 25px;
 }
 .section-content {
-    margin-top: 10px;
+    margin-top: 15px;
 }
 .section-content p {
     margin: 5px 0;
-    color: #333;
+    color: #373535;
 }
 .section-content ul {
     list-style-type: disc;
