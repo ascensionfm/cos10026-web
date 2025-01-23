@@ -353,8 +353,14 @@ h1 {
     font-size: 25px;
     color: #333;
     margin-top: 20px;
+    margin-bottom: 10px;;
     border-top: 1px solid #b4b3b3;
     padding-top: 25px;
+}
+
+.section-title strong {
+    font-size: 25px;
+    font-weight:450;
 }
 .section-content {
     margin-top: 15px;
@@ -370,6 +376,7 @@ h1 {
 .section-content ul li {
     margin: 5px 0;
     color: #333;
+    padding: 8px;
 }
 .tags {
     display: flex;
