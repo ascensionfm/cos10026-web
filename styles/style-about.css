@@ -282,11 +282,18 @@ header.scrolled {
     transform: translateY(0);
     transition: transform 0.3s ease, background-color 0.3s ease;
     overflow: hidden;
+    opacity: 1;
 }
 
 .card:hover {
-    transform: translateY(-20px);
+    transform: translateY(-20px) scale(1.02);
     background-color: #e1e4e4;
+}
+
+.cards:hover > :not(:hover) {
+    opacity: 0.4;
+    transform: scale(0.85);
+    filter: blur(5px);
 }
 
 .card img {
