@@ -142,15 +142,19 @@ header.scrolled {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
-#bar {
-    color: #fff;
+.nav-toggle {
     display: none;
+}
+
+.nav-toggle-label {
+    display: none;
+    color: #fff;
     font-size: 1.7rem;
     cursor: pointer;
     transition: transform 0.3s;
 }
 
-#bar:hover {
+.nav-toggle-label:hover {
     transform: scale(1.1);
 }
 
@@ -550,6 +554,10 @@ footer {
 }
 
 @media (max-width: 775px) {
+    .nav-toggle-label {
+        display: block;
+    }
+
     #menu {
         background-color: #fff;
         display: block;
@@ -566,11 +574,6 @@ footer {
         z-index: 999; 
     }
 
-    #menu.active {
-        right: 10px;
-        opacity: 1;
-    }
-
     #menu li {
         padding: 1rem;
         animation: none;
@@ -579,26 +582,25 @@ footer {
 
     #menu li a {
         color: #1f3e5d;
+        margin-left: 20px;
     }
 
     #menu li a::after {
         background-color: #1f3e5d;
     }
 
-    #bar {
-        display: block;
-        font-size: 1.7rem;
-        cursor: pointer;
+    .nav-toggle:checked ~ #menu {
+        right: 10px;
+        opacity: 1;
     }
 
-    #w-btn {
-        margin-left: 40px; 
-        margin-right: 20px;
+    #w-btn { 
+        margin-left: 20px;
         font-size: 1.4rem;
         font-weight: 500;
         background: #fff;
         color: #1f3e5d;
-        padding: 15px 30px;
+        padding: 12px 30px;
         border-radius: 20px;
         border: none;
         cursor: pointer;
