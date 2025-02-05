@@ -5,8 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Next_Gen Corporation</title>
-    <link rel="stylesheet" href="styles/style-about.css">
+    <link rel="stylesheet" href="styles/style-join.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 </head>
 
 <body>
@@ -25,7 +26,57 @@
         </div>
     </header>
     <!--Body-->
-
+    <main>
+        <!-- Flying envelopes -->
+        <i class="envelope fas fa-envelope" style="top: 20%; left: 10%"></i>
+        <i class="envelope fas fa-envelope" style="top: 60%; left: 30%"></i>
+        <i class="envelope fas fa-envelope" style="top: 40%; left: 70%"></i>
+    
+        <input type="checkbox" id="form-toggle">
+        <div class="container">
+            <!-- Envelope decoration -->
+            <div class="envelope-border"></div>
+            <div class="envelope-corner corner-tl"></div>
+            <div class="envelope-corner corner-tr"></div>
+            <div class="envelope-corner corner-bl"></div>
+            <div class="envelope-corner corner-br"></div>
+            
+            <label class="toggle-label" for="form-toggle"></label>
+            
+            <div class="form-container signin-container">
+                <h2>Login</h2>
+                <div class="input-group">
+                    <input type="email" placeholder="Email" required>
+                </div>
+                <div class="input-group">
+                    <input type="password" placeholder="Password" required>
+                    <i class="password-toggle fas fa-eye-slash" onclick="this.classList.toggle('fa-eye'); this.classList.toggle('fa-eye-slash'); const input = this.previousElementSibling; input.type = input.type === 'password' ? 'text' : 'password';"></i>
+                </div>
+                <button type="submit" class="form-button">Login</button>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-google"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            
+            <div class="form-container signup-container">
+                <h2>Sign up</h2>
+                <div class="input-group">
+                    <input type="email" placeholder="Email" required>
+                </div>
+                <div class="input-group">
+                    <input type="password" placeholder="Password" required>
+                    <i class="password-toggle fas fa-eye-slash" onclick="this.classList.toggle('fa-eye'); this.classList.toggle('fa-eye-slash'); const input = this.previousElementSibling; input.type = input.type === 'password' ? 'text' : 'password';"></i>
+                </div>
+                <div class="input-group">
+                    <input type="password" placeholder="Confirm password" required>
+                    <i class="password-toggle fas fa-eye-slash" onclick="this.classList.toggle('fa-eye'); this.classList.toggle('fa-eye-slash'); const input = this.previousElementSibling; input.type = input.type === 'password' ? 'text' : 'password';"></i>
+                </div>
+                <button type="submit" class="form-button">Sign up</button>
+            </div>
+        </div>
+    </main>
 
     <!--Footer-->
     <footer>
@@ -78,3 +129,4 @@
             </div>
         </div>
     </footer>
+</body>
