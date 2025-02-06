@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Next_Gen Corporation</title>
-    <link rel="stylesheet" href="style-jobs.css">
+    <link rel="stylesheet" href="styles/style-jobs.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 
@@ -14,14 +14,18 @@
     <header>
         <div id="navbar" class="obj-width">
             <a href="index.html"><img class="logo" src="images/logo.png" alt="Next_gen logo"></a>
-            <ul id="menu" class="active">
-                <li><a href="job.html">Jobs</a></li>
+            <!--responsive navbar-->
+            <input type="checkbox" id="nav-toggle" class="nav-toggle">
+            <ul id="menu">
+                <li><a href="jobs.html">Jobs</a></li>
                 <li><a href="about.html">About</a></li>
                 <li><a href="apply.html">Apply</a></li>
                 <li><a href="contact.html">Contact</a></li>
-                <button id="w-btn">Join</button>
+                <button id="w-btn"><a href="join.html">Join</a></button>
             </ul>
-            <i id="bar" class='bx bx-menu'></i>
+            <label for="nav-toggle" class="nav-toggle-label">
+                <i class='bx bx-menu'></i>
+            </label>
         </div>
     </header>
     <div class="container">
@@ -69,26 +73,26 @@
                     <span class="tag">Japanese</span>
                     <span class="tag">Korean</span>
                 </div>
-                <a href="#" class="view-more">View more</a>
+                <a href="job_detail/SE(IM).html" class="view-more">View more</a>
             </div>
 
             <div class="job-card" style="--order: 2">
                 <div class="job-header">
-                    <h3 class="job-title">Devops Engineer</h3>
+                    <h3 class="job-title">Sales Manager – HCM</h3>
                     <span class="hot-tag">Hot</span>
                 </div>
                 <div class="job-info">
-                    <span>30M</span>
+                    <span>Up to $2,500</span>
                     <span>Full Time</span>
                 </div>
                 <div class="job-info">
-                    <span>Middle</span>
-                    <span>TP HCM</span>
+                    <span>Manager</span>
+                    <span>HCM city</span>
                 </div>
                 <div class="tags">
-                    <span class="tag">4 years</span>
+                    <span class="tag">Sales</span>
                 </div>
-                <a href="#" class="view-more">View more</a>
+                <a href="job_detail/SM.html" class="view-more">View more</a>
             </div>
 
             <div class="job-card" style="--order: 3">
@@ -104,7 +108,7 @@
                     <span>Senior</span>
                     <span>Ha Noi</span>
                 </div>
-                <a href="#" class="view-more">View more</a>
+                <a href="job_detail/SAE.html" class="view-more">View more</a>
             </div>
 
             <div class="job-card" style="--order: 4">
@@ -120,7 +124,7 @@
                     <span>Senior</span>
                     <span>Đa Nang</span>
                 </div>
-                <a href="#" class="view-more">View more</a>
+                <a href="job_detail/TPM.html" class="view-more">View more</a>
             </div>
             <div class="job-card" style="--order: 5">
                 <div class="job-header">
@@ -133,9 +137,9 @@
                 </div>
                 <div class="job-info">
                     <span>Manager</span>
-                    <span>Da Nang</span>
+                    <span>Ho Chi Minh city</span>
                 </div>
-                <a href="#" class="view-more">View more</a>
+                <a href="job_detail/SSA.html" class="view-more">View more</a>
             </div>
             <div class="job-card" style="--order: 6">
                 <div class="job-header">
@@ -154,7 +158,7 @@
                     <span class="tag">English</span>
                     <span class="tag">Japanese</span>
                 </div>
-                <a href="#" class="view-more">View more</a>
+                <a href="job_detail/IPC.html" class="view-more">View more</a>
             </div>
             <div class="job-card" style="--order: 7">
                 <div class="job-header">
@@ -163,13 +167,13 @@
                 </div>
                 <div class="job-info">
                     <span>Up to 45M</span>
-                    <span>Remote</span>
+                    <span>Full time</span>
                 </div>
                 <div class="job-info">
                     <span>Junior-Mid</span>
-                    <span>Can Tho</span>
+                    <span>Remote</span>
                 </div>
-                <a href="#" class="view-more">View more</a>
+                <a href="job_detail/PS.html" class="view-more">View more</a>
             </div>
             <div class="job-card" style="--order: 8">
                 <div class="job-header">
@@ -188,7 +192,7 @@
                     <span class="tag">International</span>
                     <span class="tag">Chinese</span>
                 </div>
-                <a href="#" class="view-more">View more</a>
+                <a href="job_detail/MSIS.html" class="view-more">View more</a>
             </div>
             <div class="job-card" style="--order: 9">
                 <div class="job-header">
@@ -203,7 +207,7 @@
                     <span>Senior</span>
                     <span>Tokyo_Japan</span>
                 </div>
-                <a href="#" class="view-more">View more</a>
+                <a href="job_detail/BSE.html" class="view-more">View more</a>
             </div>
         </div>
     </div>
