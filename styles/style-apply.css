@@ -21,7 +21,7 @@ body {
     position: relative;
 }
 
-/* Animation Keyframes */
+
 @keyframes fadeInUp {
     to {
         opacity: 1;
