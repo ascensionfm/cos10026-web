@@ -179,7 +179,7 @@ header.scrolled {
     transform: scale(1.1);
 }
 
-.hero {
+#hero {
     background: url('../images/backgr.png') no-repeat center center/cover;
     height: 100vh;
     display: flex;
@@ -190,7 +190,7 @@ header.scrolled {
     position: relative;
     overflow: hidden;
 }
-.glass {
+#glass {
     background: rgba(255, 255, 255, 0.604); 
     backdrop-filter: blur(0px); 
     border: 1px solid rgb(255, 255, 255); 
@@ -278,7 +278,7 @@ header.scrolled {
 
 .feature1 .fe-box {
     display: flex;
-    justify-content: sapce-between;
+    justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
 }
