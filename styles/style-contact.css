@@ -1,5 +1,12 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800&display=swap");
 
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    background-color: #1f3e5d;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -15,10 +22,6 @@
 .obj-width {
     max-width: 1200px;
     margin: auto;
-}
-
-body {
-   position: relative;
 }
 
 h1 {
@@ -62,6 +65,8 @@ h3 {
 
 /* Header & Navbar */
 header {
+    display: flex;
+    justify-content: space-between;
     background-color: #1f3e5d;
     position: fixed;
     width: 100%;
@@ -179,44 +184,60 @@ header.scrolled {
 }
 /*Main*/
 main {
+    display:flex;
+    justify-content: center;
+    flex-direction: column;
 	font-family: Arial;
 	background-image: url('../images/contact.png');
-	height: 130vh;
-    display: flex;
-    justify-content: center;
+    background-repeat: no-repeat;
+    background-size: cover;
     align-items: center;
-    padding: 0.5rem 2rem 6rem;
-    margin-top: -2rem;
     text-align: center;
     position: relative;
     overflow: hidden;
+    margin-top: 100px;
+    margin-bottom: 10px;
+
+    height: 600px
 }
 
-.container {
-	width: 950px;
-	margin: 80px auto;
-	color: white;
-	line-height: 1.5;
-}
-
-.text-center {
+#text {
+    align-self: flex-start;
+    display: flex;
+    flex-direction: column;
+    color: white;
 	text-align: center;
     padding-top: -5px;
 }
 
 .content {
 	display: flex;
-	margin-top: 40px;
+    justify-content: space-evenly;
+    width: 80%;
 }
 
 .icon {
+    display: flex;
     width: 50px;
     height: 50px;
-    border-radius: 50%;
 	background-color: white;
-	vertical-align: top;
     object-fit: contain;
 }
+
+.info {
+    display: flex;
+    color: white;
+    justify-items: center;
+    align-items: center;
+    border-radius: 20px;
+    background-color: white;
+    border-width: 10px;
+    border-style: solid;
+    border-color: white;
+    margin-bottom: 10px;
+    text-wrap: auto;
+}
+
 
 .contact-info {
 	display: inline-block;
@@ -224,20 +245,24 @@ main {
     flex: 1;
 }
 
-.address-line {
+.contact-info p{
+    color: #666;
+}
+
+.contact-info-title {
+    color: #1f3e5d;
+    size: 30px;
+}
+
+#column1 {
     display: flex;
-    align-items: flex-start;
-    gap: 15px;
-    margin-bottom: 20px;
-	margin-top: 40px;
+    color: white;
+    width: 50%;
+    max-width: min-content;
+    flex-direction: column;
 }
 
-.col-1 {
-	width: 530px;
-}
-
-.col-2 {
-    flex: 1 1 auto;
+#column2 {
     background-color: white;
     border-radius: 15px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
@@ -245,6 +270,7 @@ main {
     opacity: 0;
     animation: formAppear 0.8s forwards;
 }
+
 @keyframes formAppear {
     to {
         transform: translateY(0);
@@ -360,17 +386,12 @@ main {
     color: #23d160;
 }
 
-/*contact in4 (left corner) */
-.contact-info-title {
-	color: #01bdd4;
-}
 
 /* Footer */
 footer {
     background-color: #1f3e5d;
     color: #fff;
     padding: 4rem 0 1rem 0;
-    margin-top: 0rem;
 }
 .footer-container {
     max-width: 1200px;
@@ -525,8 +546,7 @@ footer {
 }
 
 /* Media Queries */
-@media (max-width: 775px) {
-
+@media (max-width: 400px) {
     .nav-toggle-label {
         display: block;
     } 
@@ -580,7 +600,33 @@ footer {
         opacity: 1; 
         animation: none; 
     }
+    
+
+
     /* Main */
+    main {
+        flex-direction: column;
+        height: 1000px;
+    }
+
+    .content {
+        flex-direction: column;
+        align-items: center;
+        width: 80%;
+        max-width: 80%;
+    }
+
+    #column1 {
+        width: 100%;
+        flex-direction: column;
+        justify-items: center;
+        max-width: 100%;
+    }
+
+    #column2 {
+        width: 100%;
+    }
+
     .form-container {
         padding: 30px 20px;
     }
@@ -608,24 +654,8 @@ footer {
         padding: 12px 20px;
     }
 
-    .container {
-        width: 100%;
-        margin: 20px auto;
-    }
-
     .text-center h1 {
         font-size: 2rem;
-    }
-
-    .address-line {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-        margin-top: 20px;
-    }
-
-    .contact-info {
-        padding: 10px 0;
     }
 
     .icon {
@@ -634,6 +664,8 @@ footer {
     }
 
     /* Footer */
+
+
     .footer-top {
         grid-template-columns: 1fr;
         text-align: center;

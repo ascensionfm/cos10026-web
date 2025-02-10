@@ -1,5 +1,12 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800&display=swap");
 
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    justify-items: center;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -15,10 +22,6 @@
 .obj-width {
     max-width: 1200px;
     margin: auto;
-}
-
-body {
-    position: relative;
 }
 
 h1 {
@@ -179,27 +182,24 @@ header.scrolled {
     transform: scale(1.1);
 }
 
-.hero {
-    background: url('../images/backgr.png') no-repeat center center/cover;
-    height: 100vh;
+#hero {
     display: flex;
     justify-content: center;
+    background: url('../images/backgr.png') no-repeat center center/cover;
+    height: 650px;
     align-items: center;
-    padding: 8rem 2rem 6rem;
+    padding: auto;
     text-align: center;
-    position: relative;
-    overflow: hidden;
 }
-.glass {
+#glass {
+    display: flex;
+    padding: 50px;
+    margin-left: 150px;
+    margin-right: 150px;
     background: rgba(255, 255, 255, 0.604); 
     backdrop-filter: blur(0px); 
-    border: 1px solid rgb(255, 255, 255); 
+    border: 1px solid rgb(255, 255, 255);
     border-radius: 10px;
-    padding: 20px 40px;
-    width: 80%; 
-    height: 80%; 
-    color: black;
-    display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -228,6 +228,7 @@ header.scrolled {
 }
 /*Feature homepage */
 .features {
+    display: flex;
     padding: 4rem 2rem;
     background-color: #f2f5f7;
 }
@@ -278,7 +279,7 @@ header.scrolled {
 
 .feature1 .fe-box {
     display: flex;
-    justify-content: sapce-between;
+    justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
 }
@@ -451,7 +452,7 @@ footer {
 }
 
 /* Media Queries */
-@media (max-width: 775px) {
+@media (max-width: 400px) {
     .nav-toggle-label {
         display: block;
     }
@@ -509,13 +510,14 @@ footer {
         animation: none; 
     }
     
-    .hero {
-        padding-top: 12rem;
+    #hero {
+        height: 800px;
     }
 
     .hero h1 {
         font-size: 2rem;
     }
+
 
     .features-grid {
         grid-template-columns: 1fr;
@@ -523,8 +525,8 @@ footer {
     .feature-card {
         padding: 2rem;
     }
-    .glass {
-        padding: 10px 15px;
+    #glass {
+        margin-top: 100px;
     }
 
     .glass h1 {
