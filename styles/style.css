@@ -3,6 +3,8 @@
 body {
     display: flex;
     flex-direction: column;
+    justify-content: space-evenly;
+    justify-items: center;
 }
 
 * {
@@ -20,10 +22,6 @@ body {
 .obj-width {
     max-width: 1200px;
     margin: auto;
-}
-
-body {
-    position: relative;
 }
 
 h1 {
@@ -188,27 +186,20 @@ header.scrolled {
     display: flex;
     justify-content: center;
     background: url('../images/backgr.png') no-repeat center center/cover;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
+    height: 650px;
     align-items: center;
-    padding: 8rem 2rem 6rem;
+    padding: auto;
     text-align: center;
-    background-color: gray;
-    
-    
 }
 #glass {
     display: flex;
+    padding: 50px;
+    margin-left: 150px;
+    margin-right: 150px;
     background: rgba(255, 255, 255, 0.604); 
     backdrop-filter: blur(0px); 
-    border: 1px solid rgb(255, 255, 255); 
+    border: 1px solid rgb(255, 255, 255);
     border-radius: 10px;
-    padding: 20px 40px;
-    width: 80%; 
-    height: 80%; 
-    color: black;
-    display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -237,6 +228,7 @@ header.scrolled {
 }
 /*Feature homepage */
 .features {
+    display: flex;
     padding: 4rem 2rem;
     background-color: #f2f5f7;
 }
@@ -518,13 +510,14 @@ footer {
         animation: none; 
     }
     
-    .hero {
-        padding-top: 12rem;
+    #hero {
+        height: 800px;
     }
 
     .hero h1 {
         font-size: 2rem;
     }
+
 
     .features-grid {
         grid-template-columns: 1fr;
@@ -532,8 +525,8 @@ footer {
     .feature-card {
         padding: 2rem;
     }
-    .glass {
-        background: black;
+    #glass {
+        margin-top: 100px;
     }
 
     .glass h1 {
