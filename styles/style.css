@@ -161,9 +161,10 @@ header.scrolled {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
-
 .nav-toggle {
-    display: none;
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
 }
 
 .nav-toggle-label {
@@ -450,7 +451,7 @@ footer {
 }
 
 /* Media Queries */
-@media (max-width: 400px) {
+@media (max-width: 775px) {
     .nav-toggle-label {
         display: block;
     }
