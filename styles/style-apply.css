@@ -21,7 +21,7 @@ body {
     position: relative;
 }
 
-/* Animation Keyframes */
+
 @keyframes fadeInUp {
     to {
         opacity: 1;
@@ -47,10 +47,6 @@ header {
     width: 100%;
     top: 0;
     z-index: 1000;
-    left: 50%;
-    right: 50%;
-    margin-left: -50vw;
-    margin-right: -50vw;
     transition: background-color 0.3s;
 }
 
@@ -189,7 +185,7 @@ header.scrolled {
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
-    padding: 100px 20px 40px;
+    padding-top: 100px;
     min-height: 100vh;
     background: linear-gradient(-45deg, #8cd1aa, #88d0c9, #23a6d5, #69b7ee);
     background-size: 400% 400%;
@@ -472,7 +468,6 @@ footer {
     color: #fff;
     padding: 4rem 0 1rem 0;
     margin-top: 4rem;
-    margin-bottom: 0;
     width: 100%;
     min-width: 100vw;
     position: relative;
