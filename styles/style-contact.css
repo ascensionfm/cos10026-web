@@ -197,7 +197,6 @@ main {
     overflow: hidden;
     margin-top: 100px;
     margin-bottom: 10px;
-
     height: 600px
 }
 
@@ -213,13 +212,13 @@ main {
 .content {
 	display: flex;
     justify-content: space-evenly;
-    width: 80%;
+    width: 50%;
 }
 
 .icon {
     display: flex;
-    width: 50px;
-    height: 50px;
+    width: 80px;
+    height: 80px;
 	background-color: white;
     object-fit: contain;
 }
@@ -241,6 +240,7 @@ main {
 
 .contact-info {
 	display: inline-block;
+    font-size: 100%;
 	padding: 4px 20px 0px 15px;
     flex: 1;
 }
