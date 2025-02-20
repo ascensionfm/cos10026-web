@@ -24,24 +24,8 @@ body {
     margin: auto;
 }
 
-h1 {
-    font-size: 3rem;
-    font-weight: 600;
-    opacity: 0;
-    transform: translateY(30px);
-    animation: fadeInUp 1s forwards;
-}
-
-h2 {
-    font-size: 2rem;
-    font-weight: 600;
-    line-height: 60px;
-}
-
-h3 {
-    font-size: 1.2rem;
-    font-weight: 500;
-    padding-bottom: 1rem;
+body {
+    position: relative;
 }
 
 /* Animation Keyframes */
@@ -65,8 +49,6 @@ h3 {
 
 /* Header & Navbar */
 header {
-    display: flex;
-    justify-content: space-between;
     background-color: #1f3e5d;
     position: fixed;
     width: 100%;
@@ -182,6 +164,8 @@ header.scrolled {
 .nav-toggle-label:hover {
     transform: scale(1.1);
 }
+
+
 /*Main*/
 main {
     display:flex;
