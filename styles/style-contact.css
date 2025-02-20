@@ -28,7 +28,7 @@ body {
     position: relative;
 }
 
-/* Animation Keyframes */
+
 @keyframes fadeInUp {
     to {
         opacity: 1;
@@ -314,7 +314,7 @@ main {
     border-bottom-color: #01bdd4;
 }
 
-/* Label Animation */
+
 .form-field:focus + label,
 .form-field:not(:placeholder-shown) + label {
     top: -20px;
@@ -322,7 +322,7 @@ main {
     color: #01bdd4;
 }
 
-/* Input Focus Animation */
+
 .form-field:focus::placeholder {
     color: transparent;
     transition: color 0.3s ease;

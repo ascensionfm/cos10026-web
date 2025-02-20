@@ -41,7 +41,6 @@ h3 {
     padding-bottom: 1rem;
 }
 
-/* Animation Keyframes */
 @keyframes fadeInUp {
     to {
         opacity: 1;
@@ -201,7 +200,7 @@ header.scrolled {
     z-index: 2;
     background-color: #fff;
     color: #000;
-    padding: clamp(1.5rem, 5vw, 10rem);   /*responsive*/
+    padding: clamp(1.5rem, 5vw, 10rem);   
     width: min(90%, 600px);
     margin: 5rem auto 0;
     text-align: left;
@@ -441,7 +440,6 @@ body { font-family: Helvetica; }
   border-bottom-left-radius:0;
 }
 
-/* Animation classes */
 .timeline-item {
     opacity: 0;
     transform: translateY(20px);
@@ -642,7 +640,7 @@ footer {
     #menu li {
         padding: 1rem;
         animation: none;
-        opacity: 1; /* menu items are visible */
+        opacity: 1; 
     }
 
     #menu li a {
