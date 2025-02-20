@@ -109,7 +109,9 @@ header.scrolled {
 #menu li:nth-child(3) { animation-delay: 0.3s; }
 #menu li:nth-child(4) { animation-delay: 0.4s; }
 
-#menu li a {
+
+
+.navbar_button {
     color: #fff;
     text-decoration: none;
     margin-left: 40px;
@@ -119,7 +121,7 @@ header.scrolled {
     transition: color 0.3s;
 }
 
-#menu li a::after {
+.navbar_button::after {
     content: '';
     position: absolute;
     width: 100%;
@@ -149,9 +151,11 @@ header.scrolled {
     transition: all 0.3s;
     opacity: 0;
     animation: fadeInUp 0.8s forwards 0.5s;
+    text-decoration: none;
 }
 
-#w-btn a,
+
+
 .apply-button button a {
     text-decoration: none;
     color: inherit;
@@ -161,6 +165,7 @@ header.scrolled {
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
+
 
 .nav-toggle {
     display: none;
@@ -177,6 +182,8 @@ header.scrolled {
 .nav-toggle-label:hover {
     transform: scale(1.1);
 }
+
+
 /* About Section */
 .hero {
     position: relative;
