@@ -37,7 +37,7 @@ h3 {
     padding-bottom: 1rem;
 }
 
-/* Animation Keyframes */
+
 @keyframes fadeInUp {
     to {
         opacity: 1;
@@ -375,7 +375,6 @@ h2::after {
     color: #fff;
 }
 
-/* Input success animation */
 @keyframes success {
     0% { transform: scale(1); }
     50% { transform: scale(1.05); }
@@ -449,7 +448,6 @@ button.form-button:active::after {
     background: rgba(255, 255, 255, 0.3);
 }
 
-/* Flying envelope decorations */
 .envelope {
     position: absolute;
     font-size: 24px;
@@ -475,7 +473,7 @@ button.form-button:active::after {
     }
 }
 
-/* Loading animation for button */
+/* Loading button */
 @keyframes loading {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
