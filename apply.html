@@ -50,11 +50,12 @@
                 <div class="file-name" id="photoName"></div>
             </div>
     
-            <form id="applicationForm">
+            <form id="applicationForm" action="https://mercury.swin.edu.au/it000000/formtest.php" method="post">
                 <div class="form-group">
                     <label for="job-reference">Job Reference Number</label>
                     <input 
-                        id="job-reference" 
+                        id="job-reference"
+                        name="job-reference" 
                         type="text" 
                         pattern="^[a-zA-Z0-9]{5}$"
                         required
@@ -67,7 +68,8 @@
                     <div class="col">
                         <label for="first-name">First Name</label>
                         <input 
-                            id="first-name" 
+                            id="first-name"
+                            name="first-name" 
                             type="text" 
                             maxlength="20" 
                             pattern="[A-Za-z]{1,20}"
@@ -78,7 +80,8 @@
                     <div class="col">
                         <label for="last-name">Last Name</label>
                         <input 
-                            id="last-name" 
+                            id="last-name"
+                            name="last-name" 
                             type="text" 
                             maxlength="20"
                             pattern="[A-Za-z]{1,20}"
@@ -91,7 +94,8 @@
                 <div class="form-group">
                     <label for="date-of-birth">Date of Birth</label>
                     <input 
-                        id="date-of-birth" 
+                        id="date-of-birth"
+                        name="date-of-birth" 
                         type="date" 
                         required
                     />
@@ -120,7 +124,8 @@
                 <div class="form-group">
                     <label for="street-address">Street Address</label>
                     <input 
-                        id="street-address" 
+                        id="street-address"
+                        name="street-address" 
                         type="text" 
                         maxlength="40"
                         required
@@ -132,6 +137,7 @@
                     <label for="suburb">Suburb/Town</label>
                     <input 
                         id="suburb" 
+                        name="suburb"
                         type="text" 
                         maxlength="40"
                         required
@@ -143,7 +149,8 @@
                     <div class="col">
                         <label for="state">State</label>
                         <input 
-                            id="state" 
+                            id="state"
+                            name="state" 
                             type="text" 
                             maxlength="40"
                             required
@@ -153,7 +160,8 @@
                     <div class="col">
                         <label for="postcode">Postcode</label>
                         <input 
-                            id="postcode" 
+                            id="postcode"
+                            name="postcode" 
                             type="text" 
                             pattern="[0-9]{4}"
                             required
@@ -165,7 +173,8 @@
                 <div class="form-group">
                     <label for="email">Email Address</label>
                     <input 
-                        id="email" 
+                        id="email"
+                        name="email" 
                         type="email" 
                         required
                         placeholder="Enter valid email address"
@@ -175,7 +184,8 @@
                 <div class="form-group">
                     <label for="phone">Phone Number</label>
                     <input 
-                        id="phone" 
+                        id="phone"
+                        name="phone" 
                         type="tel" 
                         pattern="[0-9 ]{8,12}"
                         required
@@ -188,39 +198,39 @@
                         <legend>Skills</legend>
                         <div class="checkbox-group">
                             <label>
-                                <input type="checkbox" name="skills" value="programming" />
+                                <input type="checkbox" name="skills[]" value="programming" />
                                 Programming
                             </label>
                             <label>
-                                <input type="checkbox" name="skills" value="design" />
+                                <input type="checkbox" name="skills[]" value="design" />
                                 Design
                             </label>
                             <label>
-                                <input type="checkbox" name="skills" value="marketing" />
+                                <input type="checkbox" name="skills[]" value="marketing" />
                                 Marketing
                             </label>
                             <label>
-                                <input type="checkbox" name="skills" value="sales" />
+                                <input type="checkbox" name="skills[]" value="sales" />
                                 Sales
                             </label>
                             <label>
-                                <input type="checkbox" name="skills" value="management" />
+                                <input type="checkbox" name="skills[]" value="management" />
                                 Management
                             </label>
                             <label>
-                                <input type="checkbox" name="skills" value="programming" />
+                                <input type="checkbox" name="skills[]" value="programming" />
                                 English
                             </label>
                             <label>
-                                <input type="checkbox" name="skills" value="programming" />
+                                <input type="checkbox" name="skills[]" value="programming" />
                                 Japanese
                             </label>
                             <label>
-                                <input type="checkbox" name="skills" value="programming" />
+                                <input type="checkbox" name="skills[]" value="programming" />
                                 Chinese
                             </label>
                             <label>
-                                <input type="checkbox" name="skills" value="other" />
+                                <input type="checkbox" name="skills[]" value="other" />
                                 Other skills...
                             </label>
                         </div>
