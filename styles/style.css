@@ -31,8 +31,13 @@ h1 {
 
 h2 {
     font-size: 2rem;
+    text-align: center;
     font-weight: 600;
     line-height: 60px;
+}
+
+p {
+    text-align: center;
 }
 
 h3 {
@@ -281,10 +286,14 @@ header.scrolled {
 }
 
 .feature1 .fe-box {
-    display: flex;
-    justify-content: sapce-between;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, auto);
+    gap: 20px;
+    justify-content: center;
     align-items: center;
     flex-wrap: wrap;
+    margin-left: 4rem;
 }
 .feature1 .fe-box div {
     width: 300px;
@@ -529,6 +538,7 @@ footer {
     }
     #glass {
         padding: 15px 15px;
+        margin-top: -22%;
     }
 
     .glass h1 {
