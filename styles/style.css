@@ -31,8 +31,13 @@ h1 {
 
 h2 {
     font-size: 2rem;
+    text-align: center;
     font-weight: 600;
     line-height: 60px;
+}
+
+p {
+    text-align: center;
 }
 
 h3 {
@@ -108,7 +113,9 @@ header.scrolled {
 #menu li:nth-child(3) { animation-delay: 0.3s; }
 #menu li:nth-child(4) { animation-delay: 0.4s; }
 
-#menu li a {
+
+
+.navbar_button {
     color: #fff;
     text-decoration: none;
     margin-left: 40px;
@@ -118,7 +125,7 @@ header.scrolled {
     transition: color 0.3s;
 }
 
-#menu li a::after {
+.navbar_button::after {
     content: '';
     position: absolute;
     width: 100%;
@@ -148,9 +155,11 @@ header.scrolled {
     transition: all 0.3s;
     opacity: 0;
     animation: fadeInUp 0.8s forwards 0.5s;
+    text-decoration: none;
 }
 
-#w-btn a,
+
+
 .apply-button button a {
     text-decoration: none;
     color: inherit;
@@ -185,7 +194,6 @@ header.scrolled {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 8rem 2rem 6rem;
     text-align: center;
     position: relative;
     overflow: hidden;
@@ -197,7 +205,8 @@ header.scrolled {
     border-radius: 10px;
     padding: 20px 40px;
     width: 80%; 
-    height: 80%; 
+    height: 80%;
+    margin-top: 5%; 
     color: black;
     display: flex;
     flex-direction: column;
@@ -277,10 +286,14 @@ header.scrolled {
 }
 
 .feature1 .fe-box {
-    display: flex;
-    justify-content: sapce-between;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, auto);
+    gap: 20px;
+    justify-content: center;
     align-items: center;
     flex-wrap: wrap;
+    margin-left: 4rem;
 }
 .feature1 .fe-box div {
     width: 300px;
@@ -524,7 +537,8 @@ footer {
         padding: 2rem;
     }
     #glass {
-        padding: 10px 15px;
+        padding: 15px 15px;
+        margin-top: -22%;
     }
 
     .glass h1 {

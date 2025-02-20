@@ -60,7 +60,6 @@ header.scrolled {
     justify-content: space-between;
     align-items: center;
     height: 80px;
-    width: 100%;
     max-width: 1200px;
     margin: auto;
     padding: 0 20px;
@@ -90,7 +89,9 @@ header.scrolled {
 #menu li:nth-child(3) { animation-delay: 0.3s; }
 #menu li:nth-child(4) { animation-delay: 0.4s; }
 
-#menu li a {
+
+
+.navbar_button {
     color: #fff;
     text-decoration: none;
     margin-left: 40px;
@@ -100,7 +101,7 @@ header.scrolled {
     transition: color 0.3s;
 }
 
-#menu li a::after {
+.navbar_button::after {
     content: '';
     position: absolute;
     width: 100%;
@@ -130,14 +131,11 @@ header.scrolled {
     transition: all 0.3s;
     opacity: 0;
     animation: fadeInUp 0.8s forwards 0.5s;
+    text-decoration: none;
 }
 
-#w-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-}
 
-#w-btn a,
+
 .apply-button button a {
     text-decoration: none;
     color: inherit;
@@ -200,7 +198,6 @@ body {
     padding-top: 40px;
     border-radius: 20px;
     box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
-    width: 100%;
     max-width: 800px;
     animation: slideIn 0.5s ease-out;
     backdrop-filter: blur(10px);
