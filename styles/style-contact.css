@@ -179,7 +179,7 @@ main {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding-top: 80px; /* tránh conflict với navbar */
+    padding: 120px 20px; /* avoid conflict with navbar */
     width: 100%;
 }
 
@@ -211,6 +211,8 @@ main {
 
 .contact-container {
     max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
 }
 
 .contact-grid {
@@ -528,9 +530,16 @@ footer {
 }
 
 /* Media Queries */
-@media (max-width: 999px) {
+@media (max-width: 900px) {
+    main {
+        padding: 45px 5px 35px; 
+        height: auto; 
+        min-height: 100vh;
+    }
+
     .contact-grid {
         grid-template-columns: 1fr;
+        margin: 0 auto;
     }
     
     .contact-container {
@@ -614,12 +623,11 @@ footer {
         animation: none; 
     }
     
-
-
     /* Main */
     main {
-        flex-direction: column;
-        height: 1000px;
+        padding: 45px 5px 35px; 
+        height: auto; 
+        min-height: 100vh;
     }
 
     .content {
@@ -629,38 +637,33 @@ footer {
         max-width: 80%;
     }
 
-    #column1 {
-        width: 100%;
-        flex-direction: column;
-        justify-items: center;
-        max-width: 100%;
+    .contact-container {
+        width: 95%; 
+    }
+    .contact-info h1 {
+        font-size: 2rem; /* Giảm kích thước font */
     }
 
-    #column2 {
-        width: 100%;
+    .contact-form h2 {
+        font-size: 1.75rem;
     }
 
-    .form-container {
+    .info-card {
+        padding: 15px;
+    }
+
+    .contact-info, .contact-form {
         padding: 30px 20px;
     }
 
-    .form-container h2 {
-        font-size: 1.5rem;
-        line-height: 1.2;
-        margin-bottom: 25px;
+    .form-group {
+        margin-bottom: 20px;
     }
 
-    .form-row {
-        margin-bottom: 25px;
+    .form-control {
+        padding: 15px 0;
     }
 
-    .form-row label {
-        font-size: 14px;
-    }
-
-    .form-field {
-        font-size: 14px;
-    }
 
     .send-btn {
         width: 100%;

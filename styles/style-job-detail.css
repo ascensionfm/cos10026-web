@@ -563,6 +563,13 @@ footer {
 .footer-bottom-links a:hover {
     color: #fff;
 }
+/* add break point for the detail card */
+@media (max-width: 992px) {
+    .job-details {
+        grid-template-columns: repeat(2, 1fr);
+        padding: 20px;
+    }
+}
 
 @media (max-width: 775px) {
     /* Navbar */
@@ -648,5 +655,25 @@ footer {
 
     .footer-bottom-links {
         justify-content: center;
+    }
+}
+@media (max-width: 600px) {
+    /*detail card turn into 1 collumn for responsive*/
+    .job-details {
+        grid-template-columns: 1fr;
+        padding: 15px;
+        gap: 15px;
+    }
+    
+    .detail-card {
+        padding: 15px;
+    }
+    
+    .detail-card .label {
+        font-size: 0.85em;
+    }
+    
+    .detail-card .value {
+        font-size: 0.95em;
     }
 }
