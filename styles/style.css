@@ -222,6 +222,12 @@ header.scrolled {
     justify-content: center;
     align-items: center;
 }
+
+#glass a{
+    font-size: 1.5rem;
+    text-decoration: none;
+    color: black;
+}
 .hero h1 {
     font-size: 3rem;
     margin-bottom: 1rem;
@@ -572,6 +578,7 @@ footer {
     .glass p {
         font-size: 1.2rem;
     }
+
     .feature1 .fe-box div {
         width: 40%;
     }
