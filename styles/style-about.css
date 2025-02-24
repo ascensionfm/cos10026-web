@@ -466,7 +466,7 @@ header.scrolled {
 }
 
 .card {
-    background-color: #777676;
+    background-color: #423e3e;
     padding: clamp(1rem, 3vw, 1.5rem);
     border-radius: 8px;
     text-align: left;
@@ -478,7 +478,7 @@ header.scrolled {
 
 .card:hover {
     transform: translateY(-20px) scale(1.02);
-    background-color: #e1e4e4;
+    background-color: #dadfdf;
 }
 
 .cards:hover > :not(:hover) {
