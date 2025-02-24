@@ -40,10 +40,6 @@ h2 {
     line-height: 60px;
 }
 
-p {
-    text-align: left;
-}
-
 h3 {
     font-size: 1.2rem;
     font-weight: 500;
@@ -59,17 +55,6 @@ h3 {
     to {
         opacity: 1;
         transform: translateY(0);
-    }
-}
-
-@keyframes slideIn {
-    from {
-        transform: translateX(-100%);
-        opacity: 0;
-    }
-    to {
-        transform: translateX(0);
-        opacity: 1;
     }
 }
 
@@ -168,12 +153,6 @@ header.scrolled {
 }
 
 
-
-.apply-button button a {
-    text-decoration: none;
-    color: inherit;
-}
-
 #w-btn:hover {
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
@@ -208,6 +187,7 @@ header.scrolled {
     overflow: hidden;
 }
 #glass {
+    position: relative;
     background: rgba(255, 255, 255, 0.604); 
     backdrop-filter: blur(0px); 
     border: 1px solid rgb(255, 255, 255); 
@@ -215,6 +195,8 @@ header.scrolled {
     padding: 20px 40px;
     width: 80%; 
     height: 80%;
+    overflow-y: auto; 
+    margin: 0 auto;
     margin-top: 5%; 
     color: black;
     display: flex;
@@ -223,32 +205,56 @@ header.scrolled {
     align-items: center;
 }
 
-#glass a{
-    font-size: 1.5rem;
-    text-decoration: none;
-    color: black;
+#glass p:last-of-type {
+    position: absolute;
+    bottom: 15px;
+    left: 20px;
+    margin: 0;
+    font-size: 0.9rem;
 }
-.hero h1 {
+
+#glass a {
+    font-size: 1.2rem;
+    text-decoration: none;
+    color: #1f3e5d;
+    font-weight: 600;
+    position: relative;
+    transition: all 0.3s ease;
+    padding: 0 5px;
+}
+
+#glass a:hover {
+    color: #3a6eaa;
+}
+
+#glass a::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    bottom: -2px;
+    left: 0;
+    background-color: #1f3e5d;
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+#glass h1 {
     font-size: 3rem;
     margin-bottom: 1rem;
     opacity: 0;
     transform: translateY(30px);
     animation: fadeInUp 1s forwards;
+    text-align: center;
 }
 
-.hero p {
+#glass p {
+    text-align: left; 
     font-size: 1.25rem;
-    max-width: 600px;
-    margin: 0 auto;
     opacity: 0;
     transform: translateY(30px);
     animation: fadeInUp 1s forwards 0.3s;
-}
-@keyframes fadeInUp {
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+  
 }
 /*Feature homepage */
 .features {
@@ -311,7 +317,7 @@ header.scrolled {
     margin-left: 4rem;
 }
 .feature1 .fe-box div {
-    width: 300px;
+    width: 100%;
 }
 .feature1 .fe-box img {
     width: 50px;
@@ -538,12 +544,27 @@ footer {
     }
     
     #hero {
-        padding-top: 12rem;
+        padding-top: 80px;
+        height: auto; 
+        min-height: 100vh;
     }
 
-    .hero h1 {
-        font-size: 2rem;
+    #glass h1 {
+        font-size: 2.3rem;
     }
+
+    #glass p {
+        font-size: 1.1rem;
+    }
+
+    #glass p:last-of-type {
+        position: relative; 
+        bottom: auto;
+        left: auto;
+        margin-top: 20px;
+        text-align: center;
+    }
+
 
     .feature1 .fe-box {
         display: grid;
@@ -567,16 +588,10 @@ footer {
         padding: 2rem;
     }
     #glass {
-        padding: 15px 15px;
+        padding: 40px 30px;
+        margin: 100px auto 50px; 
+        max-height: none;
         margin-top: -22%;
-    }
-
-    .glass h1 {
-        font-size: 2.3rem;
-    }
-
-    .glass p {
-        font-size: 1.2rem;
     }
 
     .feature1 .fe-box div {
