@@ -13,15 +13,15 @@
 <body>
   <header>
     <div id="navbar" class="obj-width">
-      <a href="index.html"><img class="logo" src="images/logo.png" alt="Next_gen logo"></a> <input type="checkbox"
+      <a href="index.php"><img class="logo" src="images/logo.png" alt="Next_gen logo"></a> <input type="checkbox"
         id="nav-toggle" class="nav-toggle">
       <ul id="menu">
-        <li><a class="navbar_button" href="jobs.html">Jobs</a></li>
-        <li><a class="navbar_button" href="about.html">About</a></li>
-        <li><a class="navbar_button" href="apply.html">Apply</a></li>
-        <li><a class="navbar_button" href="contact.html">Contact</a></li>
-        <li><a class="navbar_button" href="enhancements.html">Enhancements</a></li>
-        <li><a id="w-btn" href="join.html">Join</a></li>
+        <li><a class="navbar_button" href="jobs.php">Jobs</a></li>
+        <li><a class="navbar_button" href="about.php">About</a></li>
+        <li><a class="navbar_button" href="apply.php">Apply</a></li>
+        <li><a class="navbar_button" href="contact.php">Contact</a></li>
+        <li><a class="navbar_button" href="enhancements.php">Enhancements</a></li>
+        <li><a id="w-btn" href="join.php">Join</a></li>
       </ul>
       <label for="nav-toggle" class="nav-toggle-label">
         <i class='bx bx-menu'></i>
@@ -43,7 +43,7 @@
           modern professional. Whether it's online tools, personalized career consultations, or insights into future
           trends, we ensure that your next step is a confident one.</p>
         <p>Next-Gen Corp is where ambition meets opportunity. Together, we redefine success.</p><a
-          href="index.html">Learn more about what we do</a>
+          href="index.php">Learn more about what we do</a>
       </div>
     </div>
     <div class="section">
@@ -233,8 +233,8 @@
             <div class="footer-section">
                 <h4>Quick Links</h4>
                 <ul>
-                    <li><a href="about.html">About Us</a></li>
-                    <li><a href="jobs.html">Careers</a></li>
+                    <li><a href="about.php">About Us</a></li>
+                    <li><a href="jobs.php">Careers</a></li>
                     <li><a href="#">Services</a></li>
                     <li><a href="#">Projects</a></li>
                 </ul>
