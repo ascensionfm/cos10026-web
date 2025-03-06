@@ -163,7 +163,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $result = $stmt->get_result();
         
         if ($result->num_rows > 0) {
-            echo "Login successful!";
+            header("Location: manage.php");
+            exit();
         } else {
             echo "Invalid email or password.";
         }
