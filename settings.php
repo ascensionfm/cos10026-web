@@ -1,25 +1,14 @@
 <?php
-$servername = "localhost";
-$username = "ascensionfm_";
-$password = "AscensionFM123";
-$dbname = "ascensionfm_";
+	// filename: settings.php
+	// author: Nguyen Khanh Huyen
+	// created: 06/03/25
+	// description: Imported script containing credentials to connect to the database server.
+?>
 
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-$sql = "SELECT email, password FROM login";
-$result = $conn->query($sql);
-
-if ($result->num_rows > 0) {
-    while($row = $result->fetch_assoc()) {
-        echo "Email: " . $row["email"]. " - Password: " . $row["password"]. "<br>";
-    }
-} else {
-    echo "0 results";
-}
-$conn->close();
+<?php
+	// Please change this information if you are testing this website on localhost.
+	$host = "local";
+	$user = "root";
+	$pwd = "";
+	$sql_db = "104988508_db";
 ?>
