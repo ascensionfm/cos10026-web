@@ -155,7 +155,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         
         if ($conn->connect_error) {
             die("Connection failed: " . $conn->connect_error);
-            echo "Connection failed: " . $conn->connect_error;
         }
         
         $stmt = $conn->prepare("SELECT * FROM login WHERE email = ? AND password = ?");
