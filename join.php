@@ -51,14 +51,16 @@
             
             <div class="form-container signin-container">
                 <h2>Login</h2>
-                <div class="input-group">
-                    <input type="email" placeholder="Email" required>
-                </div>
-                <div class="input-group">
-                    <input type="password" placeholder="Password" required>
-                    <i class="password-toggle fas fa-eye-slash" onclick="this.classList.toggle('fa-eye'); this.classList.toggle('fa-eye-slash'); const input = this.previousElementSibling; input.type = input.type === 'password' ? 'text' : 'password';"></i>
-                </div>
-                <button type="submit" class="form-button">Login</button>
+                <form action="join.php" method="post">
+                    <div class="input-group">
+                        <input type="email" name="login_email" placeholder="Email" required>
+                    </div>
+                    <div class="input-group">
+                        <input type="password" name="login_password" placeholder="Password" required>
+                        <i class="password-toggle fas fa-eye-slash" onclick="this.classList.toggle('fa-eye'); this.classList.toggle('fa-eye-slash'); const input = this.previousElementSibling; input.type = input.type === 'password' ? 'text' : 'password';"></i>
+                    </div>
+                    <button type="submit" name="login" class="form-button">Login</button>
+                </form>
                 <div class="social-icons">
                     <a href="#"><i class="fab fa-facebook-f"></i></a>
                     <a href="#"><i class="fab fa-google"></i></a>
@@ -68,18 +70,20 @@
             
             <div class="form-container signup-container">
                 <h2>Sign up</h2>
-                <div class="input-group">
-                    <input type="email" placeholder="Email" required>
-                </div>
-                <div class="input-group">
-                    <input type="password" placeholder="Password" required>
-                    <i class="password-toggle fas fa-eye-slash" onclick="this.classList.toggle('fa-eye'); this.classList.toggle('fa-eye-slash'); const input = this.previousElementSibling; input.type = input.type === 'password' ? 'text' : 'password';"></i>
-                </div>
-                <div class="input-group">
-                    <input type="password" placeholder="Confirm password" required>
-                    <i class="password-toggle fas fa-eye-slash" onclick="this.classList.toggle('fa-eye'); this.classList.toggle('fa-eye-slash'); const input = this.previousElementSibling; input.type = input.type === 'password' ? 'text' : 'password';"></i>
-                </div>
-                <button type="submit" class="form-button">Sign up</button>
+                <form action="join.php" method="post">
+                    <div class="input-group">
+                        <input type="email" name="signup_email" placeholder="Email" required>
+                    </div>
+                    <div class="input-group">
+                        <input type="password" name="signup_password" placeholder="Password" required>
+                        <i class="password-toggle fas fa-eye-slash" onclick="this.classList.toggle('fa-eye'); this.classList.toggle('fa-eye-slash'); const input = this.previousElementSibling; input.type = input.type === 'password' ? 'text' : 'password';"></i>
+                    </div>
+                    <div class="input-group">
+                        <input type="password" name="signup_confirm_password" placeholder="Confirm password" required>
+                        <i class="password-toggle fas fa-eye-slash" onclick="this.classList.toggle('fa-eye'); this.classList.toggle('fa-eye-slash'); const input = this.previousElementSibling; input.type = input.type === 'password' ? 'text' : 'password';"></i>
+                    </div>
+                    <button type="submit" name="signup" class="form-button">Sign up</button>
+                </form>
             </div>
         </div>
     </main>
@@ -136,3 +140,63 @@
         </div>
     </footer>
 </body>
+</html>
+
+<?php
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    if (isset($_POST['login'])) {
+        // Handle login
+        $email = $_POST['login_email'];
+        $password = $_POST['login_password'];
+        
+        // Include database credentials from settings.php
+        include_once 'settings.php';
+        $conn = new mysqli($servername, $username, $password, $dbname);
+        
+        if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
+        }
+        
+        $stmt = $conn->prepare("SELECT * FROM login WHERE email = ? AND password = ?");
+        $stmt->bind_param("ss", $email, $password);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        
+        if ($result->num_rows > 0) {
+            echo "Login successful!";
+        } else {
+            echo "Invalid email or password.";
+        }
+        
+        $stmt->close();
+        $conn->close();
+    }
+    } elseif (isset($_POST['signup'])) {
+        // Handle signup
+        $email = $_POST['signup_email'];
+        $password = $_POST['signup_password'];
+        $confirm_password = $_POST['signup_confirm_password'];
+        
+        if ($password === $confirm_password) {
+            if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
+            }
+            
+            $stmt = $conn->prepare("INSERT INTO login (email, password) VALUES (?, ?)");
+            $stmt->bind_param("ss", $email, $password);
+            
+            if ($stmt->execute()) {
+            echo "Signup successful!";
+            } else {
+            echo "Signup failed: " . $stmt->error;
+            }
+            
+            $stmt->close();
+            $conn->close();
+        } else {
+            echo "Passwords do not match.";
+        }
+        } else {
+            echo "Passwords do not match.";
+        }
+?>
