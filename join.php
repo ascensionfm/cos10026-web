@@ -157,7 +157,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             die("Connection failed: " . $conn->connect_error);
         }
         
-        $stmt = $conn->prepare("SELECT * FROM login WHERE email = ? AND password = ?");
+        $stmt = $conn->prepare("SELECT * FROM 'login' WHERE email = ? AND password = ?");
         $stmt->bind_param("ss", $email, $password);
         $stmt->execute();
         $result = $stmt->get_result();
