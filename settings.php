@@ -10,5 +10,5 @@
 	$host = "local";
 	$user = "root";
 	$pwd = "";
-	$sql_db = "104988508_db";
+	$sql_db = "dlt2_db";
 ?>
