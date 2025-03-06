@@ -300,11 +300,6 @@ body {
     object-fit: cover;
 }
 
-.form-group {
-    margin-bottom: 20px;
-    position: relative;
-}
-
 .form-group label {
     display: block;
     margin-bottom: 8px;
