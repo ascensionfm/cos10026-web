@@ -1,0 +1,242 @@
+.cv-container {
+    max-width: 800px;
+    margin: 30px auto;
+    background-color: #fff;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+    padding: 30px;
+}
+
+/* Confirmation Message */
+.confirmation-message {
+    text-align: center;
+    margin: 30px 0;
+    padding: 20px;
+    background-color: #f0f9ff;
+    border-radius: 10px;
+    border-left: 5px solid #4a90e2;
+}
+
+.confirmation-message h2 {
+    color: #2c3e50;
+    margin-bottom: 15px;
+}
+
+/* CV Header */
+.cv-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+    border-bottom: 2px solid #f0f0f0;
+    padding-bottom: 20px;
+}
+
+.cv-photo {
+    width: 120px;
+    height: 120px;
+    overflow: hidden;
+    border-radius: 50%;
+    margin-right: 30px;
+    border: 3px solid #4a90e2;
+}
+
+.cv-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.cv-name {
+    flex: 1;
+}
+
+.cv-name h1 {
+    font-size: 32px;
+    margin: 0;
+    color: #2c3e50;
+}
+
+.job-reference {
+    font-size: 18px;
+    color: #7f8c8d;
+    margin-top: 5px;
+}
+
+/* Contact Section */
+.cv-contact {
+    display: flex;
+    flex-wrap: wrap;
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 30px;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+    margin-bottom: 10px;
+}
+
+.contact-item i {
+    font-size: 20px;
+    color: #4a90e2;
+    margin-right: 10px;
+}
+
+/* CV Sections */
+.cv-section {
+    margin-bottom: 30px;
+}
+
+.cv-section h2 {
+    font-size: 22px;
+    color: #2c3e50;
+    border-bottom: 2px solid #4a90e2;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+}
+
+.cv-info {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.info-item {
+    flex: 1;
+    min-width: 250px;
+    margin-bottom: 15px;
+}
+
+.info-item h3 {
+    font-size: 16px;
+    color: #7f8c8d;
+    margin-bottom: 5px;
+}
+
+.info-item p {
+    font-size: 18px;
+    color: #2c3e50;
+}
+
+/* Skills Section */
+.skills-container {
+    padding: 15px;
+}
+
+.skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+
+.skill-tag {
+    background-color: #4a90e2;
+    color: white;
+    padding: 8px 15px;
+    border-radius: 20px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+
+.other-skills {
+    margin-top: 20px;
+}
+
+.other-skills h3 {
+    font-size: 16px;
+    color: #7f8c8d;
+    margin-bottom: 10px;
+}
+
+.other-skills p {
+    line-height: 1.6;
+    color: #2c3e50;
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-radius: 8px;
+}
+
+/* Action Buttons */
+.action-buttons {
+    text-align: center;
+    margin: 30px 0;
+}
+
+.btn {
+    display: inline-block;
+    padding: 12px 24px;
+    margin: 0 10px;
+    background-color: #4a90e2;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.btn:hover {
+    background-color: #3a7bbd;
+}
+
+.btn-home {
+    background-color: #27ae60;
+}
+
+.btn-home:hover {
+    background-color: #219653;
+}
+
+/* Error Container */
+.error-container {
+    text-align: center;
+    margin: 50px auto;
+    padding: 30px;
+    background-color: #fdf2f2;
+    border-radius: 10px;
+    border-left: 5px solid #e74c3c;
+    max-width: 600px;
+}
+
+.error-container h2 {
+    color: #c0392b;
+    margin-bottom: 15px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .cv-header {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .cv-photo {
+        margin: 0 auto 20px;
+    }
+    
+    .contact-item {
+        width: 100%;
+    }
+    
+    .info-item {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .cv-container {
+        padding: 15px;
+    }
+    
+    .cv-name h1 {
+        font-size: 24px;
+    }
+    
+    .action-buttons .btn {
+        display: block;
+        margin: 10px auto;
+    }
+}

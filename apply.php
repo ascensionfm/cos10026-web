@@ -42,7 +42,7 @@
         </div>
         <div class="file-name" id="photoName"></div>
       </div>
-      <form id="applicationForm" action="https://mercury.swin.edu.au/it000000/formtest.php" method="post" name="applicationForm">
+      <form id="applicationForm" action="apply_confirmation.php" method="post" enctype="multipart/form-data" name="applicationForm"> 
         <div class="form-group">
           <label for="job-reference">Job Reference Number</label> <input id="job-reference" name="job-reference" type="text" pattern="^[a-zA-Z0-9]{5}$" required="" placeholder="Enter 5 alphanumeric characters">
           <div class="error-message">
@@ -99,14 +99,6 @@
         <div class="form-group">
           <label for="other-skills">Other Skills</label> 
           <textarea id="other-skills" name="other-skills" rows="4" placeholder="Describe your other skills..."></textarea>
-        </div>
-        <div class="form-group">
-          <label>Resume</label>
-          <div class="file-input-container">
-            <div class="file-input-trigger">
-              <span>Drop your resume here or click to upload</span>
-            </div><input type="file" id="resume" accept=".pdf,.doc,.docx" required="" name="resume">
-          </div>
         </div>
         <div class="btn-container">
           <button type="submit" class="btn btn-submit">Submit Application</button> <button type="reset" class="btn btn-reset">Reset</button>
