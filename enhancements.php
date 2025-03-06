@@ -13,15 +13,15 @@
 <body>
   <header>
     <div id="navbar" class="obj-width">
-      <a href="index.html"><img class="logo" src="images/logo.png" alt="Next_gen logo"></a> <input type="checkbox"
+      <a href="index.php"><img class="logo" src="images/logo.png" alt="Next_gen logo"></a> <input type="checkbox"
         id="nav-toggle" class="nav-toggle">
       <ul id="menu">
-        <li><a class="navbar_button" href="jobs.html">Jobs</a></li>
-        <li><a class="navbar_button" href="about.html">About</a></li>
-        <li><a class="navbar_button" href="apply.html">Apply</a></li>
-        <li><a class="navbar_button" href="contact.html">Contact</a></li>
-        <li><a class="navbar_button" href="enhancements.html">Enhancements</a></li>
-        <li><a id="w-btn" href="join.html">Join</a></li>
+        <li><a class="navbar_button" href="jobs.php">Jobs</a></li>
+        <li><a class="navbar_button" href="about.php">About</a></li>
+        <li><a class="navbar_button" href="apply.php">Apply</a></li>
+        <li><a class="navbar_button" href="contact.php">Contact</a></li>
+        <li><a class="navbar_button" href="enhancements.php">Enhancements</a></li>
+        <li><a id="w-btn" href="join.php">Join</a></li>
       </ul>
       <label for="nav-toggle" class="nav-toggle-label">
         <i class='bx bx-menu'></i>
@@ -61,13 +61,13 @@
         </p>
         <pre>
 &lt;div id=&quot;navbar&quot; class=&quot;obj-width&quot;&gt;
-  &lt;a href=&quot;index.html&quot;&gt;&lt;img class=&quot;logo&quot; src=&quot;images/logo.png&quot; alt=&quot;Next_gen logo&quot;&gt;&lt;/a&gt; &lt;input type=&quot;checkbox&quot; id=&quot;nav-toggle&quot; class=&quot;nav-toggle&quot;&gt;
+  &lt;a href=&quot;index.php&quot;&gt;&lt;img class=&quot;logo&quot; src=&quot;images/logo.png&quot; alt=&quot;Next_gen logo&quot;&gt;&lt;/a&gt; &lt;input type=&quot;checkbox&quot; id=&quot;nav-toggle&quot; class=&quot;nav-toggle&quot;&gt;
     &lt;ul id=&quot;menu&quot;&gt;
-        &lt;li&gt;&lt;a class=&quot;navbar_button&quot; href=&quot;jobs.html&quot;&gt;Jobs&lt;/a&gt;&lt;/li&gt;
-        &lt;li&gt;&lt;a class=&quot;navbar_button&quot; href=&quot;about.html&quot;&gt;About&lt;/a&gt;&lt;/li&gt;
-        &lt;li&gt;&lt;a class=&quot;navbar_button&quot; href=&quot;apply.html&quot;&gt;Apply&lt;/a&gt;&lt;/li&gt;
-        &lt;li&gt;&lt;a class=&quot;navbar_button&quot; href=&quot;contact.html&quot;&gt;Contact&lt;/a&gt;&lt;/li&gt;
-        &lt;li&gt;&lt;a id=&quot;w-btn&quot; href=&quot;join.html&quot;&gt;Join&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a class=&quot;navbar_button&quot; href=&quot;jobs.php&quot;&gt;Jobs&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a class=&quot;navbar_button&quot; href=&quot;about.php&quot;&gt;About&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a class=&quot;navbar_button&quot; href=&quot;apply.php&quot;&gt;Apply&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a class=&quot;navbar_button&quot; href=&quot;contact.php&quot;&gt;Contact&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a id=&quot;w-btn&quot; href=&quot;join.php&quot;&gt;Join&lt;/a&gt;&lt;/li&gt;
     &lt;/ul&gt;
     &lt;label for=&quot;nav-toggle&quot; class=&quot;nav-toggle-label&quot;&gt;
         &lt;i class=&apos;bx bx-menu&apos;&gt;&lt;/i&gt;
@@ -227,7 +227,7 @@
       &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;				
           </pre>
         <p>
-            Example CSS on the <a href="./contact.html">contact.html</a> page to achieve responsivity.
+            Example CSS on the <a href="./contact.php">contact.php</a> page to achieve responsivity.
         </p>
         <pre>
           @media (max-width: 650px) {
@@ -255,7 +255,7 @@
           </pre>
         <p>
             Responsive design is done throughout our website but is most noticeable on our
-            <a href="./jobs">jobs.html</a> and <a href="./contact.html">contact.html</a>
+            <a href="./jobs">jobs.php</a> and <a href="./contact.php">contact.php</a>
             pages. Change the dimensions of your browser window on these pages and pay attention
             to the layout changes.
         </p>
@@ -278,8 +278,8 @@
           <div class="footer-section">
               <h4>Quick Links</h4>
               <ul>
-                  <li><a href="about.html">About Us</a></li>
-                  <li><a href="jobs.html">Careers</a></li>
+                  <li><a href="about.php">About Us</a></li>
+                  <li><a href="jobs.php">Careers</a></li>
                   <li><a href="#">Services</a></li>
                   <li><a href="#">Projects</a></li>
               </ul>

@@ -14,16 +14,16 @@
     <!-- Header -->
     <header>
         <div id="navbar" class="obj-width">
-            <a href="index.html"><img class="logo" src="images/logo.png" alt="Next_gen logo"></a>
+            <a href="index.php"><img class="logo" src="images/logo.png" alt="Next_gen logo"></a>
             <!--responsive navbar-->
             <input type="checkbox" id="nav-toggle" class="nav-toggle">
             <ul id="menu">
-                <li><a class="navbar_button" href="jobs.html">Jobs</a></li>
-                <li><a class="navbar_button" href="about.html">About</a></li>
-                <li><a class="navbar_button" href="apply.html">Apply</a></li>
-                <li><a class="navbar_button" href="contact.html">Contact</a></li>
-                <li><a class="navbar_button" href="enhancements.html">Enhancements</a></li>
-                <li><a id="w-btn" href ="join.html"> Join </a></li>
+                <li><a class="navbar_button" href="jobs.php">Jobs</a></li>
+                <li><a class="navbar_button" href="about.php">About</a></li>
+                <li><a class="navbar_button" href="apply.php">Apply</a></li>
+                <li><a class="navbar_button" href="contact.php">Contact</a></li>
+                <li><a class="navbar_button" href="enhancements.php">Enhancements</a></li>
+                <li><a id="w-btn" href ="join.php"> Join </a></li>
             </ul>
             <label for="nav-toggle" class="nav-toggle-label">
                 <i class='bx bx-menu'></i>
@@ -75,7 +75,7 @@
                     <span class="tag">Japanese</span>
                     <span class="tag">Korean</span>
                 </div>
-                <a href="job_detail/SE(IM).html" class="view-more">View more</a>
+                <a href="job_detail/SE(IM).php" class="view-more">View more</a>
             </div>
 
             <div class="job-card" style="--order: 2">
@@ -94,7 +94,7 @@
                 <div class="tags">
                     <span class="tag">Sales</span>
                 </div>
-                <a href="job_detail/SM.html" class="view-more">View more</a>
+                <a href="job_detail/SM.php" class="view-more">View more</a>
             </div>
 
             <div class="job-card" style="--order: 3">
@@ -110,7 +110,7 @@
                     <span>Senior</span>
                     <span>Ha Noi</span>
                 </div>
-                <a href="job_detail/SAE.html" class="view-more">View more</a>
+                <a href="job_detail/SAE.php" class="view-more">View more</a>
             </div>
 
             <div class="job-card" style="--order: 4">
@@ -126,7 +126,7 @@
                     <span>Senior</span>
                     <span>Đa Nang</span>
                 </div>
-                <a href="job_detail/TPM.html" class="view-more">View more</a>
+                <a href="job_detail/TPM.php" class="view-more">View more</a>
             </div>
             <div class="job-card" style="--order: 5">
                 <div class="job-header">
@@ -141,7 +141,7 @@
                     <span>Manager</span>
                     <span>Ho Chi Minh city</span>
                 </div>
-                <a href="job_detail/SSA.html" class="view-more">View more</a>
+                <a href="job_detail/SSA.php" class="view-more">View more</a>
             </div>
             <div class="job-card" style="--order: 6">
                 <div class="job-header">
@@ -160,7 +160,7 @@
                     <span class="tag">English</span>
                     <span class="tag">Japanese</span>
                 </div>
-                <a href="job_detail/IPC.html" class="view-more">View more</a>
+                <a href="job_detail/IPC.php" class="view-more">View more</a>
             </div>
             <div class="job-card" style="--order: 7">
                 <div class="job-header">
@@ -175,7 +175,7 @@
                     <span>Junior-Mid</span>
                     <span>Remote</span>
                 </div>
-                <a href="job_detail/PS.html" class="view-more">View more</a>
+                <a href="job_detail/PS.php" class="view-more">View more</a>
             </div>
             <div class="job-card" style="--order: 8">
                 <div class="job-header">
@@ -194,7 +194,7 @@
                     <span class="tag">International</span>
                     <span class="tag">Chinese</span>
                 </div>
-                <a href="job_detail/MSIS.html" class="view-more">View more</a>
+                <a href="job_detail/MSIS.php" class="view-more">View more</a>
             </div>
             <div class="job-card" style="--order: 9">
                 <div class="job-header">
@@ -209,7 +209,7 @@
                     <span>Senior</span>
                     <span>Tokyo_Japan</span>
                 </div>
-                <a href="job_detail/BSE.html" class="view-more">View more</a>
+                <a href="job_detail/BSE.php" class="view-more">View more</a>
             </div>
         </div>
     </div>
@@ -229,8 +229,8 @@
                 <div class="footer-section">
                     <h4>Quick Links</h4>
                     <ul>
-                        <li><a href="about.html">About Us</a></li>
-                        <li><a href="jobs.html">Careers</a></li>
+                        <li><a href="about.php">About Us</a></li>
+                        <li><a href="jobs.php">Careers</a></li>
                         <li><a href="#">Services</a></li>
                         <li><a href="#">Projects</a></li>
                     </ul>
