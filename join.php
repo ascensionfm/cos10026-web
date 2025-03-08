@@ -62,7 +62,7 @@
                     <button type="submit" name="login" class="form-button">Login</button>
                 </form>
                 <div class ="forgot_password">
-                    <a href="reset_password.php">Forgot password?</a>
+                    <a href="reset_password.php" style="color: #fff; text-decoration: none;">Forgot password?</a>
                 </div>
                 <div class="social-icons">
                     <a href="#"><i class="fab fa-facebook-f"></i></a>
