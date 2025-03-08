@@ -97,6 +97,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 phone VARCHAR(20),
                 skills VARCHAR(255),
                 other_skills TEXT,
+                photo_path VARCHAR(255),
                 application_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
             )";
             
@@ -107,16 +108,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         
         // Query to insert into database
         $sql = "INSERT INTO applications (job_reference, first_name, last_name, date_of_birth, gender, 
-                street_address, suburb, state, postcode, email, phone, skills, other_skills) 
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                street_address, suburb, state, postcode, email, phone, skills, other_skills, photo_path) 
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         
         $stmt = $conn->prepare($sql);
         if (!$stmt) {
             throw new Exception("Prepare failed: " . $conn->error);
         }
         
-        $stmt->bind_param("sssssssssssss", $jobReference, $firstName, $lastName, $dateOfBirth, $gender,
-                         $streetAddress, $suburb, $state, $postcode, $email, $phone, $skills, $otherSkills);
+        $stmt->bind_param("ssssssssssssss", $jobReference, $firstName, $lastName, $dateOfBirth, $gender,
+                         $streetAddress, $suburb, $state, $postcode, $email, $phone, $skills, $otherSkills, $photoPath);
         
         // Execute the statement
         if (!$stmt->execute()) {
