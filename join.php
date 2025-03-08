@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Join - Next_Gen Corporation</title>
     <link rel="icon" href="./images/logo1.ico">
-    <link rel="stylesheet" href="styles/style-join.css">
+    <link rel="stylesheet" href="./styles/style-join.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 </head>
@@ -61,6 +61,9 @@
                     </div>
                     <button type="submit" name="login" class="form-button">Login</button>
                 </form>
+                <div class ="forgot_password">
+                    <a href="reset_password.php">Forgot password?</a>
+                </div>
                 <div class="social-icons">
                     <a href="#"><i class="fab fa-facebook-f"></i></a>
                     <a href="#"><i class="fab fa-google"></i></a>
@@ -171,7 +174,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         
         $stmt->close();
         $conn->close();
-    }
     } elseif (isset($_POST['signup'])) {
         // Handle signup
         $email = $_POST['signup_email'];
@@ -179,17 +181,21 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $confirm_password = $_POST['signup_confirm_password'];
         
         if ($password === $confirm_password) {
+            // Include database credentials from settings.php
+            include_once 'settings.php';
+            $conn = new mysqli($servername, $username, $password, $dbname);
+            
             if ($conn->connect_error) {
-            die("Connection failed: " . $conn->connect_error);
+                die("Connection failed: " . $conn->connect_error);
             }
             
             $stmt = $conn->prepare("INSERT INTO login (email, password) VALUES (?, ?)");
             $stmt->bind_param("ss", $email, $password);
             
             if ($stmt->execute()) {
-            echo "Signup successful!";
+                echo "Signup successful!";
             } else {
-            echo "Signup failed: " . $stmt->error;
+                echo "Signup failed: " . $stmt->error;
             }
             
             $stmt->close();
@@ -197,7 +203,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         } else {
             echo "Passwords do not match.";
         }
-        } else {
-            echo "Passwords do not match.";
-        }
+    }
+}
 ?>
