@@ -36,9 +36,8 @@
           </div>
         </div>
         <div class="file-upload">
-          <div class="upload-btn">
-            Choose Photo
-          </div><input type="file" id="photoInput" accept="image/*" onchange="previewPhoto(event)" name="image">
+          <div class="upload-btn">Choose Photo</div>
+          <input type="file" id="photoInput" accept="image/*" onchange="previewPhoto(event)" name="image">
         </div>
         <div class="file-name" id="photoName"></div>
       </div>
@@ -157,4 +156,49 @@
     </div>
 </footer>
 </body>
+<script>
+function previewPhoto(event) {
+    const fileInput = event.target;
+    const photoPreview = document.getElementById('photoPreview');
+    const photoName = document.getElementById('photoName');
+    
+    if (fileInput.files && fileInput.files[0]) {
+        const file = fileInput.files[0];
+        const reader = new FileReader();
+        
+        reader.onload = function(e) {
+            // remove placeholder text
+            const placeholder = photoPreview.querySelector('.placeholder-text');
+            if (placeholder) {
+                placeholder.remove();
+            }
+            
+            // remove current image if exists
+            const existingImg = photoPreview.querySelector('img');
+            if (existingImg) {
+                existingImg.remove();
+            }
+            
+            // create and add new image
+            const img = document.createElement('img');
+            img.src = e.target.result;
+            img.alt = "Uploaded Photo";
+            photoPreview.appendChild(img);
+            
+            // file's name
+            photoName.textContent = file.name;
+        };
+        
+        reader.readAsDataURL(file);
+    }
+}
+// Ensure the photo input is included in the form submission
+document.getElementById('applicationForm').addEventListener('submit', function(e) {
+    const photoInput = document.getElementById('photoInput');
+    if (photoInput.files.length > 0) {
+        // Copy the photo input to the form
+        this.appendChild(photoInput.cloneNode(true));
+    }
+});
+</script>
 </html>
