@@ -1,3 +1,7 @@
+<?php
+    session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -51,15 +55,36 @@
             
             <div class="form-container signin-container">
                 <h2>Login</h2>
-                <form action="join.php" method="post">
+                <?php
+                    if (isset($_GET["error"])) {
+                        $error = $_GET["error"];
+                        if ($error == "serverError") {
+                            echo '<p style="color: #ff6b6b; margin-bottom: 15px;">An error happened on the server.</p>';
+                        } else if ($error == "wrongInfo") {
+                            echo '<p style="color: #ff6b6b; margin-bottom: 15px;">Wrong login information.</p>';
+                        } else if ($error == "emailUsed") {
+                            echo '<p style="color: #ff6b6b; margin-bottom: 15px;">This email is already registered.</p>';
+                        }
+                    }
+
+                    if (isset($_GET["message"])) {
+                        $message = $_GET["message"];
+                        if ($message == "registered") {
+                            echo '<p style="color: #4ecdc4; margin-bottom: 15px;">You have created your account successfully.</p>';
+                        }
+                    }
+                ?>
+                <form action="./process_userlogin.php" method="post">
                     <div class="input-group">
-                        <input type="email" name="login_email" placeholder="Email" required>
+                        <input type="email" name="email" placeholder="Email" required
+                            <?php if (isset($_SESSION["login_email"])) echo 'value="' . $_SESSION["login_email"] . '"'; ?>
+                        >
                     </div>
                     <div class="input-group">
-                        <input type="password" name="login_password" placeholder="Password" required>
+                        <input type="password" name="password" placeholder="Password" required>
                         <i class="password-toggle fas fa-eye-slash" onclick="this.classList.toggle('fa-eye'); this.classList.toggle('fa-eye-slash'); const input = this.previousElementSibling; input.type = input.type === 'password' ? 'text' : 'password';"></i>
                     </div>
-                    <button type="submit" name="login" class="form-button">Login</button>
+                    <button type="submit" name="submit" class="form-button">Login</button>
                 </form>
                 <div class ="forgot_password">
                     <a href="reset_password.php" style="color: #fff; text-decoration: none;">Forgot password?</a>
@@ -73,9 +98,31 @@
             
             <div class="form-container signup-container">
                 <h2>Sign up</h2>
-                <form action="join.php" method="post">
+                <?php
+                    // Display validation errors for signup form
+                    if (isset($_GET["username"]) && $_GET["username"] == "false") {
+                        echo '<p style="color: #ff6b6b; margin-bottom: 15px;">Username must be between 3-25 characters.</p>';
+                    }
+                    if (isset($_GET["email"]) && $_GET["email"] == "false") {
+                        echo '<p style="color: #ff6b6b; margin-bottom: 15px;">Please enter a valid email address.</p>';
+                    }
+                    if (isset($_GET["password"]) && $_GET["password"] == "false") {
+                        echo '<p style="color: #ff6b6b; margin-bottom: 15px;">Password must be at least 8 characters.</p>';
+                    }
+                    if (isset($_GET["password_cf"]) && $_GET["password_cf"] == "false") {
+                        echo '<p style="color: #ff6b6b; margin-bottom: 15px;">Passwords do not match.</p>';
+                    }
+                ?>
+                <form action="./process_usersignup.php" method="post">
                     <div class="input-group">
-                        <input type="email" name="signup_email" placeholder="Email" required>
+                        <input type="text" name="user_name" placeholder="Username" required
+                            <?php if (isset($_SESSION["signup_username"])) echo 'value="' . $_SESSION["signup_username"] . '"'; ?>
+                        >
+                    </div>
+                    <div class="input-group">
+                        <input type="email" name="signup_email" placeholder="Email" required
+                            <?php if (isset($_SESSION["signup_email"])) echo 'value="' . $_SESSION["signup_email"] . '"'; ?>
+                        >
                     </div>
                     <div class="input-group">
                         <input type="password" name="signup_password" placeholder="Password" required>
@@ -147,34 +194,7 @@
 
 <?php
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    if (isset($_POST['login'])) {
-        // Handle login
-        $email = $_POST['login_email'];
-        $password = $_POST['login_password'];
-        
-        // Include database credentials from settings.php
-        include_once 'settings.php';
-        $conn = new mysqli($servername, $username, $password, $dbname);
-        
-        if ($conn->connect_error) {
-            die("Connection failed: " . $conn->connect_error);
-        }
-        
-        $stmt = $conn->prepare("SELECT * FROM `login` WHERE `email` = ? AND `password` = ?");
-        $stmt->bind_param("ss", $email, $password);
-        $stmt->execute();
-        $result = $stmt->get_result();
-        
-        if ($result->num_rows > 0) {
-            header("Location: manage.php");
-            exit();
-        } else {
-            echo "Invalid email or password.";
-        }
-        
-        $stmt->close();
-        $conn->close();
-    } elseif (isset($_POST['signup'])) {
+    if (isset($_POST['signup'])) {
         // Handle signup
         $email = $_POST['signup_email'];
         $password = $_POST['signup_password'];

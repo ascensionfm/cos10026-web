@@ -8,7 +8,7 @@
 <?php
     // Check if required inputs are available. The submit input is to prevent direct access.
     if (!isset($_POST["email"]) || !isset($_POST["password"]) || !isset($_POST["submit"])) {
-        header("Location: login.php");
+        header("Location: join.php");
         die();
     }
 
@@ -31,7 +31,7 @@
 
     if (!$connection) {
         mysqli_close($connection);
-        header("Location: login.php?error=serverError");
+        header("Location: join.php?error=serverError");
         die();
     } else {
         // Check if the users table exists. If not, create it.
@@ -41,61 +41,58 @@
             mysqli_free_result($table_check_result);
             $table_create_query = "CREATE TABLE users (
                                     user_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-                                    first_name VARCHAR(25) NOT NULL,
-                                    last_name VARCHAR(25) NOT NULL,
+                                    username VARCHAR(25) NOT NULL,
                                     email TEXT NOT NULL,
-                                    phone VARCHAR(10) NOT NULL,
-                                    street_address VARCHAR(40) NOT NULL,
-                                    suburb VARCHAR(20) NOT NULL,
-                                    state VARCHAR(20) NOT NULL,
-                                    postcode VARCHAR(4) NOT NULL,
                                     password TEXT NOT NULL
                                 )";
             $table_create_result = mysqli_query($connection, $table_create_query);
             if (!$table_create_result) {
                 mysqli_close($connection);
-                header("Location: login.php?error=serverError");
+                header("Location: join.php?error=serverError");
                 die();
             }
         }
 
-        // Check if the entered credentials exist in the database.
-        $query = "SELECT * FROM users WHERE email = '$email' AND password = '$password'";
+        // Check if the entered email exists in the database.
+        $query = "SELECT * FROM users WHERE email = '$email'";
         $result = mysqli_query($connection, $query);
 
         if (mysqli_num_rows($result) == 0) {
             // If the account does not exist, redirect to login.
             mysqli_free_result($result);
             mysqli_close($connection);
-            header("Location: login.php?error=wrongInfo");
-            die();
+            header("Location: join.php?error=wrongInfo");
         } else {
-            // If the account exists, authenticate the user and save necessary information in the session variables.
+            // If the account exists, verify the password
             $row = mysqli_fetch_assoc($result);
-            $_SESSION["user_id"] = $row["user_id"];
-            $_SESSION["user_first_name"] = $row["first_name"];
-            $_SESSION["user_last_name"] = $row["last_name"];
-            $_SESSION["user_email"] = $row["email"];
-            $_SESSION["user_phone"] = $row["phone"];
-            $_SESSION["user_street_address"] = $row["street_address"];
-            $_SESSION["user_suburb"] = $row["suburb"];
-            $_SESSION["user_state"] = $row["state"];
-            $_SESSION["user_postcode"] = $row["postcode"];
-            mysqli_free_result($result);
-
-            // Remove unnecessary variables stored in session.
-            unset($_SESSION["register_first_name"],
-                $_SESSION["register_last_name"], 
-                $_SESSION["register_email"], 
-                $_SESSION["register_phone"], 
-                $_SESSION["register_street_address"], 
-                $_SESSION["register_suburb"],
-                $_SESSION["register_state"],
-                $_SESSION["register_postcode"]);
-            unset($_SESSION["login_email"]);
-            mysqli_close($connection);
-            header("Location: after_login.php");
-            die();
+            
+            // Verify the password using password_verify since we stored a hashed password
+            if (password_verify($password, $row["password"])) {
+                // Authentication successful, save user information in session
+                $_SESSION["user_id"] = $row["user_id"];
+                $_SESSION["username"] = $row["username"];
+                $_SESSION["user_email"] = $row["email"];
+                
+                mysqli_free_result($result);
+                
+                // Remove unnecessary variables stored in session.
+                unset($_SESSION["login_email"]);
+                unset($_SESSION["signup_username"], $_SESSION["signup_email"]);
+                
+                mysqli_close($connection);
+                
+                // Redirect to after login page or homepage
+                if (file_exists("after_login.php")) {
+                    header("Location: after_login.php");
+                } else {
+                    header("Location: index.php");
+                }
+            } else {
+                // Password doesn't match
+                mysqli_free_result($result);
+                mysqli_close($connection);
+                header("Location: join.php?error=wrongInfo");
+            }
         }
     }
 ?>
