@@ -1,4 +1,5 @@
 <?php
+//author: Nguyen Khanh Huyen
 // filename: apply_confirmation.php
 // created: 06/03/25
 // description: Backend script to process job application data and display as CV
