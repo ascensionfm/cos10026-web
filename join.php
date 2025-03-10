@@ -203,7 +203,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if ($password === $confirm_password) {
             // Include database credentials from settings.php
             include_once 'settings.php';
-            $conn = new mysqli($servername, $username, $password, $dbname);
+            $conn = new mysqli($host, $user, $pwd, $sql_db);
             
             if ($conn->connect_error) {
                 die("Connection failed: " . $conn->connect_error);
