@@ -24,14 +24,40 @@ if (isset($_COOKIE['user_id']) && $_COOKIE['user_id'] == 0) {
         die("Connection failed: " . $conn->connect_error);
     }
 
-    // Query to select all data from the application table
-    $sql = "SELECT * FROM application";
+    // Define the skills array
+    $skillsArray = ["programming", "design", "marketing", "sales", "management", "english", "japanese", "chinese"];
+
+    // Add the filter form
+    echo '<form method="get" action="">
+            Job Reference: <input type="text" name="job_reference" value="' . (isset($_GET['job_reference']) ? $_GET['job_reference'] : '') . '">
+            Skills: <select name="skills">
+                <option value="">Select Skill</option>';
+    foreach ($skillsArray as $skill) {
+        $selected = (isset($_GET['skills']) && $_GET['skills'] == $skill) ? 'selected' : '';
+        echo '<option value="' . $skill . '" ' . $selected . '>' . $skill . '</option>';
+    }
+    echo '</select>
+            <input type="submit" value="Filter">
+          </form>';
+
+    // Build the SQL query with filters
+    $sql = "SELECT * FROM application WHERE 1=1";
+    if (isset($_GET['job_reference']) && !empty($_GET['job_reference'])) {
+        $job_reference = $conn->real_escape_string($_GET['job_reference']);
+        $sql .= " AND job_reference LIKE '%$job_reference%'";
+    }
+    if (isset($_GET['skills']) && !empty($_GET['skills'])) {
+        $skills = $conn->real_escape_string($_GET['skills']);
+        $sql .= " AND skills LIKE '%$skills%'";
+    }
+
     $result = $conn->query($sql);
 
     if ($result->num_rows > 0) {
         echo "<table border='1'>
                 <tr>
                     <th>ID</th>
+                    <th>Job Reference</th>
                     <th>First Name</th>
                     <th>Last Name</th>
                     <th>Date of Birth</th>
@@ -44,12 +70,14 @@ if (isset($_COOKIE['user_id']) && $_COOKIE['user_id'] == 0) {
                     <th>Phone</th>
                     <th>Skills</th>
                     <th>Other Skills</th>
-                    <th>Resume</th>
+                    <th>Photo Path</th>
+                    <th>Application Date</th>
                 </tr>";
         // Output data of each row
         while($row = $result->fetch_assoc()) {
             echo "<tr>
                     <td>" . $row["application_id"] . "</td>
+                    <td>" . $row["job_reference"] . "</td>
                     <td>" . $row["first_name"] . "</td>
                     <td>" . $row["last_name"] . "</td>
                     <td>" . $row["date_of_birth"] . "</td>
@@ -61,8 +89,6 @@ if (isset($_COOKIE['user_id']) && $_COOKIE['user_id'] == 0) {
                     <td>" . $row["email"] . "</td>
                     <td>" . $row["phone"] . "</td>
                     <td>";
-            // Define the skills array
-            $skillsArray = ["programming", "design", "marketing", "sales", "management", "english", "japanese", "chinese"];
             // Split the skills from the database
             $userSkills = explode(", ", $row["skills"]);
             // Display checkboxes
@@ -72,7 +98,8 @@ if (isset($_COOKIE['user_id']) && $_COOKIE['user_id'] == 0) {
             }
             echo "</td>
                     <td>" . $row["other_skills"] . "</td>
-                    <td>" . $row["resume"] . "</td>
+                    <td>" . $row["photo_path"] . "</td>
+                    <td>" . $row["application_date"] . "</td>
                 </tr>";
         }
         echo "</table>";
