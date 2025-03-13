@@ -1,0 +1,162 @@
+/* Profile Container Styles */
+.profile-container {
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.profile-header {
+    text-align: center;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #eee;
+}
+
+.profile-header h1 {
+    color: #1f3e5d;
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+.profile-header p {
+    color: #666;
+    font-size: 1.1rem;
+}
+
+/* Profile Content Styles */
+.profile-content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+.profile-section {
+    flex: 1;
+    min-width: 300px;
+    background-color: #f9f9f9;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.profile-section h2 {
+    color: #1f3e5d;
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #4ecdc4;
+}
+
+.profile-section p {
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+    color: #333;
+}
+
+.profile-section p i {
+    margin-right: 10px;
+    color: #4ecdc4;
+}
+
+.profile-section .btn {
+    display: inline-block;
+    background-color: #1f3e5d;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    margin-top: 15px;
+    transition: all 0.3s ease;
+    margin-right: 10px;
+}
+
+.profile-section .btn:hover {
+    background-color: #4ecdc4;
+    transform: translateY(-2px);
+}
+
+.button {
+    margin-top: 20px;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Application History Styles */
+.application-history {
+    margin-top: 30px;
+    width: 100%;
+}
+
+.application-history h2 {
+    color: #1f3e5d;
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #4ecdc4;
+}
+
+.application-card {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease;
+}
+
+.application-card:hover {
+    transform: translateY(-5px);
+}
+
+.application-card h3 {
+    color: #1f3e5d;
+    margin-bottom: 10px;
+}
+
+.application-card p {
+    margin-bottom: 8px;
+    color: #555;
+}
+
+.application-card .status {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.status.pending {
+    background-color: #ffeaa7;
+    color: #d35400;
+}
+
+.status.approved {
+    background-color: #c4e6c3;
+    color: #27ae60;
+}
+
+.status.rejected {
+    background-color: #ffcccb;
+    color: #c0392b;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .profile-content {
+        flex-direction: column;
+    }
+    
+    .profile-section {
+        width: 100%;
+    }
+}

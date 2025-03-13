@@ -1,4 +1,11 @@
 <?php
+	// filename: signup.php
+	// author: Nguyen Khanh Huyen
+	// created: 08/03/25
+	// description: Script processing user signup and login.
+?>
+
+<?php
     session_start();
 ?>
 

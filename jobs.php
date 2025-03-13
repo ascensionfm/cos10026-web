@@ -1,3 +1,6 @@
+<?php
+    session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -23,7 +26,11 @@
                 <li><a class="navbar_button" href="apply.php">Apply</a></li>
                 <li><a class="navbar_button" href="contact.php">Contact</a></li>
                 <li><a class="navbar_button" href="enhancements.php">Enhancements</a></li>
-                <li><a id="w-btn" href ="join.php"> Join </a></li>
+                <?php if(isset($_SESSION["user_id"])): ?>
+                    <li><a id="w-btn" href="after_login.php"><i class='bx bx-user'></i></a></li>
+                <?php else: ?>
+                    <li><a id="w-btn" href="join.php">Join</a></li>
+                <?php endif; ?>
             </ul>
             <label for="nav-toggle" class="nav-toggle-label">
                 <i class='bx bx-menu'></i>
@@ -75,7 +82,7 @@
                     <span class="tag">Japanese</span>
                     <span class="tag">Korean</span>
                 </div>
-                <a href="job_detail/SE(IM).php" class="view-more">View more</a>
+                <a href="job_detail/SE(IM).html" class="view-more">View more</a>
             </div>
 
             <div class="job-card" style="--order: 2">
@@ -94,7 +101,7 @@
                 <div class="tags">
                     <span class="tag">Sales</span>
                 </div>
-                <a href="job_detail/SM.php" class="view-more">View more</a>
+                <a href="job_detail/SM.html" class="view-more">View more</a>
             </div>
 
             <div class="job-card" style="--order: 3">
@@ -110,7 +117,7 @@
                     <span>Senior</span>
                     <span>Ha Noi</span>
                 </div>
-                <a href="job_detail/SAE.php" class="view-more">View more</a>
+                <a href="job_detail/SAE.html" class="view-more">View more</a>
             </div>
 
             <div class="job-card" style="--order: 4">
@@ -126,7 +133,7 @@
                     <span>Senior</span>
                     <span>Đa Nang</span>
                 </div>
-                <a href="job_detail/TPM.php" class="view-more">View more</a>
+                <a href="job_detail/TPM.html" class="view-more">View more</a>
             </div>
             <div class="job-card" style="--order: 5">
                 <div class="job-header">
@@ -141,7 +148,7 @@
                     <span>Manager</span>
                     <span>Ho Chi Minh city</span>
                 </div>
-                <a href="job_detail/SSA.php" class="view-more">View more</a>
+                <a href="job_detail/SSA.html" class="view-more">View more</a>
             </div>
             <div class="job-card" style="--order: 6">
                 <div class="job-header">
@@ -160,7 +167,7 @@
                     <span class="tag">English</span>
                     <span class="tag">Japanese</span>
                 </div>
-                <a href="job_detail/IPC.php" class="view-more">View more</a>
+                <a href="job_detail/IPC.html" class="view-more">View more</a>
             </div>
             <div class="job-card" style="--order: 7">
                 <div class="job-header">
@@ -175,7 +182,7 @@
                     <span>Junior-Mid</span>
                     <span>Remote</span>
                 </div>
-                <a href="job_detail/PS.php" class="view-more">View more</a>
+                <a href="job_detail/PS.html" class="view-more">View more</a>
             </div>
             <div class="job-card" style="--order: 8">
                 <div class="job-header">
@@ -194,7 +201,7 @@
                     <span class="tag">International</span>
                     <span class="tag">Chinese</span>
                 </div>
-                <a href="job_detail/MSIS.php" class="view-more">View more</a>
+                <a href="job_detail/MSIS.html" class="view-more">View more</a>
             </div>
             <div class="job-card" style="--order: 9">
                 <div class="job-header">
@@ -209,7 +216,7 @@
                     <span>Senior</span>
                     <span>Tokyo_Japan</span>
                 </div>
-                <a href="job_detail/BSE.php" class="view-more">View more</a>
+                <a href="job_detail/BSE.html" class="view-more">View more</a>
             </div>
         </div>
     </div>
