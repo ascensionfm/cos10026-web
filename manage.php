@@ -41,7 +41,7 @@ if (isset($_COOKIE['user_id']) && $_COOKIE['user_id'] == 0) {
           </form>';
 
     // Build the SQL query with filters
-    $sql = "SELECT * FROM application WHERE 1=1";
+    $sql = "SELECT * FROM applications WHERE 1=1";
     if (isset($_GET['job_reference']) && !empty($_GET['job_reference'])) {
         $job_reference = $conn->real_escape_string($_GET['job_reference']);
         $sql .= " AND job_reference LIKE '%$job_reference%'";
