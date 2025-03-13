@@ -219,6 +219,44 @@ body {
     border: 2px dashed #6c63ff;
 }
 
+.login-required {
+    max-width: 600px;
+    margin: 100px auto;
+    padding: 30px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  .login-required h2 {
+    color: #333;
+    margin-bottom: 20px;
+  }
+  .login-required p {
+    font-size: 18px;
+    color: #555;
+    margin-bottom: 30px;
+  }
+  .login-required a {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #4ecdc4;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    margin: 0 10px;
+    transition: background-color 0.3s;
+  }
+  .login-required a:hover {
+    background-color: #1aa79b;
+  }
+  .login-icon {
+    font-size: 60px;
+    color: #4ecdc4;
+    margin-bottom: 20px;
+  }
+
 .photo-preview {
     width: 150px;
     height: 200px;
