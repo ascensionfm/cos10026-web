@@ -43,7 +43,7 @@
                 <li><a class="navbar_button" href="apply.php">Apply</a></li> 
                 <li><a class="navbar_button" href="contact.php">Contact</a></li>  
                 <li><a class="navbar_button" href="enhancements.php">Enhancements</a></li>       
-                <li><a id="w-btn" href="join.php">Join</a></li>   
+                <li><a id="w-btn" href="after_login.php">Profile</a></li>   
             </ul>
             <label for="nav-toggle" class="nav-toggle-label">
                 <i class='bx bx-menu'></i>
@@ -65,7 +65,7 @@
                     <p><i class='bx bx-envelope'></i> <strong>Email:</strong> <?php echo htmlspecialchars($_SESSION["user_email"]); ?></p>
                     <!-- Edit Profile button is currently disabled as the functionality is not implemented yet -->
                     <p><i class='bx bx-info-circle'></i> <strong>Note:</strong> Edit Profile functionality coming soon</p>
-                    <a href="process_userlogin.php?logout=true" class="btn">Log out</a>
+                    <a href="user_logout.php" class="btn">Log out</a>
                 </div>
                 
                 <div class="profile-section">
@@ -90,32 +90,13 @@
                     $table_check_result = mysqli_query($connection, $table_check_query);
                     
                     if (mysqli_num_rows($table_check_result) != 1) {
-                        // Table doesn't exist, create it
+                        // Table doesn't exist
                         mysqli_free_result($table_check_result);
-                        $create_table_query = "CREATE TABLE applications (
-                            application_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-                            user_id INT NOT NULL,
-                            job_reference VARCHAR(50) NOT NULL,
-                            position_name VARCHAR(100) NOT NULL,
-                            application_date DATETIME NOT NULL,
-                            status VARCHAR(20) NOT NULL DEFAULT 'Pending',
-                            FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE
-                        )";
-                        
-                        $create_result = mysqli_query($connection, $create_table_query);
-                        if (!$create_result) {
-                            echo '<div class="application-card">';
-                            echo '<p>Unable to set up application tracking at this time.</p>';
-                            echo '<p>Please try again later.</p>';
-                            echo '</div>';
-                        } else {
-                            // Display message for no applications
-                            echo '<div class="application-card">';
-                            echo '<p>You haven\'t submitted any job applications yet.</p>';
-                            echo '<p>Browse available positions and apply today!</p>';
-                            echo '<a href="jobs.php" class="button">View Jobs</a>';
-                            echo '</div>';
-                        }
+                        echo '<div class="application-card">';
+                        echo '<p>You haven\'t submitted any job applications yet.</p>';
+                        echo '<p>Browse available positions and apply today!</p>';
+                        echo '<a href="jobs.php" class="btn">View Jobs</a>';
+                        echo '</div>';
                     } else {
                         // Table exists, fetch applications for this user
                         $user_id = $_SESSION["user_id"];
@@ -126,15 +107,28 @@
                             // Display applications
                             while ($row = mysqli_fetch_assoc($result)) {
                                 echo '<div class="application-card">';
-                                echo '<h3>' . htmlspecialchars($row["position_name"]) . '</h3>';
+                                
+                                // Get position name or use job reference if not available
+                                $position_name = isset($row["position_name"]) && !empty($row["position_name"]) 
+                                    ? $row["position_name"] 
+                                    : "Job Reference: " . $row["job_reference"];
+                                
+                                echo '<h3>' . htmlspecialchars($position_name) . '</h3>';
                                 echo '<p><strong>Job Reference:</strong> ' . htmlspecialchars($row["job_reference"]) . '</p>';
                                 
-                                // Format date for better readability
-                                $date = date_format(date_create_from_format("Y-m-d H:i:s", $row["application_date"]), "M j Y H:i:s");
+                                // Format date for better readability - handle both TIMESTAMP and DATETIME formats
+                                $date_str = $row["application_date"];
+                                if (strpos($date_str, '-') !== false) {
+                                    // It's a datetime format
+                                    $date = date("M j Y H:i:s", strtotime($date_str));
+                                } else {
+                                    // It's a timestamp
+                                    $date = date("M j Y H:i:s", $date_str);
+                                }
                                 echo '<p><strong>Applied on:</strong> ' . $date . '</p>';
                                 
                                 // Display status with appropriate styling
-                                $status = $row["status"];
+                                $status = isset($row["status"]) ? $row["status"] : "Pending";
                                 $status_class = "";
                                 
                                 if ($status == "Pending") {
@@ -203,7 +197,7 @@
                     <h4>Newsletter</h4>
                     <p>Subscribe to our newsletter for updates</p>
                     <form class="newsletter-form">
-                        <input type="email" placeholder="Enter your email" name="email">
+                        <input type="email" placeholder="Enter your email">
                         <button type="submit">Subscribe</button>
                     </form>
                 </div>

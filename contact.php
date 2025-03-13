@@ -1,3 +1,6 @@
+<?php
+    session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -23,7 +26,11 @@
                 <li><a class="navbar_button" href="apply.php">Apply</a></li>
                 <li><a class="navbar_button" href="contact.php">Contact</a></li>
                 <li><a class="navbar_button" href="enhancements.php">Enhancements</a></li>
-                <li><a id="w-btn" href ="join.php"> Join </a></li>
+                <?php if(isset($_SESSION["user_id"])): ?>
+                    <li><a id="w-btn" href="after_login.php">Profile</a></li>
+                <?php else: ?>
+                    <li><a id="w-btn" href="join.php">Join</a></li>
+                <?php endif; ?>
             </ul>
             <label for="nav-toggle" class="nav-toggle-label">
                 <i class='bx bx-menu'></i>

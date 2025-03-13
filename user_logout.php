@@ -12,6 +12,9 @@
           $_SESSION["username"], 
           $_SESSION["user_email"]);
     
+    // Destroy the session completely
+    session_destroy();
+    
     // Redirect to the join page
     header("Location: index.php");
     exit();
