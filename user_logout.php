@@ -7,7 +7,7 @@
 
 <?php
     session_start();
-    // Unset the session variables associated with the user and redirect to the home page.
+    // Unset the session variables associated with the user.
     unset($_SESSION["user_id"], 
           $_SESSION["username"], 
           $_SESSION["user_email"]);

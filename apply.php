@@ -19,6 +19,7 @@
   <title>Login Required - Next_Gen Corporation</title>
   <link rel="icon" href="./images/logo1.ico">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="stylesheet" href="styles/style.css">
   <link rel="stylesheet" href="styles/style-apply.css">
   <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
 </head>
@@ -120,22 +121,7 @@
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 <body>
-  <header>
-    <div id="navbar" class="obj-width">
-      <a href="index.php"><img class="logo" src="images/logo.png" alt="Next_gen logo"></a> <input type="checkbox" id="nav-toggle" class="nav-toggle">
-      <ul id="menu">
-        <li><a class="navbar_button" href="jobs.php">Jobs</a></li>       
-        <li><a class="navbar_button" href="about.php">About</a></li> 
-        <li><a class="navbar_button" href="apply.php">Apply</a></li> 
-        <li><a class="navbar_button" href="contact.php">Contact</a></li>  
-        <li><a class="navbar_button" href="enhancements.php">Enhancements</a></li>       
-        <li><a id="w-btn" href="after_login.php"><i class='bx bx-user'></i></a></li>   
-      </ul>
-      <label for="nav-toggle" class="nav-toggle-label">
-        <i class='bx bx-menu'></i>
-      </label>
-    </div>
-  </header>
+<?php require("header.inc"); ?>
   <main class="main-content">
     <div class="container">
       <div class="upload-container">
@@ -215,56 +201,7 @@
       </form>
     </div>
   </main>
-  <footer>
-    <div class="footer-container">
-        <div class="footer-top">
-            <div class="footer-section">
-                <img class="footer-logo" src="images/logo.png" alt="Next_gen logo">
-                <p>Pioneering the next wave of digital innovation with cutting-edge solutions.</p>
-                <div class="social-links">
-                  <a href="https://www.facebook.com"><i class='bx bxl-facebook'></i></a>
-                  <a href="https://www.twitter.com"><i class='bx bxl-twitter'></i></a>
-                  <a href="https://www.linkedin.com"><i class='bx bxl-linkedin'></i></a>
-                  <a href="https://www.instagram.com"><i class='bx bxl-instagram'></i></a>
-              </div>
-            </div>
-            <div class="footer-section">
-                <h4>Quick Links</h4>
-                <ul>
-                    <li><a href="about.php">About Us</a></li>
-                    <li><a href="jobs.php">Careers</a></li>
-                    <li><a href="#">Services</a></li>
-                    <li><a href="#">Projects</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h4>Resources</h4>
-                <ul>
-                    <li><a href="#">Blog</a></li>
-                    <li><a href="#">Newsletter</a></li>
-                    <li><a href="#">Events</a></li>
-                    <li><a href="#">Help Center</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h4>Newsletter</h4>
-                <p>Subscribe to our newsletter for updates</p>
-                <form class="newsletter-form">
-                    <input type="email" placeholder="Enter your email">
-                    <button type="submit">Subscribe</button>
-                </form>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2024 Next_Gen Corporation. All rights reserved.</p>
-            <div class="footer-bottom-links">
-                <a href="#">Privacy Policy</a>
-                <a href="#">Terms of Service</a>
-                <a href="#">Cookie Policy</a>
-            </div>
-        </div>
-    </div>
-</footer>
+  <?php require("footer.inc"); ?>
 </body>
 <script>
 function previewPhoto(event) {
