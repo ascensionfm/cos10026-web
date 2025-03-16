@@ -40,7 +40,7 @@
         <div class="card">
           <a href = "#Huyen"><img alt="H" src="images/H.jpg"></a>
           <h3>Nguyen Khanh Huyen</h3>
-          <p>Main Front-end dev</p>
+          <p>Main Front-end, Back-end dev</p>
           <p>Creating the user interface and enhancing their experience.</p>
         </div>
         <div class="card">
@@ -52,7 +52,7 @@
         <div class="card">
           <a href = "#VuongVuong"><img alt="V" src="images/V.jpg"></a>
           <h3>Nguyen Quy Vuong</h3>
-          <p>Main Back-end dev</p>
+          <p>Back-end dev</p>
           <p>Handles logic, manages databases and ensures data flow to the frontend.</p>
         </div>
       </div>
@@ -120,7 +120,7 @@
 			</ul>
 
       <h2>Contribution</h2>
-      <p>The prototype and last modified of index page, jobs page, about page, apply page, contact page, enhancements page, login/signup page</p>
+      <p>The prototype and last modified UI of index page, jobs page, about page, apply page, contact page, enhancements page, login/signup page</p>
 		</section>
 
     <section id="Doanh" class="personal-section">

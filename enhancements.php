@@ -9,6 +9,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Enhancements - Next_Gen Corporation</title>
   <link rel="icon" href="./images/logo1.ico">
+  <link rel="stylesheet" href="styles/style.css">
   <link rel="stylesheet" href="styles/style-enhancements.css">
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
@@ -17,7 +18,7 @@
   <?php require("header.inc"); ?>
   
   <main id="enhancements">
-    <h1>Enhancements</h1>
+    <h1>Frontend Enhancements</h1>
     <p id="subtitle">This page presents two enhancements we have made as part of assignment 1.</p>
     <section>
         <h2>Responsive navigation bar</h2>

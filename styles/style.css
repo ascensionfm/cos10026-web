@@ -57,7 +57,6 @@ h3 {
         transform: translateY(0);
     }
 }
-
 /* Header & Navbar */
 header {
     background-color: #1f3e5d;
@@ -519,6 +518,79 @@ footer {
     }
 
     #menu li a::after {
+        background-color: #1f3e5d;
+    }
+
+    .nav-toggle:checked ~ #menu {
+        right: 10px;
+        opacity: 1;
+    }
+
+
+    #w-btn { 
+        margin: 10px 20px;
+        font-size: 1.4rem;
+        font-weight: 500;
+        background: #fff;
+        color: #1f3e5d;
+        padding: 12px 30px;
+        border-radius: 20px;
+        border: none;
+        cursor: pointer;
+        transition: all 0.3s;
+        opacity: 1; 
+        animation: none; 
+    }
+    
+    #hero {
+        padding-top: 80px;
+        height: auto; 
+        min-height: 100vh;
+    }
+
+    #glass h1 {
+        font-size: 2.3rem;
+    }
+
+    #glass p {
+        font-size: 1.1rem;
+    }
+
+    #glass p:last-of-type {
+        position: relative; 
+        bottom: auto;
+        left: auto;
+        margin-top: 20px;
+        text-align: center;
+    }
+
+
+    .feature1 .fe-box {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 10px;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        margin-left: 4rem;
+    }
+
+    .feature1 .fe-box img {
+        width: 50px;
+        margin: 3rem 3rem 0;
+    }
+
+    .features-grid {
+        grid-template-columns: 1fr;
+    }
+    .feature-card {
+        padding: 2rem;
+    }
+    #glass {
+        padding: 40px 30px;
+        margin: 100px auto 50px; 
+        max-height: none;
+
         background-color: #1f3e5d;
     }
 
