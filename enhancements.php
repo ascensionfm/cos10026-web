@@ -242,7 +242,7 @@
           </pre>
         <p>
             Responsive design is done throughout our website but is most noticeable on our
-            <a href="./jobs">jobs.php</a> and <a href="./contact.php">contact.php</a>
+            <a href="./jobs.php">jobs.php</a> and <a href="./contact.php">contact.php</a>
             pages. Change the dimensions of your browser window on these pages and pay attention
             to the layout changes.
         </p>
