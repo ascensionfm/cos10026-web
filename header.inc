@@ -3,10 +3,6 @@
         session_start();
     }
 ?>
-<!-- Header -->
-<!-- This file should be included after the following in the head section:
-<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
--->
 <header>
         <div id="navbar" class="obj-width">
             <a href="index.php"><img class="logo" src="images/logo.png" alt="Next_gen logo"></a>
