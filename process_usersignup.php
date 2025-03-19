@@ -2,7 +2,7 @@
 	// filename: process_usersignup.php
 	// author: Nguyen Khanh Huyen
 	// created: 09/03/25
-	// description: Script processing user signup. Does not generate any content.
+	// description: Script processing user signup
 ?>
 
 <?php
