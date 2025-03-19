@@ -41,7 +41,7 @@
           <a href = "#Huyen"><img alt="H" src="images/H.jpg"></a>
           <h3>Nguyen Khanh Huyen</h3>
           <p>Main Front-end, Back-end dev</p>
-          <p>Creating the user interface and enhancing their experience.</p>
+          <p>Creating the user interface and enhancing their experience. Handles logic, manages databases and ensures data flow to the frontend.</p>
         </div>
         <div class="card">
           <a href = "#Doanh"><img alt="D" src="images/D.jpg"></a>
@@ -53,7 +53,7 @@
           <a href = "#VuongVuong"><img alt="V" src="images/V.jpg"></a>
           <h3>Nguyen Quy Vuong</h3>
           <p>Back-end dev</p>
-          <p>Handles logic, manages databases and ensures data flow to the frontend.</p>
+          <p>read docs, research</p>
         </div>
       </div>
     </div>
@@ -119,9 +119,11 @@
 				<li>Spiderman 4: No Way Home</li>
 			</ul>
 
-      <h2>Contribution</h2>
-      <p>The prototype and last modified UI of index page, jobs page, about page, apply page, contact page, enhancements page, login/signup page</p>
-		</section>
+      	<h2>Contribution</h2>
+      	<p>Prototype and last modified UI of index page, jobs page, about page, apply page, contact page, enhancements page, login/signup page.</p>
+		<p>Database.</p>
+		<p>Logic of all pages.</p>
+	</section>
 
     <section id="Doanh" class="personal-section">
 			<h2>Personal Information</h2>
@@ -201,7 +203,7 @@
 			</ul>
 
       <h2>Contribution</h2>
-      <p>give feedback, focus more on backend</p>
+      <p>give feedback</p>
 		</section>
 
   </main>
