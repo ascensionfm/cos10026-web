@@ -54,18 +54,25 @@ $options = ['Programming', 'Design', 'Marketing', 'Sales', 'Management', 'Englis
 // Handle filter inputs
 $filterSkills = isset($_GET['filter_skills']) ? $_GET['filter_skills'] : [];
 $filterJobReference = isset($_GET['filter_job_reference']) ? $_GET['filter_job_reference'] : '';
+$filterName = isset($_GET['filter_name']) ? $_GET['filter_name'] : '';
 
 // Build the SQL query with filters
 $sql = "SELECT * FROM applications WHERE 1=1";
 
 if (!empty($filterSkills)) {
+    $skillConditions = [];
     foreach ($filterSkills as $skill) {
-        $sql .= " AND FIND_IN_SET('" . $conn->real_escape_string($skill) . "', skills)";
+        $skillConditions[] = "FIND_IN_SET('" . $conn->real_escape_string($skill) . "', skills)";
     }
+    $sql .= " AND (" . implode(" OR ", $skillConditions) . ")";
 }
 
 if (!empty($filterJobReference)) {
     $sql .= " AND job_reference LIKE '%" . $conn->real_escape_string($filterJobReference) . "%'";
+}
+
+if (!empty($filterName)) {
+    $sql .= " AND (first_name LIKE '%" . $conn->real_escape_string($filterName) . "%' OR last_name LIKE '%" . $conn->real_escape_string($filterName) . "%')";
 }
 
 $result = $conn->query($sql);
@@ -78,20 +85,16 @@ echo '<input type="text" name="filter_job_reference" id="filter_job_reference" v
 echo '</div>';
 echo '<div style="flex: 1; min-width: 200px;">';
 echo '<label for="filter_name">Filter by First or Last Name:</label><br>';
-echo '<input type="text" name="filter_name" id="filter_name" value="' . htmlspecialchars(isset($_GET['filter_name']) ? $_GET['filter_name'] : '') . '">';
+echo '<input type="text" name="filter_name" id="filter_name" value="' . htmlspecialchars($filterName) . '">';
 echo '</div>';
 echo '<div style="flex: 2; min-width: 300px;">';
 echo '<label>Filter by Skills:</label><br>';
 
-// Add filter logic for first name, last name, or both
-$filterName = isset($_GET['filter_name']) ? $conn->real_escape_string($_GET['filter_name']) : '';
-if (!empty($filterName)) {
-    $sql .= " AND (first_name LIKE '%$filterName%' OR last_name LIKE '%$filterName%')";
-}
 foreach ($options as $option) {
     $checked = in_array($option, $filterSkills) ? 'checked' : '';
     echo '<label style="display: inline-block; margin-right: 10px;"><input type="checkbox" name="filter_skills[]" value="' . htmlspecialchars($option) . '" ' . $checked . '> ' . htmlspecialchars($option) . '</label>';
 }
+
 echo '</div>';
 echo '<div style="flex: 1; min-width: 100px; align-self: flex-end;">';
 echo '<button type="submit">Apply Filters</button>';
@@ -100,55 +103,54 @@ echo '</form>';
 
 if ($result->num_rows > 0) {
     echo '<div class="obj-width extra-space" style="display: flex; justify-content: center; margin-top: 20px;">';
-    echo '<table class="styled-table" style="margin: 0 auto;">';
+    echo '<table class="styled-table" style="margin: 0 auto; border: 1px solid black; border-collapse: collapse;">';
     echo '<thead>';
-    echo '<tr>';
-    echo '<th>ID</th>';
-    echo '<th>User ID</th>';
-    echo '<th>Job Reference</th>';
-    echo '<th>First Name</th>';
-    echo '<th>Last Name</th>';
-    echo '<th>Date of Birth</th>';
-    echo '<th>Gender</th>';
-    echo '<th>Street Address</th>';
-    echo '<th>Suburb</th>';
-    echo '<th>State</th>';
-    echo '<th>Postcode</th>';
-    echo '<th>Email</th>';
-    echo '<th>Phone</th>';
-    echo '<th>Skills</th>';
-    echo '<th>Other Skills</th>';
-    echo '<th>Photo</th>';
-    echo '<th>Application Date</th>';
-    echo '<th>Status</th>';
-    echo '<th>Position Name</th>';
+    echo '<tr style="border: 1px solid black;">';
+    echo '<th style="border: 1px solid black;">ID</th>';
+    echo '<th style="border: 1px solid black;">User ID</th>';
+    echo '<th style="border: 1px solid black;">Job Reference</th>';
+    echo '<th style="border: 1px solid black;">First Name</th>';
+    echo '<th style="border: 1px solid black;">Last Name</th>';
+    echo '<th style="border: 1px solid black;">Date of Birth</th>';
+    echo '<th style="border: 1px solid black;">Gender</th>';
+    echo '<th style="border: 1px solid black;">Street Address</th>';
+    echo '<th style="border: 1px solid black;">Suburb</th>';
+    echo '<th style="border: 1px solid black;">State</th>';
+    echo '<th style="border: 1px solid black;">Postcode</th>';
+    echo '<th style="border: 1px solid black;">Email</th>';
+    echo '<th style="border: 1px solid black;">Phone</th>';
+    echo '<th style="border: 1px solid black;">Skills</th>';
+    echo '<th style="border: 1px solid black;">Other Skills</th>';
+    echo '<th style="border: 1px solid black;">Photo</th>';
+    echo '<th style="border: 1px solid black;">Application Date</th>';
+    echo '<th style="border: 1px solid black;">Position Name</th>';
     echo '</tr>';
     echo '</thead>';
     echo '<tbody>';
 
     while ($row = $result->fetch_assoc()) {
-        echo '<tr>';
-        echo '<td>' . htmlspecialchars($row['id']) . '</td>';
-        echo '<td>' . htmlspecialchars($row['user_id']) . '</td>';
-        echo '<td>' . htmlspecialchars($row['job_reference']) . '</td>';
-        echo '<td>' . htmlspecialchars($row['first_name']) . '</td>';
-        echo '<td>' . htmlspecialchars($row['last_name']) . '</td>';
-        echo '<td>' . htmlspecialchars($row['date_of_birth']) . '</td>';
-        echo '<td>' . htmlspecialchars($row['gender']) . '</td>';
-        echo '<td>' . htmlspecialchars($row['street_address']) . '</td>';
-        echo '<td>' . htmlspecialchars($row['suburb']) . '</td>';
-        echo '<td>' . htmlspecialchars($row['state']) . '</td>';
-        echo '<td>' . htmlspecialchars($row['postcode']) . '</td>';
-        echo '<td>' . htmlspecialchars($row['email']) . '</td>';
-        echo '<td>' . htmlspecialchars($row['phone']) . '</td>';
+        echo '<tr style="border: 1px solid black;">';
+        echo '<td style="border: 1px solid black;">' . htmlspecialchars($row['id']) . '</td>';
+        echo '<td style="border: 1px solid black;">' . htmlspecialchars($row['user_id']) . '</td>';
+        echo '<td style="border: 1px solid black;">' . htmlspecialchars($row['job_reference']) . '</td>';
+        echo '<td style="border: 1px solid black;">' . htmlspecialchars($row['first_name']) . '</td>';
+        echo '<td style="border: 1px solid black;">' . htmlspecialchars($row['last_name']) . '</td>';
+        echo '<td style="border: 1px solid black;">' . htmlspecialchars($row['date_of_birth']) . '</td>';
+        echo '<td style="border: 1px solid black;">' . htmlspecialchars($row['gender']) . '</td>';
+        echo '<td style="border: 1px solid black;">' . htmlspecialchars($row['street_address']) . '</td>';
+        echo '<td style="border: 1px solid black;">' . htmlspecialchars($row['suburb']) . '</td>';
+        echo '<td style="border: 1px solid black;">' . htmlspecialchars($row['state']) . '</td>';
+        echo '<td style="border: 1px solid black;">' . htmlspecialchars($row['postcode']) . '</td>';
+        echo '<td style="border: 1px solid black;">' . htmlspecialchars($row['email']) . '</td>';
+        echo '<td style="border: 1px solid black;">' . htmlspecialchars($row['phone']) . '</td>';
 
         // Display skills as a comma-separated list
-        echo '<td>' . htmlspecialchars($row['skills']) . '</td>';
+        echo '<td style="border: 1px solid black;">' . htmlspecialchars($row['skills']) . '</td>';
 
-        echo '<td>' . htmlspecialchars($row['other_skills']) . '</td>';
+        echo '<td style="border: 1px solid black;">' . htmlspecialchars($row['other_skills']) . '</td>';
 
         // Display photo as an image if available
-        echo '<td>';
+        echo '<td style="border: 1px solid black;">';
         if (!empty($row['photo_path']) && file_exists($row['photo_path'])) {
             echo '<img src="' . htmlspecialchars($row['photo_path']) . '" alt="Photo" style="width: 50px; height: 50px; object-fit: cover;">';
         }
@@ -163,14 +165,32 @@ if ($result->num_rows > 0) {
         }
         echo '</select>';
         echo '</form>';
-            if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['application_id'], $_POST['status'])) {
-                $applicationId = $conn->real_escape_string($_POST['application_id']);
-                $newStatus = $conn->real_escape_string($_POST['status']);
-                $updateSql = "UPDATE applications SET status = '$newStatus' WHERE id = '$applicationId'";
-                $conn->query($updateSql);
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['application_id'], $_POST['status'])) {
+            $applicationId = $conn->real_escape_string($_POST['application_id']);
+            $newStatus = $conn->real_escape_string($_POST['status']);
+            $updateSql = "UPDATE applications SET status = '$newStatus' WHERE id = '$applicationId'";
+            $conn->query($updateSql);
+        }
+        echo '</td>';
+        echo '<td style="border: 1px solid black;">' . htmlspecialchars($row['application_date']) . '</td>';
+        echo '<td style="border: 1px solid black;">' . htmlspecialchars($row['position_name']) . '</td>';
+        echo '<td style="border: 1px solid black; text-align: center;">';
+        echo '<form method="POST" action="manage.php" onsubmit="return confirm(\'Are you sure you want to delete this application?\');">';
+        echo '<input type="hidden" name="delete_application_id" value="' . htmlspecialchars($row['id']) . '">';
+        echo '<button type="submit" name="delete_application" style="padding: 5px 10px; background-color: #f44336; color: white; border: none; border-radius: 3px; cursor: pointer;">Delete</button>';
+        echo '</form>';
+        echo '</td>';
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_application'], $_POST['delete_application_id'])) {
+            $applicationIdToDelete = $conn->real_escape_string($_POST['delete_application_id']);
+            $deleteSql = "DELETE FROM applications WHERE id = '$applicationIdToDelete'";
+            if ($conn->query($deleteSql) === TRUE) {
+            echo '<p style="text-align: center; color: green;">Application with ID ' . htmlspecialchars($applicationIdToDelete) . ' has been deleted successfully.</p>';
+            echo '<script>window.location.reload();</script>'; // Refresh the page after deletion
+            } else {
+            echo '<p style="text-align: center; color: red;">Error deleting application: ' . $conn->error . '</p>';
             }
-            echo '</td>';
-            echo '<td>' . htmlspecialchars($row['position_name']) . '</td>';
+        }
         echo '</tr>';
     }
 
@@ -180,27 +200,31 @@ if ($result->num_rows > 0) {
 } else {
     echo '<p>No applications found.</p>';
 }
-echo '<label for="delete_job_reference">Delete EOIs by Job Reference:</label>';
-echo '<input type="text" name="delete_job_reference" id="delete_job_reference" required>';
-echo '<button type="submit" name="delete_eois">Delete</button>';
-echo '</form>';
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_eois'], $_POST['delete_job_reference'])) {
-    $jobReferenceToDelete = $conn->real_escape_string($_POST['delete_job_reference']);
+function deleteEOIsByJobReference($conn, $jobReference) {
+    $jobReferenceToDelete = $conn->real_escape_string($jobReference);
     $deleteSql = "DELETE FROM applications WHERE job_reference = '$jobReferenceToDelete'";
     if ($conn->query($deleteSql) === TRUE) {
         echo '<p style="text-align: center; color: green;">EOIs with Job Reference "' . htmlspecialchars($jobReferenceToDelete) . '" have been deleted successfully.</p>';
+        echo '<script>window.location.reload();</script>'; // Refresh the page after deletion
     } else {
         echo '<p style="text-align: center; color: red;">Error deleting EOIs: ' . $conn->error . '</p>';
     }
 }
-echo '<div style="margin-top: 20px; display: flex; justify-content: center;">';
-echo '<form action="logout.php" method="POST">';
-echo '<button type="submit" style="padding: 10px 20px; background-color: #007BFF; color: white; border: none; border-radius: 5px; cursor: pointer;">Log Out</button>';
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_eois'], $_POST['delete_job_reference'])) {
+    deleteEOIsByJobReference($conn, $_POST['delete_job_reference']);
+}
+
+echo '<form method="POST" action="manage.php">';
+echo '<label for="delete_job_reference">Delete EOIs by Job Reference:</label>';
+echo '<input type="text" name="delete_job_reference" id="delete_job_reference" required>';
+echo '<button type="submit" name="delete_eois">Delete</button>';
+echo '</form>';
+echo '<div style="text-align: center; margin-top: 20px;">';
+echo '<form method="POST" action="logout.php">';
+echo '<button type="submit" style="padding: 10px 20px; background-color: #f44336; color: white; border: none; border-radius: 5px; cursor: pointer;">Logout</button>';
 echo '</form>';
 echo '</div>';
-
-
 $conn->close();
 ?>
 <?php include 'footer.inc'; ?>

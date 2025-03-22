@@ -110,6 +110,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
         
         // Get user_id from session
+        // Ensure session is started
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
+
+        // Check if user_id is set in the session
+        if (!isset($_SESSION["user_id"])) {
+            throw new Exception("User ID is not set. Please log in to submit your application.");
+        }
+
         $user_id = $_SESSION["user_id"];
         
         // Query to insert into database
@@ -166,7 +176,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $conn->close();
         
     } catch (Exception $e) {
-        $dbError = "Database operation failed. Please try again later.";
+        $dbError = "Database operation failed: " . $e->getMessage();
     }
 }
 ?>
