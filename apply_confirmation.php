@@ -98,7 +98,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 skills VARCHAR(255),
                 other_skills TEXT,
                 photo_path VARCHAR(255),
-                application_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+                application_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                status VARCHAR(20) NOT NULL DEFAULT 'Submitted',
+                position_name VARCHAR(100) DEFAULT 'Not specified'
             )";
             
             if (!$conn->query($createTableSQL)) {

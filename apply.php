@@ -91,7 +91,7 @@
           <fieldset class="fieldset-container">
             <legend>Skills</legend>
             <div class="checkbox-group">
-              <label><input type="checkbox" name="skills[]" value="programming"> Programming</label> <label><input type="checkbox" name="skills[]" value="design"> Design</label> <label><input type="checkbox" name="skills[]" value="marketing"> Marketing</label> <label><input type="checkbox" name="skills[]" value="sales"> Sales</label> <label><input type="checkbox" name="skills[]" value="management"> Management</label> <label><input type="checkbox" name="skills[]" value="english"> English</label> <label><input type="checkbox" name="skills[]" value="japanese"> Japanese</label> <label><input type="checkbox" name="skills[]" value="chinese"> Chinese</label> <label><input type="checkbox" name="skills[]" value="other"> Other skills...</label>
+              <label><input type="checkbox" name="skills[]" value="Programming"> Programming</label> <label><input type="checkbox" name="skills[]" value="Design"> Design</label> <label><input type="checkbox" name="skills[]" value="Marketing"> Marketing</label> <label><input type="checkbox" name="skills[]" value="Sales"> Sales</label> <label><input type="checkbox" name="skills[]" value="Management"> Management</label> <label><input type="checkbox" name="skills[]" value="English"> English</label> <label><input type="checkbox" name="skills[]" value="Japanese"> Japanese</label> <label><input type="checkbox" name="skills[]" value="Chinese"> Chinese</label> <label><input type="checkbox" name="skills[]" value="Other"> Other skills...</label>
             </div>
           </fieldset>
         </div>
