@@ -221,7 +221,7 @@ echo '<input type="text" name="delete_job_reference" id="delete_job_reference" r
 echo '<button type="submit" name="delete_eois">Delete</button>';
 echo '</form>';
 echo '<div style="text-align: center; margin-top: 20px;">';
-echo '<form method="POST" action="logout.php">';
+echo '<form method="POST" action="admin_logout.php">';
 echo '<button type="submit" style="padding: 10px 20px; background-color: #f44336; color: white; border: none; border-radius: 5px; cursor: pointer;">Logout</button>';
 echo '</form>';
 echo '</div>';
