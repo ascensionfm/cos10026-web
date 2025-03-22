@@ -198,6 +198,14 @@
                 <a href="job_detail/BSE.html" class="view-more">View more</a>
             </div>
         </div>
+        <?php
+            require_once 'settings.php';
+            new mysqli($host, $user, $pwd, $sql_db);
+            if ($conn->connect_error) {
+                die("Connection failed: " . $conn->connect_error);
+            }
+
+        ?>
     </div>
     <?php require("footer.inc"); ?>
 </body>

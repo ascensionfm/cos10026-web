@@ -45,6 +45,7 @@
                     <a href="#">Privacy Policy</a>
                     <a href="#">Terms of Service</a>
                     <a href="#">Cookie Policy</a>
+                    <a href="Mana_log.php">Manager Login</a>
                 </div>
             </div>
         </div>
