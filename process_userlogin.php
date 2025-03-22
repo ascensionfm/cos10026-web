@@ -2,7 +2,7 @@
 	// filename: process_userlogin.php
 	// author: Nguyen Khanh Huyen
 	// created: 08/03/25
-	// description: Script processing user login. Does not generate any content.
+	// description: Script processing user login.
 ?>
 
 <?php

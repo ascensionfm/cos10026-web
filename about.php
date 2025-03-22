@@ -1,3 +1,6 @@
+<?php
+    session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,28 +9,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>About Us - Next_Gen Corporation</title>
   <link rel="icon" href="./images/logo1.ico">
+  <link rel="stylesheet" href="styles/style.css">
   <link rel="stylesheet" href="styles/style-about.css">
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 
 <body>
-  <header>
-    <div id="navbar" class="obj-width">
-      <a href="index.php"><img class="logo" src="images/logo.png" alt="Next_gen logo"></a> <input type="checkbox"
-        id="nav-toggle" class="nav-toggle">
-      <ul id="menu">
-        <li><a class="navbar_button" href="jobs.php">Jobs</a></li>
-        <li><a class="navbar_button" href="about.php">About</a></li>
-        <li><a class="navbar_button" href="apply.php">Apply</a></li>
-        <li><a class="navbar_button" href="contact.php">Contact</a></li>
-        <li><a class="navbar_button" href="enhancements.php">Enhancements</a></li>
-        <li><a id="w-btn" href="join.php">Join</a></li>
-      </ul>
-      <label for="nav-toggle" class="nav-toggle-label">
-        <i class='bx bx-menu'></i>
-      </label>
-    </div>
-  </header>
+  <?php require("header.inc"); ?>
   <main>
     <div class="hero">
       <img alt="Background image" src="images/bgrab.jpg">
@@ -52,8 +40,8 @@
         <div class="card">
           <a href = "#Huyen"><img alt="H" src="images/H.jpg"></a>
           <h3>Nguyen Khanh Huyen</h3>
-          <p>Main Front-end dev</p>
-          <p>Creating the user interface and enhancing their experience.</p>
+          <p>Main Front-end, Back-end dev</p>
+          <p>Creating the user interface and enhancing their experience. Handles logic, manages databases and ensures data flow to the frontend.</p>
         </div>
         <div class="card">
           <a href = "#Doanh"><img alt="D" src="images/D.jpg"></a>
@@ -64,8 +52,8 @@
         <div class="card">
           <a href = "#VuongVuong"><img alt="V" src="images/V.jpg"></a>
           <h3>Nguyen Quy Vuong</h3>
-          <p>Main Back-end dev</p>
-          <p>Handles logic, manages databases and ensures data flow to the frontend.</p>
+          <p>Back-end dev</p>
+          <p>read docs, research</p>
         </div>
       </div>
     </div>
@@ -131,9 +119,11 @@
 				<li>Spiderman 4: No Way Home</li>
 			</ul>
 
-      <h2>Contribution</h2>
-      <p>The prototype and last modified of index page, jobs page, about page, apply page, contact page, enhancements page, login/signup page</p>
-		</section>
+      	<h2>Contribution</h2>
+      	<p>Prototype and last modified UI of index page, jobs page, about page, apply page, contact page, enhancements page, login/signup page.</p>
+		<p>Database.</p>
+		<p>Logic of all pages.</p>
+	</section>
 
     <section id="Doanh" class="personal-section">
 			<h2>Personal Information</h2>
@@ -213,60 +203,11 @@
 			</ul>
 
       <h2>Contribution</h2>
-      <p>give feedback, focus more on backend</p>
+      <p>give feedback</p>
 		</section>
 
   </main>
-  <footer>
-    <div class="footer-container">
-        <div class="footer-top">
-            <div class="footer-section">
-                <img class="footer-logo" src="images/logo.png" alt="Next_gen logo">
-                <p>Pioneering the next wave of digital innovation with cutting-edge solutions.</p>
-                <div class="social-links">
-                    <a href="https://www.facebook.com"><i class='bx bxl-facebook'></i></a>
-                    <a href="https://www.twitter.com"><i class='bx bxl-twitter'></i></a>
-                    <a href="https://www.linkedin.com"><i class='bx bxl-linkedin'></i></a>
-                    <a href="https://www.instagram.com"><i class='bx bxl-instagram'></i></a>
-                </div>
-            </div>
-            <div class="footer-section">
-                <h4>Quick Links</h4>
-                <ul>
-                    <li><a href="about.php">About Us</a></li>
-                    <li><a href="jobs.php">Careers</a></li>
-                    <li><a href="#">Services</a></li>
-                    <li><a href="#">Projects</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h4>Resources</h4>
-                <ul>
-                    <li><a href="#">Blog</a></li>
-                    <li><a href="#">Newsletter</a></li>
-                    <li><a href="#">Events</a></li>
-                    <li><a href="#">Help Center</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h4>Newsletter</h4>
-                <p>Subscribe to our newsletter for updates</p>
-                <form class="newsletter-form">
-                    <input type="email" placeholder="Enter your email" name="email">
-                    <button type="submit">Subscribe</button>
-                </form>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2024 Next_Gen Corporation. All rights reserved.</p>
-            <div class="footer-bottom-links">
-                <a href="#">Privacy Policy</a>
-                <a href="#">Terms of Service</a>
-                <a href="#">Cookie Policy</a>
-            </div>
-        </div>
-    </div>
-  </footer>
+  <?php require("footer.inc"); ?>
 </body>
 
 </html>
