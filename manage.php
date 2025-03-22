@@ -180,11 +180,6 @@ if ($result->num_rows > 0) {
 } else {
     echo '<p>No applications found.</p>';
 }
-
-echo '<form action="logout.php" method="POST" style="margin-top: 20px; display: flex; justify-content: center; gap: 20px;">';
-echo '<button type="submit">Log Out</button>';
-echo '</form>';
-echo '<form method="POST" action="manage.php" style="margin-top: 20px; display: flex; justify-content: center; gap: 20px;">';
 echo '<label for="delete_job_reference">Delete EOIs by Job Reference:</label>';
 echo '<input type="text" name="delete_job_reference" id="delete_job_reference" required>';
 echo '<button type="submit" name="delete_eois">Delete</button>';
@@ -199,6 +194,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_eois'], $_POST
         echo '<p style="text-align: center; color: red;">Error deleting EOIs: ' . $conn->error . '</p>';
     }
 }
+echo '<div style="margin-top: 20px; display: flex; justify-content: center;">';
+echo '<form action="logout.php" method="POST">';
+echo '<button type="submit" style="padding: 10px 20px; background-color: #007BFF; color: white; border: none; border-radius: 5px; cursor: pointer;">Log Out</button>';
+echo '</form>';
+echo '</div>';
+
 
 $conn->close();
 ?>
