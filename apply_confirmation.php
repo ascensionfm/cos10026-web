@@ -135,15 +135,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         
         // Map of job references to position names
         $job_positions = [
-            "BSE01" => "Backend Software Engineer",
-            "IPC01" => "IT Project Coordinator",
-            "MSIS1" => "Microsoft Infrastructure Specialist",
-            "PS001" => "Product Specialist",
-            "SAE01" => "Software Application Engineer",
-            "SEIM1" => "Software Engineer (Infrastructure Management)",
-            "SM001" => "Sales Manager",
-            "SSA01" => "System Security Administrator",
-            "TPM01" => "Technical Project Manager"
+            "00009" => "Backend Software Engineer",
+            "00006" => "Intern Project Coordinator",
+            "00008" => "Mid/Senior International Sales",
+            "00007" => "Production Support",
+            "00003" => "Senior AI Engineer",
+            "00001" => "Sales Executive (International Market)",
+            "00002" => "Sales Manager",
+            "00005" => "Senior Solutions Architect / Consultant",
+            "00004" => "Technical Project Manager"
         ];
         
         // Check if we have a position name for this job reference
