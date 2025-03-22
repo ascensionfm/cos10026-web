@@ -80,6 +80,9 @@
                 <div class ="forgot_password">
                     <a href="reset_password.php" style="color: #fff; text-decoration: none;">Forgot password?</a>
                 </div>
+                <div class ="admin_login">
+                    <a href="Mana_log.php" style="color: #fff; text-decoration: none;"><i class="fas fa-user-shield"></i> Admin Login</a>
+                </div>
                 <div class="social-icons">
                     <a href="#"><i class="fab fa-facebook-f"></i></a>
                     <a href="#"><i class="fab fa-google"></i></a>

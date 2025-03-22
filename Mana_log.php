@@ -14,7 +14,7 @@
     <main>
         <div class="container">
             <div class="form-container signin-container">
-                <h2>Management Login</h2>
+                <h2>Admin Login</h2>
                 <?php
                 if (isset($_GET['error']) && $_GET['error'] == 'invalid_credentials') {
                     echo '<p class="error-message" style="color: red;">Invalid username or password. Please try again.</p>';

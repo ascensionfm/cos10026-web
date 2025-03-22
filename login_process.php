@@ -17,6 +17,21 @@ $sql = "CREATE TABLE IF NOT EXISTS management_users (
     reg_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 )";
 
+if ($conn->query($sql) === TRUE) {
+    // Check if admin user exists
+    $check_admin = "SELECT * FROM management_users WHERE username = 'admin'";
+    $result = $conn->query($check_admin);
+    
+    // If admin doesn't exist, create it
+    if ($result->num_rows == 0) {
+        $admin_username = 'admin';
+        $admin_password = password_hash('admin123', PASSWORD_DEFAULT);
+        
+        $insert_admin = "INSERT INTO management_users (username, password) VALUES ('$admin_username', '$admin_password')";
+        $conn->query($insert_admin);
+    }
+}
+
 // Verify credentials
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST['username'];
@@ -36,7 +51,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION['username'] = $username;
             $_SESSION['management_loggedin'] = TRUE;
             session_write_close() ;
-            header("Location: manage.php");
+            if ($username === 'admin') {
+                header("Location: admin_dashboard.php");
+            } else {
+                header("Location: manage.php");
+            }
             exit();
         } else {
             header("Location: Mana_log.php?error=invalid_credentials");
