@@ -120,6 +120,20 @@
   <link rel="stylesheet" href="styles/style.css">
   <link rel="stylesheet" href="styles/style-apply.css">
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <style>
+    .error-message {
+      color: red;
+      font-size: 0.9em;
+      margin-top: 5px;
+      display: none;
+    }
+
+    input:invalid + .error-message,
+    select:invalid + .error-message,
+    textarea:invalid + .error-message {
+      display: block;
+    }
+  </style>
 </head>
 <body>
 <?php require("header.inc"); ?>
