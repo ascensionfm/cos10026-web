@@ -156,9 +156,6 @@
         <div class="form-group">
           <label for="job-reference">Job Reference Number</label>
           <input id="job-reference" name="job-reference" type="text" pattern="^[a-zA-Z0-9]{5}$" required="" placeholder="Enter 5 alphanumeric characters" value="<?php echo isset($_SESSION['form_data']['job-reference']) ? htmlspecialchars($_SESSION['form_data']['job-reference']) : ''; ?>">
-          <div class="error-message">
-            Must be exactly 5 alphanumeric characters
-          </div>
         </div>
         <div class="form-group row">
           <div class="col">
