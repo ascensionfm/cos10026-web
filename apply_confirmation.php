@@ -28,7 +28,113 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $postcode = isset($_POST["postcode"]) ? htmlspecialchars($_POST["postcode"]) : "";
     $email = isset($_POST["email"]) ? htmlspecialchars($_POST["email"]) : "";
     $phone = isset($_POST["phone"]) ? htmlspecialchars($_POST["phone"]) : "";
-    
+      // Validate Job Reference Number
+      if (empty($_POST["job-reference"]) || !preg_match("/^[a-zA-Z0-9]{5}$/", $_POST["job-reference"])) {
+        $errors[] = "Job Reference Number must be exactly 5 alphanumeric characters.";
+      }
+  
+      // Validate First Name
+      if (empty($_POST["first-name"]) || !preg_match("/^[A-Za-z]{1,20}$/", $_POST["first-name"])) {
+        $errors[] = "First Name must be 1-20 alphabetic characters.";
+      }
+  
+      // Validate Last Name
+      if (empty($_POST["last-name"]) || !preg_match("/^[A-Za-z]{1,20}$/", $_POST["last-name"])) {
+        $errors[] = "Last Name must be 1-20 alphabetic characters.";
+      }
+  
+      // Validate Date of Birth
+      if (empty($_POST["date-of-birth"])) {
+        $errors[] = "Date of Birth is required.";
+      }
+  
+      // Validate Gender
+      if (empty($_POST["gender"]) || !in_array($_POST["gender"], ["male", "female", "other"])) {
+        $errors[] = "Please select a valid gender.";
+      }
+  
+      // Validate Street Address
+      if (empty($_POST["street-address"]) || strlen($_POST["street-address"]) > 40) {
+        $errors[] = "Street Address must not exceed 40 characters.";
+      }
+  
+      // Validate Suburb
+      if (empty($_POST["suburb"]) || strlen($_POST["suburb"]) > 40) {
+        $errors[] = "Suburb/Town must not exceed 40 characters.";
+      }
+  
+      // Validate State
+      $validStates = ["VIC", "NSW", "QLD", "NT", "WA", "SA", "TAS", "ACT"];
+      if (empty($_POST["state"]) || !in_array($_POST["state"], $validStates)) {
+        $errors[] = "Please select a valid state.";
+      }
+  
+      // Validate Postcode
+      $statePostcodeRanges = [
+        "NSW" => [[1000, 1999], [2000, 2599], [2619, 2899], [2921, 2999]],
+        "ACT" => [[200, 299], [2600, 2618], [2900, 2920]],
+        "VIC" => [[3000, 3999], [8000, 8999]],
+        "QLD" => [[4000, 4999], [9000, 9999]],
+        "SA" => [[5000, 5799], [5800, 5999]],
+        "WA" => [[6000, 6797], [6800, 6999]],
+        "TAS" => [[7000, 7799], [7800, 7999]],
+        "NT" => [[800, 899], [900, 999]],
+      ];
+  
+      if (empty($_POST["postcode"]) || !preg_match("/^[0-9]{4}$/", $_POST["postcode"])) {
+        $errors[] = "Postcode must be exactly 4 digits.";
+      } else {
+        $postcode = (int)$_POST["postcode"];
+        $state = $_POST["state"];
+        $validPostcode = false;
+  
+        if (isset($statePostcodeRanges[$state])) {
+          foreach ($statePostcodeRanges[$state] as $range) {
+            if ($postcode >= $range[0] && $postcode <= $range[1]) {
+              $validPostcode = true;
+              break;
+            }
+          }
+        }
+  
+        if (!$validPostcode) {
+          $errors[] = "Postcode does not match the selected state.";
+        }
+      }
+  
+      // Validate Email
+      if (empty($_POST["email"]) || !filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)) {
+        $errors[] = "Please enter a valid email address.";
+      }
+  
+      // Validate Phone Number
+      if (empty($_POST["phone"]) || !preg_match("/^[0-9 ]{8,12}$/", $_POST["phone"])) {
+        $errors[] = "Phone Number must be 8-12 digits, spaces allowed.";
+      }
+  
+      // Validate Skills
+      if (empty($_POST["skills"])) {
+        $errors[] = "Please select at least one skill.";
+      }
+  
+      // If there are errors, display them
+      if (!empty($errors)) {
+        echo '<div class="error-messages"><ul>';
+        foreach ($errors as $error) {
+          echo "<li>$error</li>";
+        }
+        echo '</ul></div>';
+      } else {
+        // If there are errors, redirect back to apply.php with errors
+        if (!empty($errors)) {
+            session_start();
+            $_SESSION['form_errors'] = $errors;
+            $_SESSION['form_data'] = $_POST; // Save form data to repopulate the form
+            header("Location: apply.php");
+            exit();
+        }
+      }
+    }
     // Process skills as array
     $skillsArray = isset($_POST["skills"]) ? $_POST["skills"] : array();
     $skills = implode(", ", $skillsArray);
@@ -178,7 +284,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } catch (Exception $e) {
         $dbError = "Database operation failed: " . $e->getMessage();
     }
-}
 ?>
 
 <!DOCTYPE html>
