@@ -1,6 +1,29 @@
 <?php
     session_start();
+    require("jobs_data.php");
+
+    $searchKeyword = isset($_GET['search']) ? strtolower(trim($_GET['search'])) : '';
+    $filterLocation = isset($_GET['location']) ? $_GET['location'] : '';
+    $filterSalary = isset($_GET['salary']) ? $_GET['salary'] : '';
+
+    function filterSalary($jobSalary, $filterSalary) {
+        if ($filterSalary === '') return true;
+        $salaryMap = [
+            "Up to 10M" => 10,
+            "10M - 30M" => 30,
+            "30M - 50M" => 50,
+            "Above 50M" => 51
+        ];
+        preg_match('/\d+/', $jobSalary, $matches);
+        $jobAmount = isset($matches[0]) ? (int)$matches[0] : 0;
+
+        if ($filterSalary === "Above 50M") {
+            return $jobAmount >= $salaryMap[$filterSalary];
+        }
+        return $jobAmount <= $salaryMap[$filterSalary];
+    }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -17,187 +40,85 @@
 <body>
     <?php require("header.inc"); ?>
     <div class="container">
-        <div class="search-container">
+        <form class="search-container" method="GET">
             <div class="search-box">
-                <input type="text" placeholder="Search" name="search">
+                <input type="text" placeholder="Search" name="search" value="<?php echo htmlspecialchars($searchKeyword); ?>">
             </div>
-            <select>
+            <select name="location">
                 <option value="">Location</option>
-                <option>Ha Noi</option>
-                <option>Đa Nang</option>
-                <option>TP HCM</option>
-                <option>Can Tho</option>
-                <option>Hai Phong</option>
-                <option>Ca Mau</option>
-                <option>Quang Ninh</option>
-                <option>International</option>
+                <?php
+                $locations = ["Ha Noi", "Đa Nang", "TP HCM", "Can Tho", "Hai Phong", "Ca Mau", "Quang Ninh", "International"];
+                foreach ($locations as $location) {
+                    echo '<option value="' . $location . '"' . ($filterLocation === $location ? ' selected' : '') . '>' . $location . '</option>';
+                }
+                ?>
             </select>
-            <select>
+            <select name="salary">
                 <option value="">Salary</option>
-                <option>Up to 10M</option>
-                <option>10M - 30M</option>
-                <option>30M - 50M</option>
-                <option>Above 50M</option>
+                <?php
+                $salaryRanges = ["Up to 10M", "10M - 30M", "30M - 50M", "Above 50M"];
+                foreach ($salaryRanges as $range) {
+                    echo '<option value="' . $range . '"' . ($filterSalary === $range ? ' selected' : '') . '>' . $range . '</option>';
+                }
+                ?>
             </select>
-            <button class="search-btn">Search</button>
-        </div>
+            <button class="search-btn" type="submit">Search</button>
+        </form>
 
         <div class="jobs-grid">
-            <div class="job-card" style="--order: 1">
-                <div class="job-header">
-                    <h3 class="job-title">Sales Executive (International Market)</h3>
-                    <span class="hot-tag">Hot</span>
-                </div>
-                <div class="job-info">
-                    <span>Up to 500M/year</span>
-                    <span>Full Time</span>
-                </div>
-                <div class="job-info">
-                    <span>Middle</span>
-                    <span>Fukuoka, Japan</span>
-                </div>
-                <div class="tags">
-                    <span class="tag">International Sales</span>
-                    <span class="tag">Japanese</span>
-                    <span class="tag">Korean</span>
-                </div>
-                <a href="job_detail/SE(IM).html" class="view-more">View more</a>
-            </div>
+            <?php
+            $order = 1;
+            $hasResults = false;
+            foreach ($jobs as $job) {
+                $job["tags"] = isset($job["tags"]) && is_array($job["tags"]) ? $job["tags"] : [];
 
-            <div class="job-card" style="--order: 2">
-                <div class="job-header">
-                    <h3 class="job-title">Sales Manager – HCM</h3>
-                    <span class="hot-tag">Hot</span>
-                </div>
-                <div class="job-info">
-                    <span>Up to $2,500</span>
-                    <span>Full Time</span>
-                </div>
-                <div class="job-info">
-                    <span>Manager</span>
-                    <span>HCM city</span>
-                </div>
-                <div class="tags">
-                    <span class="tag">Sales</span>
-                </div>
-                <a href="job_detail/SM.html" class="view-more">View more</a>
-            </div>
+                // Filter theo keyword
+                $titleMatch = stripos($job["title"], $searchKeyword) !== false;
+                $tagMatch = array_filter($job["tags"], function($tag) use ($searchKeyword) {
+                    return stripos($tag, $searchKeyword) !== false;
+                });
 
-            <div class="job-card" style="--order: 3">
-                <div class="job-header">
-                    <h3 class="job-title">Senior AI Engineer</h3>
-                    <span class="hot-tag">Hot</span>
-                </div>
-                <div class="job-info">
-                    <span>Up to 50M</span>
-                    <span>Full Time</span>
-                </div>
-                <div class="job-info">
-                    <span>Senior</span>
-                    <span>Ha Noi</span>
-                </div>
-                <a href="job_detail/SAE.html" class="view-more">View more</a>
-            </div>
+                if (
+                    ($filterLocation === '' || $job["location"] === $filterLocation) &&
+                    ($filterSalary === '' || filterSalary($job["salary"], $filterSalary)) &&
+                    ($searchKeyword === '' || $titleMatch || !empty($tagMatch))
+                ) {
+                    $hasResults = true;
 
-            <div class="job-card" style="--order: 4">
-                <div class="job-header">
-                    <h3 class="job-title">Technical Project Manager</h3>
-                    <span class="hot-tag">Hot</span>
-                </div>
-                <div class="job-info">
-                    <span>Up to 40M</span>
-                    <span>Full Time</span>
-                </div>
-                <div class="job-info">
-                    <span>Senior</span>
-                    <span>Đa Nang</span>
-                </div>
-                <a href="job_detail/TPM.html" class="view-more">View more</a>
-            </div>
-            <div class="job-card" style="--order: 5">
-                <div class="job-header">
-                    <h3 class="job-title">Senior Solutions Architect / Consultant</h3>
-                    <span class="hot-tag">New</span>
-                </div>
-                <div class="job-info">
-                    <span>40M - 100M</span>
-                    <span>Full Time</span>
-                </div>
-                <div class="job-info">
-                    <span>Manager</span>
-                    <span>Ho Chi Minh city</span>
-                </div>
-                <a href="job_detail/SSA.html" class="view-more">View more</a>
-            </div>
-            <div class="job-card" style="--order: 6">
-                <div class="job-header">
-                    <h3 class="job-title">Intern Project Coordinator</h3>
-                    <span class="hot-tag">New</span>
-                </div>
-                <div class="job-info">
-                    <span>4M</span>
-                    <span>Part Time</span>
-                </div>
-                <div class="job-info">
-                    <span>Intern</span>
-                    <span>Ha Noi</span>
-                </div>
-                <div class="tags">
-                    <span class="tag">English</span>
-                    <span class="tag">Japanese</span>
-                </div>
-                <a href="job_detail/IPC.html" class="view-more">View more</a>
-            </div>
-            <div class="job-card" style="--order: 7">
-                <div class="job-header">
-                    <h3 class="job-title">Production Support</h3>
-                    <span class="hot-tag">Hot</span>
-                </div>
-                <div class="job-info">
-                    <span>Up to 45M</span>
-                    <span>Full time</span>
-                </div>
-                <div class="job-info">
-                    <span>Junior-Mid</span>
-                    <span>Remote</span>
-                </div>
-                <a href="job_detail/PS.html" class="view-more">View more</a>
-            </div>
-            <div class="job-card" style="--order: 8">
-                <div class="job-header">
-                    <h3 class="job-title">Mid/Senior International Sales</h3>
-                    <span class="hot-tag">Hot</span>
-                </div>
-                <div class="job-info">
-                    <span>Negotiation</span>
-                    <span>Full Time</span>
-                </div>
-                <div class="job-info">
-                    <span>Mid-Senior</span>
-                    <span>TP HCM</span>
-                </div>
-                <div class="tags">
-                    <span class="tag">International</span>
-                    <span class="tag">Chinese</span>
-                </div>
-                <a href="job_detail/MSIS.html" class="view-more">View more</a>
-            </div>
-            <div class="job-card" style="--order: 9">
-                <div class="job-header">
-                    <h3 class="job-title">Bridge System Engineer (BrSE) - Japan</h3>
-                    <span class="hot-tag">New</span>
-                </div>
-                <div class="job-info">
-                    <span>80M - 100M</span>
-                    <span>Full Time</span>
-                </div>
-                <div class="job-info">
-                    <span>Senior</span>
-                    <span>Tokyo_Japan</span>
-                </div>
-                <a href="job_detail/BSE.html" class="view-more">View more</a>
-            </div>
+                    echo '<div class="job-card" style="--order: ' . $order . '">
+                        <div class="job-header">
+                            <h3 class="job-title">' . htmlspecialchars($job["title"]) . '</h3>
+                            <span class="hot-tag">' . htmlspecialchars($job["tag"]) . '</span>
+                        </div>
+                        <div class="job-info">
+                            <span>' . htmlspecialchars($job["salary"]) . '</span>
+                            <span>' . htmlspecialchars($job["type"]) . '</span>
+                        </div>
+                        <div class="job-info">
+                            <span>' . htmlspecialchars($job["level"]) . '</span>
+                            <span>' . htmlspecialchars($job["location"]) . '</span>
+                        </div>';
+                    
+                    if (!empty($job["tags"])) {
+                        echo '<div class="tags">';
+                        foreach ($job["tags"] as $tag) {
+                            echo '<span class="tag">' . htmlspecialchars($tag) . '</span>';
+                        }
+                        echo '</div>';
+                    }
+                    
+                    echo '<a href="job_detail/' . htmlspecialchars($job["link"]) . '" class="view-more">View more</a>
+                    </div>';
+                    $order++;
+                }
+            }
+
+            if (!$hasResults) {
+                echo '<p>No jobs found. Please try again with different filters.</p>';
+            }
+            ?>
         </div>
     </div>
     <?php require("footer.inc"); ?>
 </body>
+</html>
