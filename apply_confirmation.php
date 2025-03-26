@@ -116,7 +116,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       if (empty($_POST["skills"])) {
         $errors[] = "Please select at least one skill.";
       }
-  
+    // Validate Other Skills
+    if (isset($_POST["skills"]) && strpos(implode(", ", $_POST["skills"]), "Other") !== false) {
+        if (empty($_POST["other-skills"])) {
+            $errors[] = "Please specify your other skills.";
+        }
+    }
       // If there are errors, display them
       if (!empty($errors)) {
         echo '<div class="error-messages"><ul>';
@@ -131,7 +136,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Process skills as array
     $skillsArray = isset($_POST["skills"]) ? $_POST["skills"] : array();
     $skills = implode(", ", $skillsArray);
-    
     $otherSkills = isset($_POST["other-skills"]) ? htmlspecialchars($_POST["other-skills"]) : "";
 
     // Create upload directory if it doesn't exist

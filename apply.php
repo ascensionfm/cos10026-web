@@ -120,20 +120,6 @@
   <link rel="stylesheet" href="styles/style.css">
   <link rel="stylesheet" href="styles/style-apply.css">
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-  <style>
-    .error-message {
-      color: red;
-      font-size: 0.9em;
-      margin-top: 5px;
-      display: none;
-    }
-
-    input:invalid + .error-message,
-    select:invalid + .error-message,
-    textarea:invalid + .error-message {
-      display: block;
-    }
-  </style>
 </head>
 <body>
 <?php require("header.inc"); ?>
@@ -233,17 +219,17 @@
           <label for="other-skills">Other Skills</label>
           <textarea id="other-skills" name="other-skills" rows="4" placeholder="Describe your other skills..."><?php echo isset($_SESSION['form_data']['other-skills']) ? htmlspecialchars($_SESSION['form_data']['other-skills']) : ''; ?></textarea>
         </div>
-        <div class="btn-container">
-          <?php
+        <?php
           if (isset($_SESSION['errors']) && !empty($_SESSION['errors'])) {
-            echo '<div class="error-messages"><ul>';
+            echo '<div style="text-align: center; color: red;">';
             foreach ($_SESSION['errors'] as $error) {
-              echo "<li>$error</li>";
+              echo "<p>$error</p>";
             }
-            echo '</ul></div>';
+            echo '</div>';
             unset($_SESSION['errors']); // Clear errors after displaying
           }
-          ?>
+        ?>
+        <div class="btn-container">
           <button type="submit" class="btn btn-submit">Submit Application</button>
           <button type="reset" class="btn btn-reset">Reset</button>
         </div>
