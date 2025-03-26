@@ -121,19 +121,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       if (!empty($errors)) {
         echo '<div class="error-messages"><ul>';
         foreach ($errors as $error) {
-          echo "<li>$error</li>";
+          session_start();
+          $_SESSION['errors'] = $errors;
+          header("Location: apply.php");
+          exit();
         }
-        echo '</ul></div>';
-      } else {
-        // If there are errors, redirect back to apply.php with errors
-        if (!empty($errors)) {
-            session_start();
-            $_SESSION['form_errors'] = $errors;
-            $_SESSION['form_data'] = $_POST; // Save form data to repopulate the form
-            header("Location: apply.php");
-            exit();
-        }
-      }
+      } 
     }
     // Process skills as array
     $skillsArray = isset($_POST["skills"]) ? $_POST["skills"] : array();

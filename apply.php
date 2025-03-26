@@ -224,13 +224,13 @@
         </div>
         <div class="btn-container">
           <?php
-          if (isset($_SESSION['form_errors']) && !empty($_SESSION['form_errors'])) {
+          if (isset($_SESSION['errors']) && !empty($_SESSION['errors'])) {
             echo '<div class="error-messages"><ul>';
-            foreach ($_SESSION['form_errors'] as $error) {
+            foreach ($_SESSION['errors'] as $error) {
               echo "<li>$error</li>";
             }
             echo '</ul></div>';
-            unset($_SESSION['form_errors']); // Clear errors after displaying
+            unset($_SESSION['errors']); // Clear errors after displaying
           }
           ?>
           <button type="submit" class="btn btn-submit">Submit Application</button>
