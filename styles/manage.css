@@ -1,10 +1,233 @@
-/* Ensure the content doesn't collide with the header or footer */
+/*  filename: manage.css
+	author: AI Assistant
+	description: Styles for the management page of applications
+*/
+
+/* General Layout */
 body {
-    padding-top: 80px; /* Adjust based on the height of your header */
-    padding-bottom: 100px; /* Adjust based on the height of your footer */
+    background-color: #f5f7fa;
 }
 
-.obj-width.extra-space {
-    margin-top: 20px; /* Add some spacing from the header */
-    margin-bottom: 20px; /* Add some spacing from the footer */
+/* Filter Form Styling */
+.filter-form {
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    margin: 120px auto 30px;
+    max-width: 1200px;
+}
+
+.filter-form label {
+    color: #1f3e5d;
+    font-weight: 500;
+    margin-bottom: 8px;
+    display: block;
+}
+
+.filter-form input[type="text"] {
+    width: 100%;
+    padding: 10px 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #fff;
+    transition: all 0.3s ease;
+}
+
+.filter-form input[type="text"]:focus {
+    border-color: #3f978d;
+    box-shadow: 0 0 0 2px rgba(63, 151, 141, 0.2);
+    outline: none;
+}
+
+.filter-form input[type="checkbox"] {
+    margin-right: 5px;
+}
+
+.filter-form button {
+    background: linear-gradient(45deg, #1f3e5d, #3f978d);
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    width: 100%;
+}
+
+.filter-form button:hover {
+    background: linear-gradient(45deg, #3f978d, #1f3e5d);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Table Styling */
+.styled-table {
+    width: 100%;
+    background-color: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    border: none;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin-bottom: 30px;
+}
+
+.styled-table thead {
+    background: linear-gradient(45deg, #1f3e5d, #3f978d);
+    color: white;
+}
+
+.styled-table th {
+    padding: 15px 10px;
+    text-align: left;
+    font-weight: 600;
+    border: none;
+    position: sticky;
+    top: 0;
+}
+
+.styled-table td {
+    padding: 12px 10px;
+    border: none;
+    border-bottom: 1px solid #eee;
+    color: #333;
+    vertical-align: middle;
+}
+
+.styled-table tbody tr:hover {
+    background-color: rgba(63, 151, 141, 0.05);
+}
+
+.styled-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* Status Select Styling */
+select {
+    padding: 8px 12px;
+    border-radius: 6px;
+    border: 1px solid #ddd;
+    background-color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+select:focus {
+    border-color: #3f978d;
+    outline: none;
+}
+
+/* Delete Button Styling */
+button[name="delete_application"] {
+    background-color: #f44336;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+button[name="delete_application"]:hover {
+    background-color: #d32f2f;
+    transform: translateY(-2px);
+}
+
+/* Delete EOIs Form */
+form[action="manage.php"] {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    max-width: 600px;
+    margin: 30px auto;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+form[action="manage.php"] label {
+    color: #1f3e5d;
+    font-weight: 500;
+}
+
+form[action="manage.php"] input[type="text"] {
+    width: 100%;
+    padding: 10px 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin: 5px 0 15px;
+}
+
+form[action="manage.php"] button[name="delete_eois"] {
+    background-color: #f44336;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    align-self: flex-start;
+}
+
+form[action="manage.php"] button[name="delete_eois"]:hover {
+    background-color: #d32f2f;
+}
+
+/* Logout Button */
+form[action="admin_logout.php"] button {
+    background-color: #f44336;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+form[action="admin_logout.php"] button:hover {
+    background-color: #d32f2f;
+    transform: translateY(-2px);
+}
+
+/* Success and Error Messages */
+p[style*="color: green"] {
+    background-color: rgba(76, 175, 80, 0.1);
+    border-left: 4px solid #4CAF50;
+    padding: 15px;
+    border-radius: 4px;
+    margin: 20px 0;
+}
+
+p[style*="color: red"] {
+    background-color: rgba(244, 67, 54, 0.1);
+    border-left: 4px solid #F44336;
+    padding: 15px;
+    border-radius: 4px;
+    margin: 20px 0;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 1200px) {
+    .extra-space {
+        padding: 2rem;
+    }
+    
+    .styled-table {
+        display: block;
+        overflow-x: auto;
+    }
+}
+
+@media (max-width: 768px) {
+    .filter-form {
+        padding: 15px;
+    }
+    
+    .filter-form > div {
+        min-width: 100% !important;
+    }
 }
