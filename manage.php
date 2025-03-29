@@ -106,7 +106,6 @@ if ($result->num_rows > 0) {
     echo '<table class="styled-table" style="margin: 0 auto; border: 1px solid black; border-collapse: collapse;">';
     echo '<thead>';
     echo '<tr style="border: 1px solid black;">';
-    echo '<th style="border: 1px solid black;">ID</th>';
     echo '<th style="border: 1px solid black;">User ID</th>';
     echo '<th style="border: 1px solid black;">Job Reference</th>';
     echo '<th style="border: 1px solid black;">First Name</th>';
@@ -130,7 +129,6 @@ if ($result->num_rows > 0) {
 
     while ($row = $result->fetch_assoc()) {
         echo '<tr style="border: 1px solid black;">';
-        echo '<td style="border: 1px solid black;">' . htmlspecialchars($row['id']) . '</td>';
         echo '<td style="border: 1px solid black;">' . htmlspecialchars($row['user_id']) . '</td>';
         echo '<td style="border: 1px solid black;">' . htmlspecialchars($row['job_reference']) . '</td>';
         echo '<td style="border: 1px solid black;">' . htmlspecialchars($row['first_name']) . '</td>';
@@ -143,34 +141,19 @@ if ($result->num_rows > 0) {
         echo '<td style="border: 1px solid black;">' . htmlspecialchars($row['postcode']) . '</td>';
         echo '<td style="border: 1px solid black;">' . htmlspecialchars($row['email']) . '</td>';
         echo '<td style="border: 1px solid black;">' . htmlspecialchars($row['phone']) . '</td>';
-
-        // Display skills as a comma-separated list
         echo '<td style="border: 1px solid black;">' . htmlspecialchars($row['skills']) . '</td>';
-
         echo '<td style="border: 1px solid black;">' . htmlspecialchars($row['other_skills']) . '</td>';
-
-        // Display photo as an image if available
         echo '<td style="border: 1px solid black;">';
-        if (!empty($row['photo_path']) && file_exists($row['photo_path'])) {
-            echo '<img src="' . htmlspecialchars($row['photo_path']) . '" alt="Photo" style="width: 50px; height: 50px; object-fit: cover;">';
-        }
-        echo '</td>';
         echo '<form method="POST" action="manage.php">';
         echo '<input type="hidden" name="application_id" value="' . htmlspecialchars($row['id']) . '">';
         echo '<select name="status" onchange="this.form.submit()">';
-        $statusOptions = ['Under Review', 'Complete', 'Pending'];
+        $statusOptions = ['Under Review', 'Complete', 'Pending', 'Rejected'];
         foreach ($statusOptions as $statusOption) {
             $selected = ($row['status'] === $statusOption) ? 'selected' : '';
             echo '<option value="' . htmlspecialchars($statusOption) . '" ' . $selected . '>' . htmlspecialchars($statusOption) . '</option>';
         }
         echo '</select>';
         echo '</form>';
-        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['application_id'], $_POST['status'])) {
-            $applicationId = $conn->real_escape_string($_POST['application_id']);
-            $newStatus = $conn->real_escape_string($_POST['status']);
-            $updateSql = "UPDATE applications SET status = '$newStatus' WHERE id = '$applicationId'";
-            $conn->query($updateSql);
-        }
         echo '</td>';
         echo '<td style="border: 1px solid black;">' . htmlspecialchars($row['application_date']) . '</td>';
         echo '<td style="border: 1px solid black;">' . htmlspecialchars($row['position_name']) . '</td>';
@@ -180,20 +163,21 @@ if ($result->num_rows > 0) {
         echo '<button type="submit" name="delete_application" style="padding: 5px 10px; background-color: #f44336; color: white; border: none; border-radius: 3px; cursor: pointer;">Delete</button>';
         echo '</form>';
         echo '</td>';
+        echo '</tr>';
+    }
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_application'], $_POST['delete_application_id'])) {
             $applicationIdToDelete = $conn->real_escape_string($_POST['delete_application_id']);
             $deleteSql = "DELETE FROM applications WHERE id = '$applicationIdToDelete'";
             if ($conn->query($deleteSql) === TRUE) {
             echo '<p style="text-align: center; color: green;">Application with ID ' . htmlspecialchars($applicationIdToDelete) . ' has been deleted successfully.</p>';
-            echo '<script>window.location.reload();</script>'; // Refresh the page after deletion
+            header('Location: manage.php');
+            exit;
             } else {
             echo '<p style="text-align: center; color: red;">Error deleting application: ' . $conn->error . '</p>';
             }
         }
         echo '</tr>';
-    }
-
     echo '</tbody>';
     echo '</table>';
     echo '</div>';
@@ -205,7 +189,8 @@ function deleteEOIsByJobReference($conn, $jobReference) {
     $deleteSql = "DELETE FROM applications WHERE job_reference = '$jobReferenceToDelete'";
     if ($conn->query($deleteSql) === TRUE) {
         echo '<p style="text-align: center; color: green;">EOIs with Job Reference "' . htmlspecialchars($jobReferenceToDelete) . '" have been deleted successfully.</p>';
-        echo '<script>window.location.reload();</script>'; // Refresh the page after deletion
+        header('Location: manage.php');
+            exit;
     } else {
         echo '<p style="text-align: center; color: red;">Error deleting EOIs: ' . $conn->error . '</p>';
     }
