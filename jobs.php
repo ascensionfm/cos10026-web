@@ -1,55 +1,82 @@
 <?php
-    session_start();
-    require("jobs_data.php");
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+session_start();
 
-    $searchKeyword = isset($_GET['search']) ? strtolower(trim($_GET['search'])) : '';
-    $filterLocation = isset($_GET['location']) ? $_GET['location'] : '';
-    $filterSalary = isset($_GET['salary']) ? $_GET['salary'] : '';
+// Include settings.php to get the database connection
+require("settings.php");
 
-    function filterSalary($jobSalary, $filterSalary) {
-        if ($filterSalary === '') return true;
-        $salaryMap = [
-            "Up to 10M" => 10,
-            "10M - 30M" => 30,
-            "30M - 50M" => 50,
-            "Above 50M" => 51
-        ];
-        preg_match('/\d+/', $jobSalary, $matches);
-        $jobAmount = isset($matches[0]) ? (int)$matches[0] : 0;
+// Get filter values from GET parameters
+$search = isset($_GET['search']) ? trim($_GET['search']) : '';
+$filterLocation = isset($_GET['location']) ? trim($_GET['location']) : '';
+$filterSalary = isset($_GET['salary']) ? trim($_GET['salary']) : '';
 
-        if ($filterSalary === "Above 50M") {
-            return $jobAmount >= $salaryMap[$filterSalary];
-        }
-        return $jobAmount <= $salaryMap[$filterSalary];
-    }
+// Build dynamic query conditions
+$queryConditions = array();
+$queryParams = array();
+$queryParamTypes = "";
+
+if ($search != "") {
+    // Search in title OR tags
+    $queryConditions[] = "(title LIKE ? OR tags LIKE ?)";
+    $likeSearch = "%" . $search . "%";
+    $queryParams[] = $likeSearch;
+    $queryParams[] = $likeSearch;
+    $queryParamTypes .= "ss";
+}
+
+if ($filterLocation != "") {
+    $queryConditions[] = "location = ?";
+    $queryParams[] = $filterLocation;
+    $queryParamTypes .= "s";
+}
+
+if ($filterSalary != "") {
+    $queryConditions[] = "salary = ?";
+    $queryParams[] = $filterSalary;
+    $queryParamTypes .= "s";
+}
+
+$query = "SELECT * FROM jobs";
+if (count($queryConditions) > 0) {
+    $query .= " WHERE " . implode(" AND ", $queryConditions);
+}
+
+if (count($queryParams) > 0) {
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param($queryParamTypes, ...$queryParams);
+    $stmt->execute();
+    $result = $stmt->get_result();
+} else {
+    $result = $conn->query($query);
+}
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jobs page - Next_Gen Corporation</title>
     <link rel="icon" href="./images/logo1.ico">
-    <link rel="stylesheet" href="styles/style.css">
-    <link rel="stylesheet" href="styles/style-jobs.css">
+    <link rel="stylesheet" href="./styles/style.css">
+    <link rel="stylesheet" href="./styles/style-jobs.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
-
 <body>
     <?php require("header.inc"); ?>
     <div class="container">
-        <form class="search-container" method="GET">
+        <!-- Search form -->
+        <form class="search-container" method="GET" action="jobs.php">
             <div class="search-box">
-                <input type="text" placeholder="Search" name="search" value="<?php echo htmlspecialchars($searchKeyword); ?>">
+                <input type="text" placeholder="Search" name="search" value="<?php echo htmlspecialchars($search); ?>">
             </div>
             <select name="location">
                 <option value="">Location</option>
                 <?php
                 $locations = ["Ha Noi", "Đa Nang", "TP HCM", "Can Tho", "Hai Phong", "Ca Mau", "Quang Ninh", "International"];
                 foreach ($locations as $location) {
-                    echo '<option value="' . $location . '"' . ($filterLocation === $location ? ' selected' : '') . '>' . $location . '</option>';
+                    $selected = ($filterLocation === $location) ? ' selected' : '';
+                    echo '<option value="' . $location . '"' . $selected . '>' . $location . '</option>';
                 }
                 ?>
             </select>
@@ -58,7 +85,8 @@
                 <?php
                 $salaryRanges = ["Up to 10M", "10M - 30M", "30M - 50M", "Above 50M"];
                 foreach ($salaryRanges as $range) {
-                    echo '<option value="' . $range . '"' . ($filterSalary === $range ? ' selected' : '') . '>' . $range . '</option>';
+                    $selected = ($filterSalary === $range) ? ' selected' : '';
+                    echo '<option value="' . $range . '"' . $selected . '>' . $range . '</option>';
                 }
                 ?>
             </select>
@@ -67,54 +95,36 @@
 
         <div class="jobs-grid">
             <?php
-            $order = 1;
-            $hasResults = false;
-            foreach ($jobs as $job) {
-                $job["tags"] = isset($job["tags"]) && is_array($job["tags"]) ? $job["tags"] : [];
-
-                // Filter theo keyword
-                $titleMatch = stripos($job["title"], $searchKeyword) !== false;
-                $tagMatch = array_filter($job["tags"], function($tag) use ($searchKeyword) {
-                    return stripos($tag, $searchKeyword) !== false;
-                });
-
-                if (
-                    ($filterLocation === '' || $job["location"] === $filterLocation) &&
-                    ($filterSalary === '' || filterSalary($job["salary"], $filterSalary)) &&
-                    ($searchKeyword === '' || $titleMatch || !empty($tagMatch))
-                ) {
-                    $hasResults = true;
-
-                    echo '<div class="job-card" style="--order: ' . $order . '">
-                        <div class="job-header">
-                            <h3 class="job-title">' . htmlspecialchars($job["title"]) . '</h3>
-                            <span class="hot-tag">' . htmlspecialchars($job["tag"]) . '</span>
-                        </div>
-                        <div class="job-info">
-                            <span>' . htmlspecialchars($job["salary"]) . '</span>
-                            <span>' . htmlspecialchars($job["type"]) . '</span>
-                        </div>
-                        <div class="job-info">
-                            <span>' . htmlspecialchars($job["level"]) . '</span>
-                            <span>' . htmlspecialchars($job["location"]) . '</span>
-                        </div>';
-                    
-                    if (!empty($job["tags"])) {
-                        echo '<div class="tags">';
-                        foreach ($job["tags"] as $tag) {
-                            echo '<span class="tag">' . htmlspecialchars($tag) . '</span>';
-                        }
-                        echo '</div>';
+            if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+                    echo '<div class="job-card">';
+                    echo '<div class="job-header">';
+                    echo '<h3 class="job-title">' . htmlspecialchars($row['title']) . '</h3>';
+                    if (isset($row['hot']) && $row['hot'] == 1) {
+                        echo '<span class="hot-tag">Hot</span>';
                     }
-                    
-                    echo '<a href="job_detail/' . htmlspecialchars($job["link"]) . '" class="view-more">View more</a>
-                    </div>';
-                    $order++;
+                    echo '</div>';
+                    echo '<div class="job-info">';
+                    echo '<span>' . htmlspecialchars($row['salary']) . '</span>';
+                    echo '<span>' . htmlspecialchars($row['job_type']) . '</span>';
+                    echo '</div>';
+                    echo '<div class="job-info">';
+                    echo '<span>' . htmlspecialchars($row['level']) . '</span>';
+                    echo '<span>' . htmlspecialchars($row['location']) . '</span>';
+                    echo '</div>';
+                    echo '<div class="tags">';
+                    if (!empty($row['tags'])) {
+                        $tags = explode(',', $row['tags']);
+                        foreach ($tags as $tag) {
+                            echo '<span class="tag">' . htmlspecialchars(trim($tag)) . '</span>';
+                        }
+                    }
+                    echo '</div>';
+                    echo '<a href="job_detail.php?id=' . $row['id'] . '" class="view-more">View more</a>';
+                    echo '</div>';
                 }
-            }
-
-            if (!$hasResults) {
-                echo '<p>No jobs found. Please try again with different filters.</p>';
+            } else {
+                echo "<p>No jobs available</p>";
             }
             ?>
         </div>
@@ -130,3 +140,4 @@
     <?php require("footer.inc"); ?>
 </body>
 </html>
+<?php $conn->close(); ?>
