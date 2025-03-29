@@ -1,14 +1,13 @@
 <?php
-	// filename: settings.php
-	// author: Nguyen Khanh Huyen
-	// created: 06/03/25
-	// description: Imported script containing credentials to connect to the database server.
-?>
+// settings.php: Database connection settings
+$host   = "localhost";
+$user   = "root";
+$pwd    = "ikon282006"; // set your MySQL password if needed
+$sql_db = "job_portal";
 
-<?php
-	// Please change this information if you are testing this website on localhost.
-	$host = "localhost";
-	$user = "root";
-	$pwd = "";
-	$sql_db = "dlt2_db";
+// Create connection
+$conn = new mysqli($host, $user, $pwd, $sql_db);
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
 ?>
