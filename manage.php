@@ -129,7 +129,7 @@ if ($result->num_rows > 0) {
 
     while ($row = $result->fetch_assoc()) {
         echo '<tr style="border: 1px solid black;">';
-        echo '<td style="border: 1px solid black;">' . htmlspecialchars($row['user_id']) . '</td>';
+        echo '<td style="border: 1px solid black;">' . htmlspecialchars(isset($row['user_id']) ? $row['user_id'] : '') . '</td>';
         echo '<td style="border: 1px solid black;">' . htmlspecialchars($row['job_reference']) . '</td>';
         echo '<td style="border: 1px solid black;">' . htmlspecialchars($row['first_name']) . '</td>';
         echo '<td style="border: 1px solid black;">' . htmlspecialchars($row['last_name']) . '</td>';
@@ -156,7 +156,7 @@ if ($result->num_rows > 0) {
         echo '</form>';
         echo '</td>';
         echo '<td style="border: 1px solid black;">' . htmlspecialchars($row['application_date']) . '</td>';
-        echo '<td style="border: 1px solid black;">' . htmlspecialchars($row['position_name']) . '</td>';
+        echo '<td style="border: 1px solid black;">' . htmlspecialchars(isset($row['position_name']) ? $row['position_name'] : '') . '</td>';
         echo '<td style="border: 1px solid black; text-align: center;">';
         echo '<form method="POST" action="manage.php" onsubmit="return confirm(\'Are you sure you want to delete this application?\');">';
         echo '<input type="hidden" name="delete_application_id" value="' . htmlspecialchars($row['id']) . '">';
