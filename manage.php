@@ -42,7 +42,7 @@ if ($conn->connect_error) {
 $sql = "SELECT * FROM applications";
 $result = $conn->query($sql);
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['application_id'], $_POST['status'])) {
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['application_id']) && isset($_POST['status'])) {
     $applicationId = $conn->real_escape_string($_POST['application_id']);
     $newStatus = $conn->real_escape_string($_POST['status']);
     $updateSql = "UPDATE applications SET status = '$newStatus' WHERE id = '$applicationId'";
@@ -52,7 +52,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['application_id'], $_P
 $options = ['Programming', 'Design', 'Marketing', 'Sales', 'Management', 'English', 'Japanese', 'Chinese', 'Other'];
 
 // Handle filter inputs
-$filterSkills = isset($_GET['filter_skills']) ? $_GET['filter_skills'] : [];
+$filterSkills = isset($_GET['filter_skills']) && is_array($_GET['filter_skills']) ? $_GET['filter_skills'] : [];
 $filterJobReference = isset($_GET['filter_job_reference']) ? $_GET['filter_job_reference'] : '';
 $filterName = isset($_GET['filter_name']) ? $_GET['filter_name'] : '';
 
@@ -166,15 +166,15 @@ if ($result->num_rows > 0) {
         echo '</tr>';
     }
 
-        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_application'], $_POST['delete_application_id'])) {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_application']) && isset($_POST['delete_application_id'])) {
             $applicationIdToDelete = $conn->real_escape_string($_POST['delete_application_id']);
             $deleteSql = "DELETE FROM applications WHERE id = '$applicationIdToDelete'";
             if ($conn->query($deleteSql) === TRUE) {
-            echo '<p style="text-align: center; color: green;">Application with ID ' . htmlspecialchars($applicationIdToDelete) . ' has been deleted successfully.</p>';
-            header('Location: manage.php');
-            exit;
+                echo '<p style="text-align: center; color: green;">Application with ID ' . htmlspecialchars($applicationIdToDelete) . ' has been deleted successfully.</p>';
+                header('Location: manage.php');
+                exit;
             } else {
-            echo '<p style="text-align: center; color: red;">Error deleting application: ' . $conn->error . '</p>';
+                echo '<p style="text-align: center; color: red;">Error deleting application: ' . $conn->error . '</p>';
             }
         }
         echo '</tr>';
@@ -196,7 +196,7 @@ function deleteEOIsByJobReference($conn, $jobReference) {
     }
 }
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_eois'], $_POST['delete_job_reference'])) {
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_eois']) && isset($_POST['delete_job_reference'])) {
     deleteEOIsByJobReference($conn, $_POST['delete_job_reference']);
 }
 
