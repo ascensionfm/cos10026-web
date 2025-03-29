@@ -1,0 +1,10 @@
+/* Ensure the content doesn't collide with the header or footer */
+body {
+    padding-top: 80px; /* Adjust based on the height of your header */
+    padding-bottom: 100px; /* Adjust based on the height of your footer */
+}
+
+.obj-width.extra-space {
+    margin-top: 20px; /* Add some spacing from the header */
+    margin-bottom: 20px; /* Add some spacing from the footer */
+}

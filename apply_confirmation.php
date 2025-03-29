@@ -28,11 +28,114 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $postcode = isset($_POST["postcode"]) ? htmlspecialchars($_POST["postcode"]) : "";
     $email = isset($_POST["email"]) ? htmlspecialchars($_POST["email"]) : "";
     $phone = isset($_POST["phone"]) ? htmlspecialchars($_POST["phone"]) : "";
-    
+      // Validate Job Reference Number
+      if (empty($_POST["job-reference"]) || !preg_match("/^[a-zA-Z0-9]{5}$/", $_POST["job-reference"])) {
+        $errors[] = "Job Reference Number must be exactly 5 alphanumeric characters.";
+      }
+  
+      // Validate First Name
+      if (empty($_POST["first-name"]) || !preg_match("/^[A-Za-z]{1,20}$/", $_POST["first-name"])) {
+        $errors[] = "First Name must be 1-20 alphabetic characters.";
+      }
+  
+      // Validate Last Name
+      if (empty($_POST["last-name"]) || !preg_match("/^[A-Za-z]{1,20}$/", $_POST["last-name"])) {
+        $errors[] = "Last Name must be 1-20 alphabetic characters.";
+      }
+  
+      // Validate Date of Birth
+      if (empty($_POST["date-of-birth"])) {
+        $errors[] = "Date of Birth is required.";
+      }
+  
+      // Validate Gender
+      if (empty($_POST["gender"]) || !in_array($_POST["gender"], ["male", "female", "other"])) {
+        $errors[] = "Please select a valid gender.";
+      }
+  
+      // Validate Street Address
+      if (empty($_POST["street-address"]) || strlen($_POST["street-address"]) > 40) {
+        $errors[] = "Street Address must not exceed 40 characters.";
+      }
+  
+      // Validate Suburb
+      if (empty($_POST["suburb"]) || strlen($_POST["suburb"]) > 40) {
+        $errors[] = "Suburb/Town must not exceed 40 characters.";
+      }
+  
+      // Validate State
+      $validStates = ["VIC", "NSW", "QLD", "NT", "WA", "SA", "TAS", "ACT"];
+      if (empty($_POST["state"]) || !in_array($_POST["state"], $validStates)) {
+        $errors[] = "Please select a valid state.";
+      }
+  
+      // Validate Postcode
+      $statePostcodeRanges = [
+        "NSW" => [[1000, 1999], [2000, 2599], [2619, 2899], [2921, 2999]],
+        "ACT" => [[200, 299], [2600, 2618], [2900, 2920]],
+        "VIC" => [[3000, 3999], [8000, 8999]],
+        "QLD" => [[4000, 4999], [9000, 9999]],
+        "SA" => [[5000, 5799], [5800, 5999]],
+        "WA" => [[6000, 6797], [6800, 6999]],
+        "TAS" => [[7000, 7799], [7800, 7999]],
+        "NT" => [[800, 899], [900, 999]],
+      ];
+  
+      if (empty($_POST["postcode"]) || !preg_match("/^[0-9]{4}$/", $_POST["postcode"])) {
+        $errors[] = "Postcode must be exactly 4 digits.";
+      } else {
+        $postcode = (int)$_POST["postcode"];
+        $state = $_POST["state"];
+        $validPostcode = false;
+  
+        if (isset($statePostcodeRanges[$state])) {
+          foreach ($statePostcodeRanges[$state] as $range) {
+            if ($postcode >= $range[0] && $postcode <= $range[1]) {
+              $validPostcode = true;
+              break;
+            }
+          }
+        }
+  
+        if (!$validPostcode) {
+          $errors[] = "Postcode does not match the selected state.";
+        }
+      }
+  
+      // Validate Email
+      if (empty($_POST["email"]) || !filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)) {
+        $errors[] = "Please enter a valid email address.";
+      }
+  
+      // Validate Phone Number
+      if (empty($_POST["phone"]) || !preg_match("/^[0-9 ]{8,12}$/", $_POST["phone"])) {
+        $errors[] = "Phone Number must be 8-12 digits, spaces allowed.";
+      }
+  
+      // Validate Skills
+      if (empty($_POST["skills"])) {
+        $errors[] = "Please select at least one skill.";
+      }
+    // Validate Other Skills
+    if (isset($_POST["skills"]) && strpos(implode(", ", $_POST["skills"]), "Other") !== false) {
+        if (empty($_POST["other-skills"])) {
+            $errors[] = "Please specify your other skills.";
+        }
+    }
+      // If there are errors, display them
+      if (!empty($errors)) {
+        echo '<div class="error-messages"><ul>';
+        foreach ($errors as $error) {
+          session_start();
+          $_SESSION['errors'] = $errors;
+          header("Location: apply.php");
+          exit();
+        }
+      } 
+    }
     // Process skills as array
     $skillsArray = isset($_POST["skills"]) ? $_POST["skills"] : array();
     $skills = implode(", ", $skillsArray);
-    
     $otherSkills = isset($_POST["other-skills"]) ? htmlspecialchars($_POST["other-skills"]) : "";
 
     // Create upload directory if it doesn't exist
@@ -100,7 +203,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 other_skills TEXT,
                 photo_path VARCHAR(255),
                 application_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-                status VARCHAR(20) NOT NULL DEFAULT 'Pending',
+                status VARCHAR(20) NOT NULL DEFAULT 'Submitted',
                 position_name VARCHAR(100) DEFAULT 'Not specified'
             )";
             
@@ -110,6 +213,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
         
         // Get user_id from session
+        // Ensure session is started
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
+
+        // Check if user_id is set in the session
+        if (!isset($_SESSION["user_id"])) {
+            throw new Exception("User ID is not set. Please log in to submit your application.");
+        }
+
         $user_id = $_SESSION["user_id"];
         
         // Query to insert into database
@@ -135,15 +248,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         
         // Map of job references to position names
         $job_positions = [
-            "BSE01" => "Backend Software Engineer",
-            "IPC01" => "IT Project Coordinator",
-            "MSIS1" => "Microsoft Infrastructure Specialist",
-            "PS001" => "Product Specialist",
-            "SAE01" => "Software Application Engineer",
-            "SEIM1" => "Software Engineer (Infrastructure Management)",
-            "SM001" => "Sales Manager",
-            "SSA01" => "System Security Administrator",
-            "TPM01" => "Technical Project Manager"
+            "00009" => "Backend Software Engineer",
+            "00006" => "Intern Project Coordinator",
+            "00008" => "Mid/Senior International Sales",
+            "00007" => "Production Support",
+            "00003" => "Senior AI Engineer",
+            "00001" => "Sales Executive (International Market)",
+            "00002" => "Sales Manager",
+            "00005" => "Senior Solutions Architect / Consultant",
+            "00004" => "Technical Project Manager"
         ];
         
         // Check if we have a position name for this job reference
@@ -166,9 +279,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $conn->close();
         
     } catch (Exception $e) {
-        $dbError = "Database operation failed. Please try again later.";
+        $dbError = "Database operation failed: " . $e->getMessage();
     }
-}
 ?>
 
 <!DOCTYPE html>
@@ -180,7 +292,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="icon" href="./images/logo1.ico">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="stylesheet" href="./styles/style-apply.css">
+    <link rel="stylesheet" href="./styles/style.css">
     <link rel="stylesheet" href="./styles/style-apply-confirmation.css">
 </head>
 <body>

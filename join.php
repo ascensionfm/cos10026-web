@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="./styles/style-join.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles/style.css">
 </head>
 
 <body>
@@ -78,6 +79,9 @@
                 </form>
                 <div class ="forgot_password">
                     <a href="reset_password.php" style="color: #fff; text-decoration: none;">Forgot password?</a>
+                </div>
+                <div class ="admin_login">
+                    <a href="Mana_log.php" style="color: #fff; text-decoration: none;"><i class="fas fa-user-shield"></i> Admin Login</a>
                 </div>
                 <div class="social-icons">
                     <a href="#"><i class="fab fa-facebook-f"></i></a>
