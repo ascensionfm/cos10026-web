@@ -1,7 +1,13 @@
 <?php
-	// Please change this information if you are testing this website on localhost.
-	$host = "localhost";
-	$user = "root";
-	$pwd = "";
-	$sql_db = "dlt2_db";
+$host = "localhost";
+$username = "root";
+$password = "ikon282006"; // Nếu có mật khẩu thì điền vào đây
+$database = "test";
+
+$conn = new mysqli($host, $username, $password, $database);
+
+// Kiểm tra kết nối
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
 ?>
