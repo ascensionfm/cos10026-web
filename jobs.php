@@ -5,7 +5,10 @@ session_start();
 
 // Include settings.php to get the database connection
 require("settings.php");
-
+$conn = new mysqli($host, $user, $pwd, $sql_db);
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
 // Get filter values from GET parameters
 $search = isset($_GET['search']) ? trim($_GET['search']) : '';
 $filterLocation = isset($_GET['location']) ? trim($_GET['location']) : '';
