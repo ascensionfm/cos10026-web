@@ -1,4 +1,10 @@
 <?php
+	// filename: login_process.php
+	// author: Nguyen Quy Vuong (modified from process_userlogin.php)
+	// created: 13/3/2025
+	// description: Login process for management users
+?>
+<?php
 require_once 'settings.php';
 require 'password.php';
 // Create connection

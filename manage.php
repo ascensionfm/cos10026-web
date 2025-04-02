@@ -1,3 +1,9 @@
+<?php
+	// filename: manage.php
+	// author: Nguyen Quy Vuong
+	// created: 13/3/2025
+	// description: Script for management page. Allows management to view and manage applications.
+?>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">

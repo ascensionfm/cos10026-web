@@ -1,3 +1,9 @@
+<?php
+	// filename: Mana_log.php
+	// author: Nguyen Quy Vuong (modified from join.php)
+	// created: 13/3/2025
+	// description: Manager login page
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

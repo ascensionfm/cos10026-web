@@ -1,5 +1,5 @@
 <?php
-//author: Nguyen Khanh Huyen
+//author: Nguyen Khanh Huyen (Input verification and sanitization code made by Nguyen Quy Vuong)
 // filename: apply_confirmation.php
 // created: 06/03/25
 // description: Backend script to process job application data and display as CV
