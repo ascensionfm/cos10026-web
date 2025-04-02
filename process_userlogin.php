@@ -6,6 +6,7 @@
 ?>
 
 <?php
+    require 'password.php';
     // Check if required inputs are available. The submit input is to prevent direct access.
     if (!isset($_POST["email"]) || !isset($_POST["password"]) || !isset($_POST["submit"])) {
         header("Location: join.php");

@@ -1,6 +1,6 @@
 <?php
 require_once 'settings.php';
-
+require 'password.php';
 // Create connection
 $conn = new mysqli($host, $user, $pwd, $sql_db);
 
