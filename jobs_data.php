@@ -8,7 +8,8 @@ $jobs = [
         "level" => "Middle",
         "location" => "Fukuoka, Japan",
         "tags" => ["International Sales", "Japanese", "Korean"],
-        "link" => "SE(IM).html"
+        "link" => "SE(IM).html",
+        "description" => "Responsible for managing international sales and client relationships."
     ],
     [
         "title" => "Sales Manager – HCM",
@@ -18,7 +19,8 @@ $jobs = [
         "level" => "Manager",
         "location" => "HCM city",
         "tags" => ["Sales"],
-        "link" => "SM.html"
+        "link" => "SM.html",
+        "description" => "Oversee sales operations and lead the sales team in HCM."
     ],
     [
         "title" => "Senior AI Engineer",
@@ -28,7 +30,8 @@ $jobs = [
         "level" => "Senior",
         "location" => "Ha Noi",
         "tags" => [],
-        "link" => "SAE.html"
+        "link" => "SAE.html",
+        "description" => "Develop and implement AI solutions for various applications."
     ],
     [
         "title" => "Technical Project Manager",
@@ -38,7 +41,8 @@ $jobs = [
         "level" => "Senior",
         "location" => "Đa Nang",
         "tags" => [],
-        "link" => "TPM.html"
+        "link" => "TPM.html",
+        "description" => "Manage technical projects and coordinate between teams."
     ],
     [
         "title" => "Senior Solutions Architect / Consultant",
@@ -48,7 +52,8 @@ $jobs = [
         "level" => "Manager",
         "location" => "Ho Chi Minh city",
         "tags" => [],
-        "link" => "SSA.html"
+        "link" => "SSA.html",
+        "description" => "Design and implement solutions for clients' needs."
     ],
     [
         "title" => "Intern Project Coordinator",
@@ -58,7 +63,8 @@ $jobs = [
         "level" => "Intern",
         "location" => "Ha Noi",
         "tags" => ["English", "Japanese"],
-        "link" => "IPC.html"
+        "link" => "IPC.html",
+        "description" => "Assist in project coordination and management tasks."
     ],
     [
         "title" => "Production Support",
@@ -68,7 +74,8 @@ $jobs = [
         "level" => "Junior-Mid",
         "location" => "Remote",
         "tags" => [],
-        "link" => "PS.html"
+        "link" => "PS.html",
+        "description" => "Provide support for production systems and troubleshoot issues."
     ],
     [
         "title" => "Mid/Senior International Sales",
@@ -78,7 +85,8 @@ $jobs = [
         "level" => "Mid-Senior",
         "location" => "TP HCM",
         "tags" => ["International", "Chinese"],
-        "link" => "MSIS.html"
+        "link" => "MSIS.html",
+        "description" => "Drive international sales and manage client relationships."
     ],
     [
         "title" => "Bridge System Engineer (BrSE) - Japan",
@@ -88,6 +96,7 @@ $jobs = [
         "level" => "Senior",
         "location" => "Tokyo, Japan",
         "tags" => [],
-        "link" => "BSE.html"
+        "link" => "BSE.html",
+        "description" => "Develop and maintain bridge systems for clients in Japan."
     ]
 ];

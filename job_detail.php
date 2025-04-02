@@ -1,7 +1,7 @@
 <?php
 session_start();
 require("settings.php");
-$conn = new mysqli($host, $user, $pwd, $sql_db);
+$conn = new mysqli($host, $username, $password, $database);
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
@@ -32,26 +32,26 @@ if (!$job) {
 <body>
     <?php require("header.inc"); ?>
     <div class="container">
-        <h1 class="job-title"><?php echo htmlspecialchars($job['title']); ?></h1>
+<h1 class="job-title"><strong><?php echo htmlspecialchars($job['title']); ?></strong></h1>
         <div class="job-details">
             <div class="detail-card">
                 <i class="fas fa-money-bill-wave"></i>
-                <div class="label">Salary</div>
+<div class="label"><strong>Salary</strong></div>
                 <div class="value"><?php echo htmlspecialchars($job['salary']); ?></div>
             </div>
             <div class="detail-card">
                 <i class="fas fa-level-up-alt"></i>
-                <div class="label">Level</div>
+<div class="label"><strong>Level</strong></div>
                 <div class="value"><?php echo htmlspecialchars($job['level']); ?></div>
             </div>
             <div class="detail-card">
                 <i class="fas fa-clock"></i>
-                <div class="label">Type</div>
-                <div class="value"><?php echo htmlspecialchars($job['job_type']); ?></div>
+<div class="label"><strong>Type</strong></div>
+                <div class="value"><?php echo htmlspecialchars($job['type']); ?></div>
             </div>
             <div class="detail-card">
                 <i class="fas fa-map-marker-alt"></i>
-                <div class="label">Location</div>
+<div class="label"><strong>Location</strong></div>
                 <div class="value"><?php echo htmlspecialchars($job['location']); ?></div>
             </div>
         </div>
