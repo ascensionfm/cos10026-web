@@ -23,12 +23,13 @@
     <section>
         <h2>User Authentication System</h2>
         <p>
-            We implemented a comprehensive user authentication system that allows users to register, login, and manage their profiles.
-            The system includes secure password hashing, session management, and user-specific content display.
+            A comprehensive user authentication system has been used that allows users to register, login, and manage their profiles.
+            The system includes secure password hashing, session management, and user-specific content display. Note that users can't access the apply form if they don't log in first.
+            This is to ensure that only registered users can apply for jobs, enhancing security and user experience.
         </p>
         <figure>
-            <a href="./images/enhancements-user-profile.png">
-                <img src="./images/enhancements-user-profile.png" alt="User profile page">
+            <a href="./images/user-profile.png">
+                <img src="./images/user-profile.png" alt="User profile page">
             </a>
             <figcaption>The user profile page after successful authentication. Click on the image to see the full size.
             </figcaption>
@@ -37,11 +38,11 @@
         <h2>Form Data Validation and Processing</h2>
         <p>
             We implemented server-side validation for all form submissions to ensure data integrity and security.
-            This includes input sanitization, data type checking, and appropriate error handling with user feedback.
+            This includes input sanitization, data type checking, and appropriate error handling with feedbacks that help user to know what should be modified.
         </p>
         <figure>
-            <a href="./images/enhancements-autofill-fields.png">
-                <img src="./images/enhancements-autofill-fields.png" alt="Form validation">
+            <a href="./images/form-validation.png">
+                <img src="./images/form-validation.png" alt="Form validation">
             </a>
             <figcaption>Form validation with error messages and field highlighting. Click on the image to see the full size.
             </figcaption>
@@ -54,10 +55,17 @@
             can access sensitive information.
         </p>
         <figure>
-            <a href="./images/enhancements-manage-auth.png">
-                <img src="./images/enhancements-manage-auth.png" alt="Admin management interface">
+            <a href="./images/manage-dashboard.png">
+                <img src="./images/manage-dashboard.png" alt="Admin management interface">
             </a>
-            <figcaption>The admin management interface for handling job applications. Click on the image to see the full size.
+            <figcaption>The admin management interface for the overview information of applicants (total, status, recent). Click on the image to see the full size.
+            </figcaption>
+        </figure>
+        <figure>
+            <a href="./images/manage-detail.png">
+                <img src="./images/manage-detail.png" alt="Admin detail interface">
+            </a>
+            <figcaption>Where admin can review applicants, delete or filter by name, dob,... Click on the image to see the full size.
             </figcaption>
         </figure>
     </section>
