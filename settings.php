@@ -1,13 +1,8 @@
 <?php
 $host = "localhost";
-$username = "root";
-$password = "ikon282006"; // Nếu có mật khẩu thì điền vào đây
-$database = "test";
+$user = "root";
+$pwd = "ikon282006"; 
+$sql_db = "test";
 
-$conn = new mysqli($host, $username, $password, $database);
-
-// Kiểm tra kết nối
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+$conn = new mysqli($host, $user, $pwd, $sql_db);
 ?>
