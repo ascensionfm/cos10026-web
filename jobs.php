@@ -1,7 +1,7 @@
 <?php
     session_start();
     require("settings.php"); 
-    $conn = new mysqli($host, $username, $password, $database);
+    $conn = new mysqli($host, $user, $pwd, $sql_db);
 
     $searchKeyword = isset($_GET['search']) ? strtolower(trim($_GET['search'])) : '';
     $filterLocation = isset($_GET['location']) ? $_GET['location'] : '';
