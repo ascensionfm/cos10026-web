@@ -33,9 +33,10 @@ if (!$job) {
     <?php require("header.inc"); ?>
     <div class="container">
 <h1 class="job-title"><strong><?php echo htmlspecialchars($job['title']); ?></strong></h1>
-        <div class="job-details">
-            <div class="detail-card">
-                <i class="fas fa-money-bill-wave"></i>
+<h3 class="job-title"><?php echo '#'.str_pad($job['id'], 5, '0', STR_PAD_LEFT); ?></h3>
+<div class="job-details">
+    <div class="detail-card">
+        <i class="fas fa-money-bill-wave"></i>
 <div class="label"><strong>Salary</strong></div>
                 <div class="value"><?php echo htmlspecialchars($job['salary']); ?></div>
             </div>

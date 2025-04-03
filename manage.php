@@ -26,9 +26,6 @@ if (!isset($_SESSION['management_loggedin']) || $_SESSION['management_loggedin']
 }
 
 if (isset($_SESSION['last_activity']) && (time() - $_SESSION['last_activity']) > $timeout_duration) {
-    unset($_SESSION["username"], 
-      $_SESSION["management_loggedin"],
-      $_SESSION["last_activity"]);
     session_destroy();
     header('Location: Mana_log.php');
     exit;
@@ -156,7 +153,7 @@ if ($result->num_rows > 0) {
         echo '<form method="POST" action="manage.php">';
         echo '<input type="hidden" name="application_id" value="' . htmlspecialchars($row['id']) . '">';
         echo '<select name="status" onchange="this.form.submit()">';
-        $statusOptions = ['Complete', 'Pending', 'Rejected'];
+        $statusOptions = ['Approved', 'Pending', 'Rejected'];
         foreach ($statusOptions as $statusOption) {
             $selected = ($row['status'] === $statusOption) ? 'selected' : '';
             echo '<option value="' . htmlspecialchars($statusOption) . '" ' . $selected . '>' . htmlspecialchars($statusOption) . '</option>';
@@ -192,8 +189,8 @@ function deleteEOIsByJobReference($conn, $jobReference) {
     $deleteSql = "DELETE FROM applications WHERE job_reference = '$jobReferenceToDelete'";
     if ($conn->query($deleteSql) === TRUE) {
         echo '<p style="text-align: center; color: green;">EOIs with Job Reference "' . htmlspecialchars($jobReferenceToDelete) . '" have been deleted successfully.</p>';
-        header('Location: manage.php');
-            exit;
+        echo '<script>window.location.href = "manage.php";</script>';
+        exit;
     } else {
         echo '<p style="text-align: center; color: red;">Error deleting EOIs: ' . $conn->error . '</p>';
     }

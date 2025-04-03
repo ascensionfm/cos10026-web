@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-$timeout_duration = 1800; // 30 minutes in seconds
+$timeout_duration = 500; // 30 minutes in seconds
 
 if (!isset($_SESSION['management_loggedin']) || $_SESSION['management_loggedin'] !== true) {
     header('Location: Mana_log.php');

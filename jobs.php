@@ -75,7 +75,7 @@
             <select name="location">
                 <option value="">Location</option>
                 <?php
-                $locations = ["Ha Noi", "Đa Nang", "Ho Chi Minh City", "Can Tho", "Hai Phong", "Ca Mau", "Quang Ninh", "International"];
+                $locations = ["Ha Noi", "Da Nang", "Ho Chi Minh City", "Can Tho", "Hai Phong", "Ca Mau", "Quang Ninh", "International"];
                 foreach ($locations as $location) {
                     echo '<option value="' . $location . '"' . ($filterLocation === $location ? ' selected' : '') . '>' . $location . '</option>';
                 }
@@ -109,7 +109,7 @@
                         <span><?php echo htmlspecialchars($job['location']); ?></span>
                     </div>
                     <div class="tags">
-                        <?php foreach (json_decode($job['tags']) as $tag): ?>
+                        <?php foreach (explode(',', $job['tags']) as $tag): ?>
                             <span class="tag"><?php echo htmlspecialchars(trim($tag)); ?></span>
                         <?php endforeach; ?>
                     </div>

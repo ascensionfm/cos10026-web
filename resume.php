@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Application Confirmation - Next_Gen Corporation</title>
+    <title>Resume - Next_Gen Corporation</title>
     <link rel="icon" href="./images/logo1.ico">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
@@ -11,7 +11,13 @@
     <link rel="stylesheet" href="./styles/style-apply-confirmation.css">
 </head>
 <body>
-
+    <?php
+    session_start();
+        if (!isset($_SESSION['management_loggedin']) || $_SESSION['management_loggedin'] !== true) {
+            header('Location: Mana_log.php');
+            exit;
+        }
+    ?>    
     <?php require("header.inc"); ?>
                 <div class="confirmation-message">
                     <p>Resume</p>
