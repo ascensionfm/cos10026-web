@@ -18,7 +18,7 @@
 <?php
 session_start();
 
-$timeout_duration = 1800; // 30 minutes in seconds
+$timeout_duration = 300; // 5 minutes in seconds
 
 if (!isset($_SESSION['management_loggedin']) || $_SESSION['management_loggedin'] !== true) {
     header('Location: Mana_log.php');
@@ -26,7 +26,9 @@ if (!isset($_SESSION['management_loggedin']) || $_SESSION['management_loggedin']
 }
 
 if (isset($_SESSION['last_activity']) && (time() - $_SESSION['last_activity']) > $timeout_duration) {
-    session_unset();
+    unset($_SESSION["username"], 
+      $_SESSION["management_loggedin"],
+      $_SESSION["last_activity"]);
     session_destroy();
     header('Location: Mana_log.php');
     exit;
@@ -44,7 +46,22 @@ $conn = new mysqli($host, $user, $pwd, $sql_db);
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
-
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_application']) && isset($_POST['delete_application_id'])) {
+    $applicationIdToDelete = $conn->real_escape_string($_POST['delete_application_id']);
+    $deleteSql = "DELETE FROM applications WHERE id = '$applicationIdToDelete'";
+    if ($conn->query($deleteSql) === TRUE) {
+        echo '<div style="text-align: center; margin-top: 20px; color: green;">';
+        echo '<p>Application has been deleted successfully.</p>';
+        echo '</div>';
+        echo '<script>setTimeout(function() {}, 1000);</script>';
+        echo '<script>window.location.href = "manage.php";</script>';
+        exit;
+    } else {
+        echo '<div style="text-align: center; margin-top: 20px; color: red;">';
+        echo '<p>Error deleting application: ' . $conn->error . '</p>';
+        echo '</div>';
+    }
+}
 $sql = "SELECT * FROM applications";
 $result = $conn->query($sql);
 
@@ -96,6 +113,7 @@ echo '</div>';
 echo '<div style="flex: 2; min-width: 300px;">';
 echo '<label>Filter by Skills:</label><br>';
 
+
 foreach ($options as $option) {
     $checked = in_array($option, $filterSkills) ? 'checked' : '';
     echo '<label style="display: inline-block; margin-right: 10px;"><input type="checkbox" name="filter_skills[]" value="' . htmlspecialchars($option) . '" ' . $checked . '> ' . htmlspecialchars($option) . '</label>';
@@ -138,7 +156,7 @@ if ($result->num_rows > 0) {
         echo '<form method="POST" action="manage.php">';
         echo '<input type="hidden" name="application_id" value="' . htmlspecialchars($row['id']) . '">';
         echo '<select name="status" onchange="this.form.submit()">';
-        $statusOptions = ['Under Review', 'Complete', 'Pending', 'Rejected'];
+        $statusOptions = ['Complete', 'Pending', 'Rejected'];
         foreach ($statusOptions as $statusOption) {
             $selected = ($row['status'] === $statusOption) ? 'selected' : '';
             echo '<option value="' . htmlspecialchars($statusOption) . '" ' . $selected . '>' . htmlspecialchars($statusOption) . '</option>';
@@ -162,18 +180,6 @@ if ($result->num_rows > 0) {
         echo '</td>';
         echo '</tr>';
     }
-
-        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_application']) && isset($_POST['delete_application_id'])) {
-            $applicationIdToDelete = $conn->real_escape_string($_POST['delete_application_id']);
-            $deleteSql = "DELETE FROM applications WHERE id = '$applicationIdToDelete'";
-            if ($conn->query($deleteSql) === TRUE) {
-                echo '<p style="text-align: center; color: green;">Application with ID ' . htmlspecialchars($applicationIdToDelete) . ' has been deleted successfully.</p>';
-                echo '<script>window.location.href = "manage.php";</script>';
-                exit;
-            } else {
-                echo '<p style="text-align: center; color: red;">Error deleting application: ' . $conn->error . '</p>';
-            }
-        }
         echo '</tr>';
     echo '</tbody>';
     echo '</table>';
