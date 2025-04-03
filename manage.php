@@ -112,43 +112,28 @@ if ($result->num_rows > 0) {
     echo '<table class="styled-table" style="margin: 0 auto; border: 1px solid black; border-collapse: collapse;">';
     echo '<thead>';
     echo '<tr style="border: 1px solid black;">';
-    echo '<th style="border: 1px solid black;">User ID</th>';
     echo '<th style="border: 1px solid black;">Job Reference</th>';
     echo '<th style="border: 1px solid black;">First Name</th>';
     echo '<th style="border: 1px solid black;">Last Name</th>';
     echo '<th style="border: 1px solid black;">Date of Birth</th>';
     echo '<th style="border: 1px solid black;">Gender</th>';
-    echo '<th style="border: 1px solid black;">Street Address</th>';
-    echo '<th style="border: 1px solid black;">Suburb</th>';
-    echo '<th style="border: 1px solid black;">State</th>';
-    echo '<th style="border: 1px solid black;">Postcode</th>';
-    echo '<th style="border: 1px solid black;">Email</th>';
-    echo '<th style="border: 1px solid black;">Phone</th>';
     echo '<th style="border: 1px solid black;">Skills</th>';
-    echo '<th style="border: 1px solid black;">Other Skills</th>';
-    echo '<th style="border: 1px solid black;">Photo</th>';
+    echo '<th style="border: 1px solid black;">Status</th>';
     echo '<th style="border: 1px solid black;">Application Date</th>';
     echo '<th style="border: 1px solid black;">Position Name</th>';
+    echo '<th style="border: 1px solid black;">Details</th>';
     echo '</tr>';
     echo '</thead>';
     echo '<tbody>';
 
     while ($row = $result->fetch_assoc()) {
         echo '<tr style="border: 1px solid black;">';
-        echo '<td style="border: 1px solid black;">' . htmlspecialchars(isset($row['user_id']) ? $row['user_id'] : '') . '</td>';
         echo '<td style="border: 1px solid black;">' . htmlspecialchars($row['job_reference']) . '</td>';
         echo '<td style="border: 1px solid black;">' . htmlspecialchars($row['first_name']) . '</td>';
         echo '<td style="border: 1px solid black;">' . htmlspecialchars($row['last_name']) . '</td>';
         echo '<td style="border: 1px solid black;">' . htmlspecialchars($row['date_of_birth']) . '</td>';
         echo '<td style="border: 1px solid black;">' . htmlspecialchars($row['gender']) . '</td>';
-        echo '<td style="border: 1px solid black;">' . htmlspecialchars($row['street_address']) . '</td>';
-        echo '<td style="border: 1px solid black;">' . htmlspecialchars($row['suburb']) . '</td>';
-        echo '<td style="border: 1px solid black;">' . htmlspecialchars($row['state']) . '</td>';
-        echo '<td style="border: 1px solid black;">' . htmlspecialchars($row['postcode']) . '</td>';
-        echo '<td style="border: 1px solid black;">' . htmlspecialchars($row['email']) . '</td>';
-        echo '<td style="border: 1px solid black;">' . htmlspecialchars($row['phone']) . '</td>';
         echo '<td style="border: 1px solid black;">' . htmlspecialchars($row['skills']) . '</td>';
-        echo '<td style="border: 1px solid black;">' . htmlspecialchars($row['other_skills']) . '</td>';
         echo '<td style="border: 1px solid black;">';
         echo '<form method="POST" action="manage.php">';
         echo '<input type="hidden" name="application_id" value="' . htmlspecialchars($row['id']) . '">';
@@ -164,6 +149,12 @@ if ($result->num_rows > 0) {
         echo '<td style="border: 1px solid black;">' . htmlspecialchars($row['application_date']) . '</td>';
         echo '<td style="border: 1px solid black;">' . htmlspecialchars(isset($row['position_name']) ? $row['position_name'] : '') . '</td>';
         echo '<td style="border: 1px solid black; text-align: center;">';
+        echo '<form method="POST" action="resume.php">';
+        echo '<input type="hidden" name="id" value="' . htmlspecialchars($row['id'], ENT_QUOTES, 'UTF-8') . '">';
+        echo '<button type="submit" style="padding: 5px 10px; background-color: #4CAF50; color: white; border: none; border-radius: 3px; cursor: pointer;">More Details</button>';
+        echo '</form>';
+        echo '</td>';
+        echo '<td style="border: 1px solid black; text-align: center;">';
         echo '<form method="POST" action="manage.php" onsubmit="return confirm(\'Are you sure you want to delete this application?\');">';
         echo '<input type="hidden" name="delete_application_id" value="' . htmlspecialchars($row['id']) . '">';
         echo '<button type="submit" name="delete_application" style="padding: 5px 10px; background-color: #f44336; color: white; border: none; border-radius: 3px; cursor: pointer;">Delete</button>';
@@ -177,7 +168,7 @@ if ($result->num_rows > 0) {
             $deleteSql = "DELETE FROM applications WHERE id = '$applicationIdToDelete'";
             if ($conn->query($deleteSql) === TRUE) {
                 echo '<p style="text-align: center; color: green;">Application with ID ' . htmlspecialchars($applicationIdToDelete) . ' has been deleted successfully.</p>';
-                header('Location: manage.php');
+                echo '<script>window.location.href = "manage.php";</script>';
                 exit;
             } else {
                 echo '<p style="text-align: center; color: red;">Error deleting application: ' . $conn->error . '</p>';
