@@ -44,9 +44,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       }
   
       // Validate Date of Birth
-      if (empty($_POST["date-of-birth"])) {
-        $errors[] = "Date of Birth is required.";
+    if (empty($_POST["date-of-birth"])) {
+      $errors[] = "Date of Birth is required.";
+    } else {
+      $dateOfBirth = $_POST["date-of-birth"];
+      $dobTimestamp = strtotime($dateOfBirth);
+      $currentTimestamp = time();
+      $age = ($currentTimestamp - $dobTimestamp) / (365.25 * 24 * 60 * 60);
+
+      if ($age < 15 || $age > 80) {
+        $errors[] = "Age must be between 15 and 80 years.";
       }
+    }
   
       // Validate Gender
       if (empty($_POST["gender"]) || !in_array($_POST["gender"], ["male", "female", "other"])) {
