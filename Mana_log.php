@@ -4,6 +4,13 @@
 	// created: 13/3/2025
 	// description: Manager login page
 ?>
+<?php
+session_start();
+if (isset($_SESSION['management_loggedin']) && $_SESSION['management_loggedin'] == true) {
+    header('Location: admin_dashboard.php');
+    exit();
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,9 +29,6 @@
             <div class="form-container signin-container">
                 <h2>Admin Login</h2>
                 <?php
-                if (!isset($_SESSION['management_loggedin']) || $_SESSION['management_loggedin'] == true) {
-                    header('Location: admin_dashboard.php');
-                }
                 if (isset($_GET['error']) && $_GET['error'] == 'invalid_credentials') {
                     echo '<p class="error-message" style="color: red;">Invalid username or password. Please try again.</p>';
                 }
