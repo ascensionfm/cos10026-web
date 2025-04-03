@@ -24,7 +24,6 @@
                 <?php
                 if (!isset($_SESSION['management_loggedin']) || $_SESSION['management_loggedin'] == true) {
                     header('Location: admin_dashboard.php');
-                    exit;
                 }
                 if (isset($_GET['error']) && $_GET['error'] == 'invalid_credentials') {
                     echo '<p class="error-message" style="color: red;">Invalid username or password. Please try again.</p>';
