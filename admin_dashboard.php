@@ -68,13 +68,13 @@ $_SESSION['last_activity'] = time();
             
             <div class="card">
                 <div class="card-icon"><i class="fas fa-check-circle"></i></div>
-                <h3 class="card-title">Approved</h3>
+                <h3 class="card-title">Final</h3>
                 <div class="card-value">
                     <?php
                     if ($conn->connect_error) {
                         echo "Error";
                     } else {
-                        $result = $conn->query("SELECT COUNT(*) as total FROM applications WHERE status = 'Approved'");
+                        $result = $conn->query("SELECT COUNT(*) as total FROM applications WHERE status = 'FINAL'");
                         if ($result && $row = $result->fetch_assoc()) {
                             echo $row['total'];
                         } else {
@@ -83,18 +83,18 @@ $_SESSION['last_activity'] = time();
                     }
                     ?>
                 </div>
-                <p class="card-description">Applications that have been approved</p>
+                <p class="card-description">Applications that have been reviewed</p>
             </div>
             
             <div class="card">
                 <div class="card-icon"><i class="fas fa-clock"></i></div>
-                <h3 class="card-title">Pending</h3>
+                <h3 class="card-title">Current</h3>
                 <div class="card-value">
                     <?php
                     if ($conn->connect_error) {
                         echo "Error";
                     } else {
-                        $result = $conn->query("SELECT COUNT(*) as total FROM applications WHERE status = 'Pending'");
+                        $result = $conn->query("SELECT COUNT(*) as total FROM applications WHERE status = 'CURRENT'");
                         if ($result && $row = $result->fetch_assoc()) {
                             echo $row['total'];
                         } else {
@@ -107,14 +107,14 @@ $_SESSION['last_activity'] = time();
             </div>
             
             <div class="card">
-                <div class="card-icon"><i class="fas fa-times-circle"></i></div>
-                <h3 class="card-title">Rejected</h3>
+                <div class="card-icon"><i class="fas fa-clock"></i></div>
+                <h3 class="card-title">New</h3>
                 <div class="card-value">
                     <?php
                     if ($conn->connect_error) {
                         echo "Error";
                     } else {
-                        $result = $conn->query("SELECT COUNT(*) as total FROM applications WHERE status = 'Rejected'");
+                        $result = $conn->query("SELECT COUNT(*) as total FROM applications WHERE status = 'NEW'");
                         if ($result && $row = $result->fetch_assoc()) {
                             echo $row['total'];
                         } else {
@@ -123,7 +123,7 @@ $_SESSION['last_activity'] = time();
                     }
                     ?>
                 </div>
-                <p class="card-description">Applications that have been rejected</p>
+                <p class="card-description">Applications thats havent been checked</p>
             </div>
         </div>
         
@@ -138,11 +138,11 @@ $_SESSION['last_activity'] = time();
                     if ($result && $result->num_rows > 0) {
                         while ($row = $result->fetch_assoc()) {
                             $statusClass = '';
-                            $status = isset($row['status']) ? $row['status'] : 'Pending';
+                            $status = isset($row['status']) ? $row['status'] : 'NEW';
                             
-                            if ($status == 'Approved') {
+                            if ($status == 'CURRENT') {
                                 $statusClass = 'status-approved';
-                            } else if ($status == 'Rejected') {
+                            } else if ($status == 'FINAL') {
                                 $statusClass = 'status-rejected';
                             } else {
                                 $statusClass = 'status-pending';

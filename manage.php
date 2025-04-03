@@ -137,6 +137,7 @@ if ($result->num_rows > 0) {
     echo '<th style="border: 1px solid black;">Application Date</th>';
     echo '<th style="border: 1px solid black;">Position Name</th>';
     echo '<th style="border: 1px solid black;">Details</th>';
+    echo '<th style="border: 1px solid black;"></th>';
     echo '</tr>';
     echo '</thead>';
     echo '<tbody>';
@@ -153,7 +154,7 @@ if ($result->num_rows > 0) {
         echo '<form method="POST" action="manage.php">';
         echo '<input type="hidden" name="application_id" value="' . htmlspecialchars($row['id']) . '">';
         echo '<select name="status" onchange="this.form.submit()">';
-        $statusOptions = ['Approved', 'Pending', 'Rejected'];
+        $statusOptions = ['NEW', 'CURRENT', 'FINAL'];
         foreach ($statusOptions as $statusOption) {
             $selected = ($row['status'] === $statusOption) ? 'selected' : '';
             echo '<option value="' . htmlspecialchars($statusOption) . '" ' . $selected . '>' . htmlspecialchars($statusOption) . '</option>';
